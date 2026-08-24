@@ -1,0 +1,275 @@
+import React from 'react';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
+import { getAttorneys, getAttorneyBySlug } from '@/lib/api';
+import { CaseResultCard } from '@/components/CaseResultCard';
+import { ConsultationForm } from '@/components/ConsultationForm';
+import { JsonLd, getAttorneyPersonSchema } from '@/components/JsonLd';
+import { 
+  ChevronRight, 
+  Mail, 
+  Phone, 
+  Award, 
+  GraduationCap, 
+  Scale 
+} from 'lucide-react';
+
+interface Props {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  const attorneys = await getAttorneys();
+  return attorneys.map((attorney) => ({
+    slug: attorney.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const attorney = await getAttorneyBySlug(slug);
+
+  if (!attorney) {
+    return {
+      title: 'Attorney Profile Not Found',
+    };
+  }
+
+  return {
+    title: `${attorney.name} | ${attorney.designation}`,
+    description: attorney.bio,
+    alternates: {
+      canonical: `https://apexlegal.com/attorneys/${attorney.slug}`,
+    },
+    openGraph: {
+      title: `${attorney.name} - ${attorney.designation}`,
+      description: attorney.bio,
+      images: attorney.photo_url ? [{ url: attorney.photo_url }] : [],
+      url: `https://apexlegal.com/attorneys/${attorney.slug}`,
+    },
+  };
+}
+
+export default async function AttorneyBioPage({ params }: Props) {
+  const { slug } = await params;
+  const attorney = await getAttorneyBySlug(slug);
+
+  if (!attorney) {
+    notFound();
+  }
+
+  const personJsonLd = getAttorneyPersonSchema(attorney);
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://apexlegal.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Attorneys",
+        "item": "https://apexlegal.com/attorneys"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": attorney.name,
+        "item": `https://apexlegal.com/attorneys/${attorney.slug}`
+      }
+    ]
+  };
+
+  return (
+    <div className="min-h-screen py-12">
+      <JsonLd data={personJsonLd} />
+      <JsonLd data={breadcrumbSchema} />
+
+      {/* Breadcrumbs */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+        <nav className="flex items-center gap-2 text-xs text-slate-400">
+          <Link href="/" className="hover:text-[#C5A880] transition">
+            Home
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+          <Link href="/attorneys" className="hover:text-[#C5A880] transition">
+            Attorneys
+          </Link>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+          <span className="text-[#DFC7A5] font-semibold">{attorney.name}</span>
+        </nav>
+      </div>
+
+      {/* Attorney Hero / Bio Card */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <div className="rounded-3xl bg-[#0B192C] border border-[#C5A880]/30 shadow-2xl overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            {/* Left Photo */}
+            <div className="lg:col-span-5 relative min-h-[380px] sm:min-h-[480px] bg-[#0A192F]">
+              {attorney.photo_url ? (
+                <Image
+                  src={attorney.photo_url}
+                  alt={attorney.name}
+                  fill
+                  priority
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-[#172A45] text-[#C5A880]">
+                  <Scale className="w-20 h-20 opacity-30" />
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B192C] via-transparent to-transparent lg:hidden"></div>
+            </div>
+
+            {/* Right Details */}
+            <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between space-y-6">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#C5A880] block mb-2">
+                  {attorney.designation}
+                </span>
+                <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                  {attorney.name}
+                </h1>
+
+                {/* Practice Badges */}
+                {attorney.practice_areas && attorney.practice_areas.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {attorney.practice_areas.map((p) => (
+                      <Link
+                        key={p.id}
+                        href={`/practice-areas/${p.slug}`}
+                        className="px-3 py-1 rounded-full text-xs font-semibold bg-[#172A45] text-[#DFC7A5] border border-[#C5A880]/30 hover:border-[#C5A880] transition"
+                      >
+                        {p.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
+                {/* Bio text */}
+                <div className="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed space-y-3 font-light">
+                  <p>{attorney.bio}</p>
+                </div>
+              </div>
+
+              {/* Direct Contacts & Actions */}
+              <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 text-slate-300">
+                    <Mail className="w-4 h-4 text-[#C5A880]" />
+                    <a href={`mailto:${attorney.email}`} className="hover:text-[#DFC7A5] font-medium">
+                      {attorney.email}
+                    </a>
+                  </div>
+                  {attorney.phone && (
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <Phone className="w-4 h-4 text-[#C5A880]" />
+                      <a href={`tel:${attorney.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-[#DFC7A5] font-medium">
+                        {attorney.phone}
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                <a
+                  href="#direct-booking"
+                  className="px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0A192F] bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] hover:brightness-110 shadow-lg shadow-[#C5A880]/20 transition"
+                >
+                  Book Retainer Consultation
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Credentials Grid (Bar Admissions, Education, Accolades) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Bar Admissions */}
+          <div className="p-8 rounded-2xl bg-[#0B192C]/80 border border-white/5 space-y-4">
+            <div className="flex items-center gap-2.5 text-[#DFC7A5]">
+              <Award className="w-5 h-5 text-[#C5A880]" />
+              <h3 className="font-serif text-xl font-bold text-white">Bar Admissions & Court Licenses</h3>
+            </div>
+            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
+              {attorney.bar_admissions && attorney.bar_admissions.length > 0 ? (
+                attorney.bar_admissions.map((bar, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
+                    <span>{bar}</span>
+                  </li>
+                ))
+              ) : (
+                <li>New York State Bar & Federal Southern District</li>
+              )}
+            </ul>
+          </div>
+
+          {/* Education */}
+          <div className="p-8 rounded-2xl bg-[#0B192C]/80 border border-white/5 space-y-4">
+            <div className="flex items-center gap-2.5 text-[#DFC7A5]">
+              <GraduationCap className="w-5 h-5 text-[#C5A880]" />
+              <h3 className="font-serif text-xl font-bold text-white">Education & Honors</h3>
+            </div>
+            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
+              {attorney.education && attorney.education.length > 0 ? (
+                attorney.education.map((edu, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
+                    <span>{edu}</span>
+                  </li>
+                ))
+              ) : (
+                <li>Juris Doctor, Columbia Law School</li>
+              )}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Case Wins Led by this Attorney */}
+      {attorney.case_results && attorney.case_results.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+          <div className="mb-8">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#C5A880] block mb-1">
+              Trial Record
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              Landmark Cases Led by {attorney.name}
+            </h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {attorney.case_results.map((res) => (
+              <CaseResultCard key={res.id} result={res} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Direct Booking Consultation Form */}
+      <div id="direct-booking" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ConsultationForm 
+          title={`Consult with ${attorney.name}`}
+          subtitle={`Submit your confidential case details directly to ${attorney.name}'s lead trial associate.`}
+          sourceContext={`attorney-profile-${attorney.slug}`}
+        />
+      </div>
+
+    </div>
+  );
+}

@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@layer base {
+  :root, html.dark {
+    --bg-primary: #0A192F;
+    --bg-secondary: #0B192C;
+    --bg-surface: #060D17;
+    --bg-card: rgba(23, 42, 69, 0.6);
+    --bg-card-solid: #172A45;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-gold: rgba(197, 168, 128, 0.25);
+    --gold-primary: #C5A880;
+    --gold-light: #DFC7A5;
+    --gold-dark: #9F8259;
+    --gold-muted: #856E4D;
+  }
+
+  html.light {
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #FFFFFF;
+    --bg-surface: #F1F5F9;
+    --bg-card: #FFFFFF;
+    --bg-card-solid: #F8FAFC;
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+    --border-subtle: rgba(15, 23, 42, 0.1);
+    --border-gold: rgba(159, 130, 89, 0.35);
+    --gold-primary: #9F8259;
+    --gold-light: #856E4D;
+    --gold-dark: #6C5535;
+    --gold-muted: #6C5535;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, .font-serif-title {
+    font-family: var(--font-serif, Georgia, Cambria, "Times New Roman", Times, serif);
+  }
+}
+
+/* Custom Prestige Legal Utilities */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #DFC7A5 0%, #C5A880 50%, #9F8259 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.light .gold-gradient-text {
+  background: linear-gradient(135deg, #856E4D 0%, #9F8259 50%, #6C5535 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #DFC7A5 0%, #C5A880 50%, #9F8259 100%);
+}
+
+html.light .gold-gradient-bg {
+  background: linear-gradient(135deg, #C5A880 0%, #9F8259 50%, #856E4D 100%);
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(135deg, #DFC7A5 0%, #C5A880 50%, transparent 100%) 1;
+}
+
+.navy-card-glow {
+  background: rgba(23, 42, 69, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navy-card-glow:hover {
+  border-color: rgba(197, 168, 128, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(197, 168, 128, 0.15);
+}
+
+html.light .navy-card-glow {
+  background: #FFFFFF;
+  backdrop-filter: none;
+  border: 1px solid rgba(159, 130, 89, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+html.light .navy-card-glow:hover {
+  border-color: rgba(159, 130, 89, 0.6);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(159, 130, 89, 0.15);
+}
+
+.hero-pattern {
+  background-color: #0A192F;
+  background-image: radial-gradient(rgba(197, 168, 128, 0.08) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+html.light .hero-pattern {
+  background-color: #F8FAFC;
+  background-image: radial-gradient(rgba(159, 130, 89, 0.12) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+/* Light Theme Component Overrides for Clean Editorial Look */
+html.light .bg-\[\#0A192F\] {
+  background-color: #F8FAFC !important;
+}
+
+html.light .bg-\[\#0B192C\] {
+  background-color: #FFFFFF !important;
+}
+
+html.light .bg-\[\#060D17\] {
+  background-color: #F1F5F9 !important;
+}
+
+html.light .bg-\[\#070E18\] {
+  background-color: #F1F5F9 !important;
+}
+
+html.light .bg-\[\#172A45\] {
+  background-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+
+html.light .bg-\[\#172A45\]\/60,
+html.light .bg-\[\#172A45\]\/80,
+html.light .bg-\[\#172A45\]\/90 {
+  background-color: #EEF2F6 !important;
+}
+
+html.light .text-white {
+  color: #0F172A !important;
+}
+
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400 {
+  color: #64748B !important;
+}
+
+html.light .text-\[\#DFC7A5\] {
+  color: #856E4D !important;
+}
+
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+html.light .border-\[\#1E2D4A\] {
+  border-color: #E2E8F0 !important;
+}
+
+html.light .border-\[\#C5A880\]\/15,
+html.light .border-\[\#C5A880\]\/20,
+html.light .border-\[\#C5A880\]\/30 {
+  border-color: rgba(159, 130, 89, 0.25) !important;
+}
+
+/* Form Input Overrides in Light Mode */
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border-color: #CBD5E1 !important;
+}
+
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  border-color: #9F8259 !important;
+  box-shadow: 0 0 0 2px rgba(159, 130, 89, 0.2) !important;
+}
+
+html.light option {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+}
