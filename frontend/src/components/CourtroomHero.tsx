@@ -1,64 +1,40 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, 
   ArrowRight, 
   CheckCircle2, 
+  Gavel, 
+  Scale, 
   Volume2, 
   VolumeX, 
   Sparkles,
-  Gavel as GavelIcon
+  Award
 } from 'lucide-react';
 
-const courtroomBackgrounds = [
-  {
-    title: 'Supreme Appellate Chamber',
-    url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1600',
-  },
-  {
-    title: 'Federal Trial Bench',
-    url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1600',
-  },
-  {
-    title: 'Historic Chambers of Justice',
-    url: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1600',
-  },
-];
-
 export function CourtroomHero() {
-  const [bgIndex, setBgIndex] = useState(0);
   const [soundEnabled, setSoundEnabled] = useState(false);
-  const [strikeCount, setStrikeCount] = useState(0);
-  const [strikePhase, setStrikePhase] = useState<'idle' | 'raising' | 'strike1' | 'strike2' | 'strike3'>('idle');
-  const [isStriking, setIsStriking] = useState(false);
-  const [shockwaves, setShockwaves] = useState<number[]>([]);
+  const [strikeActive, setStrikeActive] = useState(false);
+  const [strikeText, setStrikeText] = useState<string | null>(null);
 
-  // Rotate courtroom backgrounds smoothly every 10 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % courtroomBackgrounds.length);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Web Audio Synth Gavel Sound Generator
-  const playGavelSound = useCallback((pitch = 140) => {
+  // Web Audio Synth Gavel Impact Sound
+  const playGavelSound = useCallback((pitch = 145) => {
     if (!soundEnabled || typeof window === 'undefined') return;
     try {
       const AudioContext = window.AudioContext || (window as unknown as { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext;
       if (!AudioContext) return;
       const ctx = new AudioContext();
 
-      // Sharp wooden impact transient
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
       osc.type = 'triangle';
       osc.frequency.setValueAtTime(pitch, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.18);
+      osc.frequency.exponentialRampToValueAtTime(32, ctx.currentTime + 0.2);
 
       gain.gain.setValueAtTime(1.0, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
@@ -69,128 +45,86 @@ export function CourtroomHero() {
       osc.start();
       osc.stop(ctx.currentTime + 0.22);
     } catch {
-      // Audio context may be restricted before user interaction
+      // Audio context restricted until user gesture
     }
   }, [soundEnabled]);
 
-  const triggerShockwave = useCallback(() => {
-    const id = Date.now() + Math.random();
-    setShockwaves((prev) => [...prev, id]);
-    setTimeout(() => {
-      setShockwaves((prev) => prev.filter((item) => item !== id));
-    }, 1200);
-  }, []);
-
-  // Continuous "Order! Order!" Strike Loop (Every 6 seconds)
-  useEffect(() => {
-    const runOrderOrderRhythm = () => {
-      setStrikePhase('raising');
-
-      // Strike 1
-      setTimeout(() => {
-        setStrikePhase('strike1');
-        playGavelSound(150);
-        triggerShockwave();
-        setStrikeCount((c) => c + 1);
-      }, 500);
-
-      // Strike 2 ("Order!")
-      setTimeout(() => {
-        setStrikePhase('raising');
-      }, 1000);
-
-      setTimeout(() => {
-        setStrikePhase('strike2');
-        playGavelSound(140);
-        triggerShockwave();
-        setStrikeCount((c) => c + 1);
-      }, 1400);
-
-      // Strike 3 ("Order!")
-      setTimeout(() => {
-        setStrikePhase('raising');
-      }, 1900);
-
-      setTimeout(() => {
-        setStrikePhase('strike3');
-        playGavelSound(130);
-        triggerShockwave();
-        setStrikeCount((c) => c + 1);
-      }, 2300);
-
-      // Settle
-      setTimeout(() => {
-        setStrikePhase('idle');
-      }, 3400);
-    };
-
-    runOrderOrderRhythm();
-    const interval = setInterval(runOrderOrderRhythm, 6500);
-    return () => clearInterval(interval);
-  }, [playGavelSound, triggerShockwave]);
-
-  // Manual User Strike
-  const handleManualStrike = () => {
-    if (isStriking) return;
-    setIsStriking(true);
-    setStrikePhase('raising');
+  // Handle Interactive Gavel Strike ("Order! Order!")
+  const handleGavelStrike = () => {
+    if (strikeActive) return;
+    setStrikeActive(true);
+    playGavelSound(155);
+    setStrikeText('ORDER IN THE COURT!');
 
     setTimeout(() => {
-      setStrikePhase('strike1');
-      playGavelSound(160);
-      triggerShockwave();
-      setStrikeCount((c) => c + 1);
-      setTimeout(() => {
-        setStrikePhase('idle');
-        setIsStriking(false);
-      }, 800);
-    }, 300);
+      playGavelSound(145);
+      setStrikeText('ORDER!');
+    }, 450);
+
+    setTimeout(() => {
+      playGavelSound(135);
+      setStrikeText('ORDER!');
+    }, 900);
+
+    setTimeout(() => {
+      setStrikeActive(false);
+      setStrikeText(null);
+    }, 2200);
   };
 
   return (
-    <section className="relative overflow-hidden pt-20 pb-28 md:pt-28 md:pb-36 bg-nepal-dark text-white border-b border-sakura-border">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#001F54] text-white border-b border-sakura-border font-sans">
       
-      {/* 1. LAYER: Courtroom Background Crossfader with Deep Navy & Nepal Flag Tonal Overlay */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={bgIndex}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 0.22, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 2.2, ease: 'easeInOut' }}
-            className="absolute inset-0 bg-cover bg-center filter saturate-150 contrast-125"
-            style={{
-              backgroundImage: `url(${courtroomBackgrounds[bgIndex].url})`,
-            }}
+      {/* 1. FULL BACKGROUND IMAGE WITH CINEMATIC KEN-BURNS ANIMATION */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <motion.div
+          animate={{
+            scale: [1, 1.05, 1],
+            x: [0, -8, 0],
+          }}
+          transition={{
+            duration: 24,
+            repeat: Infinity,
+            repeatType: 'reverse',
+            ease: 'easeInOut',
+          }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/images/courtroom_hero.jpg"
+            alt="Apex Legal Courtroom Bench and Judicial Chambers"
+            fill
+            priority
+            className="object-cover object-center filter saturate-[1.1] contrast-[1.15]"
           />
-        </AnimatePresence>
+        </motion.div>
 
-        {/* Navy Gradient Grids for Maximum Text Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#001F54] via-[#001F54]/90 to-[#001F54]/80 backdrop-blur-[2px]" />
+        {/* Cinematic Multi-Layered Overlays (Navy, Nepal Flag Tones & Vignette for Perfect Text Contrast) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#001F54]/95 via-[#001F54]/85 to-[#001F54]/75" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#001F54] via-transparent to-[#001F54]/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#00153B_80%)] opacity-70" />
 
-        {/* Ambient Neon Glows */}
-        <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-nepal-blue/25 rounded-full blur-[140px]" />
-        <div className="absolute top-12 right-12 w-80 h-80 bg-crimson/18 rounded-full blur-3xl" />
+        {/* Ambient Courtroom Light Beams */}
+        <div className="absolute top-0 left-1/4 w-96 h-full bg-gradient-to-b from-white/5 to-transparent blur-3xl transform -skew-x-12 pointer-events-none" />
       </div>
 
-      {/* 2. LAYER: Main Content Grid (Typography + Interactive Animated Gavel) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 font-sans">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      {/* 2. FOREGROUND CONTENT GRID */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Hero Text & High-Converting CTAs */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Left Column: Authoritative Copy & Direct Legal CTAs */}
+          <div className="lg:col-span-8 space-y-6">
             
-            {/* Prestige Authority Pill */}
+            {/* National Counsel Authority Badge */}
             <motion.div 
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-nepal-surface border border-sakura-border text-xs font-bold text-white tracking-wide shadow-md"
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#0A2540]/90 border border-sakura-border text-xs font-bold text-white tracking-wide shadow-xl backdrop-blur-md"
             >
               <ShieldCheck className="w-4 h-4 text-crimson" />
-              <span>Nationwide Trial Litigators & Corporate Counsel</span>
+              <span>Nationwide Trial Litigators & Supreme Court Counsel</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-crimson animate-ping" />
             </motion.div>
 
             {/* Main Headline */}
@@ -209,21 +143,21 @@ export function CourtroomHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl font-normal font-sans"
+              className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl font-normal"
             >
               When high-stakes corporate disputes arise or catastrophic injury demands justice, Apex Legal Counsel commands the courtroom and negotiating table with unwavering precision.
             </motion.p>
 
-            {/* Primary & Secondary CTAs */}
+            {/* Conversion CTA Group */}
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-sans"
+              className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
             >
               <Link
                 href="#case-evaluation"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-xl shadow-crimson/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-2xl shadow-crimson/35 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
               >
                 <span>Request Free Case Evaluation</span>
                 <ArrowRight className="w-4 h-4 text-white" />
@@ -231,18 +165,18 @@ export function CourtroomHero() {
 
               <Link
                 href="/case-results"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-base font-bold text-white bg-nepal-surface hover:bg-nepal-blue border border-sakura-border transition"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-base font-bold text-white bg-[#0A2540]/80 hover:bg-[#003893] border border-sakura-border backdrop-blur-md transition shadow-lg"
               >
                 <span>Explore $250M+ In Verdicts</span>
               </Link>
             </motion.div>
 
-            {/* Trust Credentials */}
+            {/* Trust Badges */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="pt-6 flex flex-wrap items-center gap-6 sm:gap-10 border-t border-sakura-border/30 text-xs text-slate-200 font-sans"
+              className="pt-6 flex flex-wrap items-center gap-6 sm:gap-8 border-t border-sakura-border/30 text-xs text-slate-200"
             >
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-crimson" />
@@ -250,7 +184,7 @@ export function CourtroomHero() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-crimson" />
-                <span className="font-bold text-white">24/7 Urgent Response</span>
+                <span className="font-bold text-white">24/7 Confidential Intake</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-crimson" />
@@ -260,185 +194,112 @@ export function CourtroomHero() {
 
           </div>
 
-          {/* Right Column: High-Performance Animated Gavel Bench & "Order, Order" Rhythm */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center">
+          {/* Right Column: Floating Court & Order Judicial Crest with Balancing Scales */}
+          <div className="lg:col-span-4 flex flex-col items-center lg:items-end">
             
-            <div className="relative w-full max-w-md p-7 sm:p-8 rounded-3xl bg-nepal-surface/90 border border-sakura-border shadow-2xl backdrop-blur-xl space-y-6 overflow-hidden text-center">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="w-full max-w-sm rounded-3xl bg-[#0A2540]/90 border border-sakura-border p-6 shadow-2xl backdrop-blur-xl space-y-6 relative overflow-hidden"
+            >
               
-              {/* Bench Chamber Top Title & Audio Toggle */}
+              {/* Subtle Judicial Gold Header Ribbon */}
               <div className="flex items-center justify-between border-b border-sakura-border/40 pb-3 text-xs">
-                <div className="flex items-center gap-2 text-white">
-                  <div className="w-2.5 h-2.5 rounded-full bg-crimson animate-ping" />
-                  <span className="font-serif font-bold text-sm tracking-wide">Courtroom in Session</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-crimson animate-pulse" />
+                  <span className="font-serif font-bold text-white text-sm">Courtroom Authority</span>
                 </div>
-
+                
+                {/* Audio Sound Toggle */}
                 <button
                   type="button"
                   onClick={() => setSoundEnabled(!soundEnabled)}
-                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-nepal-dark border border-sakura-border text-[11px] font-bold text-white hover:text-crimson transition cursor-pointer"
-                  title={soundEnabled ? 'Mute gavel audio strike' : 'Enable gavel sound on strike'}
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#001F54] border border-sakura-border text-[11px] font-bold text-white hover:text-crimson transition cursor-pointer"
+                  title={soundEnabled ? 'Mute gavel sound' : 'Enable gavel sound on strike'}
                 >
                   {soundEnabled ? (
                     <>
                       <Volume2 className="w-3.5 h-3.5 text-crimson" />
-                      <span>Audio ON</span>
+                      <span>Sound ON</span>
                     </>
                   ) : (
                     <>
                       <VolumeX className="w-3.5 h-3.5 text-slate-400" />
-                      <span>Audio OFF</span>
+                      <span>Sound OFF</span>
                     </>
                   )}
                 </button>
               </div>
 
-              {/* Dynamic Animated "ORDER! ORDER!" Badge */}
-              <div className="h-10 flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  {strikePhase !== 'idle' ? (
-                    <motion.div
-                      key={strikePhase}
-                      initial={{ scale: 0.8, opacity: 0, y: 5 }}
-                      animate={{ scale: 1.15, opacity: 1, y: 0 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      transition={{ type: 'spring', stiffness: 500, damping: 20 }}
-                      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-crimson text-white font-serif font-extrabold text-sm sm:text-base tracking-widest uppercase shadow-xl shadow-crimson/40 border border-white/40"
-                    >
-                      <Sparkles className="w-4 h-4 text-white animate-spin" />
-                      <span>
-                        {strikePhase === 'strike1' && 'ORDER IN THE COURT!'}
-                        {strikePhase === 'strike2' && 'ORDER!'}
-                        {strikePhase === 'strike3' && 'ORDER!'}
-                        {strikePhase === 'raising' && 'THE COURT STANDS READY'}
-                      </span>
-                    </motion.div>
-                  ) : (
-                    <motion.span 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="text-xs font-bold uppercase tracking-[0.2em] text-slate-300"
-                    >
-                      Click Sound Block to Strike Gavel
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* THE ANIMATED JUDGE'S GAVEL & SOUND BLOCK CANVAS */}
-              <div 
-                onClick={handleManualStrike}
-                className="relative h-64 sm:h-72 w-full flex items-center justify-center cursor-pointer select-none group"
-                title="Click to strike the gavel"
-              >
-                
-                {/* Shockwave Energy Rings emitted from sound block impact point */}
-                {shockwaves.map((id) => (
-                  <motion.div
-                    key={id}
-                    initial={{ scale: 0.3, opacity: 0.9 }}
-                    animate={{ scale: 3.2, opacity: 0 }}
-                    transition={{ duration: 1.1, ease: 'easeOut' }}
-                    className="absolute bottom-12 w-28 h-10 rounded-full border-2 border-crimson shadow-[0_0_20px_#DC143C] pointer-events-none"
-                  />
-                ))}
-
-                {/* THE GAVEL (Head + Handle) */}
+              {/* Dynamic Animated Scales of Justice with Gentle Law Equilibrium Sway */}
+              <div className="flex flex-col items-center justify-center py-2 space-y-3">
                 <motion.div
-                  className="absolute origin-bottom-right"
-                  style={{
-                    bottom: '68px',
-                    right: '48%',
-                  }}
                   animate={{
-                    rotate: 
-                      strikePhase === 'raising' ? -38 :
-                      strikePhase === 'strike1' ? 0 :
-                      strikePhase === 'strike2' ? 0 :
-                      strikePhase === 'strike3' ? 0 :
-                      -12,
-                    y: 
-                      strikePhase === 'raising' ? -24 :
-                      strikePhase === 'strike1' ? 4 :
-                      strikePhase === 'strike2' ? 4 :
-                      strikePhase === 'strike3' ? 4 :
-                      0,
+                    rotate: strikeActive ? [-15, 15, -8, 8, 0] : [-3, 3, -3],
                   }}
                   transition={{
-                    type: 'spring',
-                    stiffness: strikePhase === 'raising' ? 220 : 750,
-                    damping: strikePhase === 'raising' ? 20 : 16,
+                    duration: strikeActive ? 1.2 : 6,
+                    repeat: strikeActive ? 0 : Infinity,
+                    ease: 'easeInOut',
                   }}
+                  className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#003893] to-[#001F54] border border-sakura-border flex items-center justify-center shadow-lg text-white"
                 >
-                  {/* SVG Handcrafted Courtroom Judge's Gavel */}
-                  <svg 
-                    width="140" 
-                    height="140" 
-                    viewBox="0 0 140 140" 
-                    fill="none" 
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] group-hover:scale-105 transition-transform"
-                  >
-                    {/* Gavel Handle (Polished Hardwood & Gold Trim) */}
-                    <path 
-                      d="M60 70 L115 125" 
-                      stroke="#8B4513" 
-                      strokeWidth="10" 
-                      strokeLinecap="round"
-                    />
-                    <path 
-                      d="M62 72 L113 123" 
-                      stroke="#A0522D" 
-                      strokeWidth="6" 
-                      strokeLinecap="round"
-                    />
-                    {/* Brass Band on Handle */}
-                    <circle cx="75" cy="85" r="5" fill="#D4AF37" />
-                    <circle cx="105" cy="115" r="7" fill="#8B4513" stroke="#D4AF37" strokeWidth="2" />
-
-                    {/* Gavel Hammer Head (Polished Mahogany Cylinder) */}
-                    <g transform="translate(18, 30) rotate(45)">
-                      {/* Hammer Body */}
-                      <rect x="0" y="0" width="70" height="32" rx="6" fill="#5C2C16" />
-                      <rect x="3" y="3" width="64" height="26" rx="4" fill="#8B4513" />
-                      {/* Brass Central Collar */}
-                      <rect x="25" y="0" width="20" height="32" fill="#D4AF37" />
-                      <rect x="28" y="2" width="14" height="28" fill="#F3E5AB" />
-                      {/* Striking Faces */}
-                      <ellipse cx="2" cy="16" rx="4" ry="16" fill="#D4AF37" />
-                      <ellipse cx="68" cy="16" rx="4" ry="16" fill="#D4AF37" />
-                    </g>
-                  </svg>
+                  <Scale className="w-9 h-9 text-white" />
                 </motion.div>
 
-                {/* THE SOUND BLOCK (Striking Plate) */}
-                <div className="absolute bottom-6 w-56 h-12 flex items-center justify-center">
-                  {/* Brass Sound Block Base */}
-                  <div className="w-48 h-8 rounded-2xl bg-gradient-to-r from-[#8B4513] via-[#D4AF37] to-[#8B4513] border border-[#D4AF37] shadow-2xl flex items-center justify-center relative">
-                    {/* Inner Walnut Inset */}
-                    <div className="w-40 h-5 rounded-xl bg-[#4A2511] border border-[#D4AF37]/50 flex items-center justify-center">
-                      <span className="text-[9px] font-serif font-bold uppercase tracking-widest text-[#F3E5AB] opacity-80">
-                        Lex Est Dictamen Rationis
-                      </span>
-                    </div>
-                  </div>
-                  {/* Base Shadow */}
-                  <div className="absolute -bottom-2 w-52 h-4 bg-black/60 rounded-full blur-md" />
+                <div className="text-center space-y-1">
+                  <span className="block font-serif text-lg font-bold text-white">
+                    Fiat Justitia Ruat Caelum
+                  </span>
+                  <span className="block text-[11px] font-bold text-crimson uppercase tracking-widest">
+                    Let Justice Be Done
+                  </span>
                 </div>
-
               </div>
 
-              {/* Bench Footer Stats */}
-              <div className="pt-2 flex items-center justify-between text-xs text-slate-300 font-sans">
+              {/* Interactive "Order, Order" Gavel Strike Trigger */}
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={handleGavelStrike}
+                  className="w-full flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl bg-gradient-to-r from-crimson to-crimson-hover hover:from-crimson-hover hover:to-crimson text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-crimson/30 transition transform active:scale-95 cursor-pointer border border-white/20"
+                >
+                  <Gavel className={`w-4 h-4 text-white transition-transform ${strikeActive ? '-rotate-45' : ''}`} />
+                  <span>{strikeActive ? 'Calling Court to Order...' : 'Strike Courtroom Gavel'}</span>
+                </button>
+
+                {/* Animated "ORDER!" Speech Banner */}
+                <div className="h-6 flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    {strikeText && (
+                      <motion.div
+                        key={strikeText}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1.1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        className="inline-flex items-center gap-1.5 text-xs font-serif font-extrabold text-crimson tracking-widest uppercase"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-crimson" />
+                        <span>{strikeText}</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              {/* Verified Firm Record Ticker */}
+              <div className="pt-3 border-t border-sakura-border/40 flex items-center justify-between text-xs text-slate-300">
                 <div className="flex items-center gap-1.5">
-                  <GavelIcon className="w-4 h-4 text-crimson" />
-                  <span>Verdicts Delivered: <strong className="text-white">45+</strong></span>
+                  <Award className="w-4 h-4 text-crimson" />
+                  <span>Recoveries: <strong className="text-white">$250M+</strong></span>
                 </div>
-                <div className="text-slate-400">
-                  Total Strikes: <span className="font-bold text-crimson">{strikeCount}</span>
+                <div className="font-semibold text-white">
+                  Success: <span className="font-bold text-crimson">98.6%</span>
                 </div>
               </div>
 
-            </div>
+            </motion.div>
 
           </div>
 
