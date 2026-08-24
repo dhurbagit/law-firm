@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  getFirmStats, 
-  getPracticeAreas, 
-  getAttorneys, 
-  getCaseResults 
+import {
+  getFirmStats,
+  getPracticeAreas,
+  getAttorneys,
+  getCaseResults
 } from '@/lib/api';
 import { CourtroomHero } from '@/components/CourtroomHero';
 import { StatsSection } from '@/components/StatsSection';
@@ -13,11 +13,11 @@ import { PracticeAreaCard } from '@/components/PracticeAreaCard';
 import { AttorneyCard } from '@/components/AttorneyCard';
 import { CaseResultCard } from '@/components/CaseResultCard';
 import { ConsultationForm } from '@/components/ConsultationForm';
-import { 
-  ArrowRight, 
-  Award, 
-  Gavel, 
-  Clock, 
+import {
+  ArrowRight,
+  Award,
+  Gavel,
+  Clock,
   Building,
   Quote
 } from 'lucide-react';
@@ -32,20 +32,22 @@ export default async function HomePage() {
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-nepal-dark text-white">
-      
+
       {/* 1. INTERACTIVE ANIMATED COURTROOM HERO */}
       <CourtroomHero />
 
-      {/* 2. STATS SECTION */}
+      {/* 2. STATS BANNER */}
       <StatsSection stats={stats} />
 
-      {/* 3. FEATURED PRACTICE AREAS */}
-      <section className="py-5 border-bottom border-sakura position-relative overflow-hidden">
-        
-        {/* Court Item Background Stickers / Watermarks */}
-        <div className="position-absolute top-0 start-0 w-100 h-100 pointer-events-none user-select-none overflow-hidden z-0">
-          <div className="position-absolute text-white" style={{ top: '-48px', left: '-48px', width: '380px', height: '380px', opacity: 0.035, transform: 'rotate(-12deg)' }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-100 h-100">
+      {/* ============================================================
+          3. FEATURED PRACTICE AREAS  ·  LIGHT ALABASTER CANVAS
+          ============================================================ */}
+      <section className="section-light position-relative overflow-hidden py-section">
+
+        {/* Subtle watermark stickers */}
+        <div className="position-absolute top-0 start-0 w-100 h-100 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+          <div className="position-absolute" style={{ top: '-60px', left: '-60px', width: '360px', height: '360px', opacity: 0.04, transform: 'rotate(-12deg)', color: '#001F54' }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" style={{ width: '100%', height: '100%' }}>
               <line x1="3" y1="22" x2="21" y2="22" />
               <line x1="6" y1="18" x2="6" y2="11" />
               <line x1="10" y1="18" x2="10" y2="11" />
@@ -54,41 +56,34 @@ export default async function HomePage() {
               <polygon points="12 2 20 7 4 7" />
             </svg>
           </div>
-
-          <div className="position-absolute text-white" style={{ top: '30%', right: '-64px', width: '320px', height: '320px', opacity: 0.03, transform: 'rotate(12deg)' }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" className="w-100 h-100">
+          <div className="position-absolute" style={{ top: '30%', right: '-60px', width: '300px', height: '300px', opacity: 0.035, transform: 'rotate(12deg)', color: '#001F54' }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" style={{ width: '100%', height: '100%' }}>
               <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
               <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
-              <path d="M7 21h10" />
-              <path d="M12 3v18" />
+              <path d="M7 21h10" /><path d="M12 3v18" />
               <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
             </svg>
           </div>
-
-          <div className="position-absolute text-white" style={{ bottom: '-64px', left: '33%', width: '280px', height: '280px', opacity: 0.025, transform: 'rotate(-45deg)' }}>
-            <Gavel className="w-100 h-100 stroke-1" />
-          </div>
         </div>
 
-        <div className="container-xl position-relative z-1 py-4">
-          
-          {/* Header */}
+        <div className="container-xl position-relative" style={{ zIndex: 1 }}>
+
+          {/* Section Header */}
           <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between mb-5 gap-4">
-            <div style={{ maxWidth: '650px' }}>
-              <div className="badge bg-nepal-surface border border-sakura text-crimson px-3 py-2 rounded-pill small fw-bold text-uppercase mb-3" style={{ letterSpacing: '0.1em' }}>
-                Legal Capabilities & Trial Bench
-              </div>
-              <h2 className="font-serif display-5 fw-bold text-white mb-2">
+            <div style={{ maxWidth: '620px' }}>
+              <div className="badge-category mb-3">Legal Capabilities &amp; Trial Bench</div>
+              <h2 className="font-serif fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', color: '#001F54' }}>
                 Specialized Practice Disciplines
               </h2>
-              <p className="text-white-50 lead fs-6 mb-0">
-                Our senior partners lead dedicated legal practice groups tailored to high-exposure commercial litigation, federal regulatory compliance, and multi-million dollar corporate transactions.
+              <p className="mb-0" style={{ color: '#475569', lineHeight: 1.7 }}>
+                Our senior partners lead dedicated legal practice groups tailored to high-exposure commercial
+                litigation, federal regulatory compliance, and multi-million dollar corporate transactions.
               </p>
             </div>
 
             <Link
               href="/practice-areas"
-              className="btn btn-outline-light btn-lg px-4 py-3 rounded-3 fw-bold text-white bg-nepal-surface border-sakura shadow d-flex align-items-center gap-2 flex-shrink-0"
+              className="btn btn-outline-dark-brand px-4 py-3 rounded-3 d-flex align-items-center gap-2 flex-shrink-0"
             >
               <span>View All 8 Practice Areas</span>
               <ArrowRight style={{ width: '16px', height: '16px' }} />
@@ -107,68 +102,68 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. THE APEX TRIAL DIFFERENCE */}
-      <section className="py-5 bg-nepal-surface border-bottom border-sakura">
-        <div className="container-xl py-4">
+      {/* ============================================================
+          4. THE APEX TRIAL DIFFERENCE  ·  DARK SURFACE
+          ============================================================ */}
+      <section className="section-dark py-section border-top border-bottom border-sakura">
+        <div className="container-xl">
           <div className="row align-items-center g-5">
-            
-            {/* Left Column Content */}
+
+            {/* Left: Content */}
             <div className="col-12 col-lg-7 d-flex flex-column gap-4">
-              <span className="text-uppercase text-crimson fw-bold small" style={{ letterSpacing: '0.1em' }}>
+              <span className="text-uppercase fw-bold small text-crimson" style={{ letterSpacing: '0.1em' }}>
                 The Apex Standard
               </span>
-              <h2 className="font-serif display-6 fw-bold text-white mb-0 lh-base">
+              <h2 className="font-serif fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)', lineHeight: 1.3 }}>
                 Built For The Courtroom. <br />
                 Respected Across The Negotiating Table.
               </h2>
-              <p className="text-white-50 fs-6 mb-0 lh-base">
-                Most law firms seek quick, discounted settlements to avoid courtroom battles. At Apex Legal Counsel, every single case is prepared from day one for jury trial. Opposing counsel and insurance conglomerates know our track record, which gives our clients unparalleled leverage.
+              <p className="text-white-50 mb-0 lh-base">
+                Most law firms seek quick, discounted settlements to avoid courtroom battles. At Apex Legal Counsel,
+                every single case is prepared from day one for jury trial. Opposing counsel and insurance conglomerates
+                know our track record, which gives our clients unparalleled leverage.
               </p>
 
-              <div className="row g-3 pt-2">
-                <div className="col-12 col-sm-6">
-                  <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
-                    <div className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-surface border border-sakura text-crimson mb-2" style={{ width: '36px', height: '36px' }}>
-                      <Gavel style={{ width: '18px', height: '18px' }} />
+              <div className="row g-3">
+                {[
+                  {
+                    icon: Gavel,
+                    title: 'Unmatched Trial Readiness',
+                    desc: 'Over 45+ jury verdicts taken to verdict with a 98.6% favorable outcome rate.',
+                  },
+                  {
+                    icon: Building,
+                    title: 'Deep Regulatory Insight',
+                    desc: 'Partners include former AUSAs and federal enforcement directors from SDNY.',
+                  },
+                  {
+                    icon: Award,
+                    title: 'Contingency Fee Protection',
+                    desc: 'In personal injury matters, you pay zero legal fees unless we successfully recover.',
+                  },
+                  {
+                    icon: Clock,
+                    title: 'Direct Partner Access',
+                    desc: 'Your legal strategy is guided by senior partners, never handed off to junior associates.',
+                  },
+                ].map(({ icon: Icon, title, desc }) => (
+                  <div key={title} className="col-12 col-sm-6">
+                    <div className="p-3 rounded-3 bg-nepal-dark border border-sakura h-100">
+                      <div
+                        className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-surface border border-sakura mb-2"
+                        style={{ width: '36px', height: '36px', color: '#DC143C' }}
+                      >
+                        <Icon style={{ width: '18px', height: '18px' }} />
+                      </div>
+                      <h5 className="font-serif fw-bold text-white fs-6 mb-1">{title}</h5>
+                      <p className="text-white-50 small mb-0">{desc}</p>
                     </div>
-                    <h5 className="font-serif fw-bold text-white fs-6 mb-1">Unmatched Trial Readiness</h5>
-                    <p className="text-white-50 small mb-0">Over 45+ jury verdicts taken to verdict with a 98.6% favorable outcome rate.</p>
                   </div>
-                </div>
-
-                <div className="col-12 col-sm-6">
-                  <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
-                    <div className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-surface border border-sakura text-crimson mb-2" style={{ width: '36px', height: '36px' }}>
-                      <Building style={{ width: '18px', height: '18px' }} />
-                    </div>
-                    <h5 className="font-serif fw-bold text-white fs-6 mb-1">Deep Regulatory Insight</h5>
-                    <p className="text-white-50 small mb-0">Partners include former AUSAs and federal enforcement directors from SDNY.</p>
-                  </div>
-                </div>
-
-                <div className="col-12 col-sm-6">
-                  <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
-                    <div className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-surface border border-sakura text-crimson mb-2" style={{ width: '36px', height: '36px' }}>
-                      <Award style={{ width: '18px', height: '18px' }} />
-                    </div>
-                    <h5 className="font-serif fw-bold text-white fs-6 mb-1">Contingency Fee Protection</h5>
-                    <p className="text-white-50 small mb-0">In personal injury matters, you pay zero legal fees unless we successfully recover.</p>
-                  </div>
-                </div>
-
-                <div className="col-12 col-sm-6">
-                  <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
-                    <div className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-surface border border-sakura text-crimson mb-2" style={{ width: '36px', height: '36px' }}>
-                      <Clock style={{ width: '18px', height: '18px' }} />
-                    </div>
-                    <h5 className="font-serif fw-bold text-white fs-6 mb-1">Direct Partner Access</h5>
-                    <p className="text-white-50 small mb-0">Your legal strategy is guided by senior partners, never handed off to junior associates.</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Right Column Image */}
+            {/* Right: Image */}
             <div className="col-12 col-lg-5">
               <div className="position-relative rounded-4 overflow-hidden border border-sakura shadow-lg" style={{ height: '440px' }}>
                 <Image
@@ -177,8 +172,10 @@ export default async function HomePage() {
                   fill
                   className="object-fit-cover"
                 />
-                <div className="position-absolute bottom-0 start-0 end-0 p-4 m-3 rounded-3 bg-nepal-dark border border-sakura">
-                  <span className="text-uppercase text-crimson fw-bold d-block small mb-1" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>Tier 1 National Law Firm</span>
+                <div className="position-absolute bottom-0 start-0 end-0 p-3 m-3 rounded-3 bg-nepal-dark border border-sakura">
+                  <span className="text-uppercase fw-bold d-block small text-crimson mb-1" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
+                    Tier 1 National Law Firm
+                  </span>
                   <span className="font-serif fw-bold text-white fs-6">375 Park Avenue, 28th Floor, New York</span>
                 </div>
               </div>
@@ -188,19 +185,20 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 5. DISTINGUISHED ATTORNEYS */}
-      <section className="py-5 bg-nepal-dark border-bottom border-sakura">
-        <div className="container-xl py-4">
-          
-          <div className="text-center mx-auto mb-5" style={{ maxWidth: '600px' }}>
-            <span className="text-uppercase text-crimson fw-bold small d-block mb-2" style={{ letterSpacing: '0.1em' }}>
-              Our Leadership
-            </span>
-            <h2 className="font-serif display-6 fw-bold text-white mb-2">
-              Distinguished Partners & Trial Litigators
+      {/* ============================================================
+          5. DISTINGUISHED ATTORNEYS  ·  LIGHT ALABASTER CANVAS
+          ============================================================ */}
+      <section className="section-light py-section">
+        <div className="container-xl">
+
+          <div className="text-center mx-auto mb-5" style={{ maxWidth: '580px' }}>
+            <div className="badge-category mb-3">Our Leadership</div>
+            <h2 className="font-serif fw-bold mb-2" style={{ fontSize: 'clamp(1.75rem, 4vw, 2.4rem)', color: '#001F54' }}>
+              Distinguished Partners &amp; Trial Litigators
             </h2>
-            <p className="text-white-50 small mb-0">
-              Representing ivy-league academic backgrounds, judicial clerkships, and decades of trial leadership in federal and appellate courts.
+            <p className="mb-0" style={{ color: '#475569' }}>
+              Representing ivy-league academic backgrounds, judicial clerkships, and decades of trial leadership
+              in federal and appellate courts.
             </p>
           </div>
 
@@ -215,34 +213,36 @@ export default async function HomePage() {
           <div className="mt-5 text-center">
             <Link
               href="/attorneys"
-              className="btn btn-outline-light btn-lg px-4 py-3 rounded-pill fw-bold text-white bg-nepal-surface border-sakura shadow"
+              className="btn btn-outline-dark-brand px-5 py-3 rounded-pill fw-bold"
             >
-              <span>Explore All Attorney Credentials & Bios →</span>
+              Explore All Attorney Credentials &amp; Bios →
             </Link>
           </div>
 
         </div>
       </section>
 
-      {/* 6. LANDMARK VERDICTS BANNER */}
-      <section className="py-5 bg-nepal-surface border-bottom border-sakura">
-        <div className="container-xl py-4">
-          
+      {/* ============================================================
+          6. LANDMARK VERDICTS  ·  DARK SURFACE
+          ============================================================ */}
+      <section className="section-dark py-section border-top border-bottom border-sakura">
+        <div className="container-xl">
+
           <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between mb-4 gap-3">
             <div>
-              <span className="text-uppercase text-crimson fw-bold small d-block mb-2" style={{ letterSpacing: '0.1em' }}>
+              <span className="text-uppercase fw-bold small d-block mb-2 text-crimson" style={{ letterSpacing: '0.1em' }}>
                 Proven Track Record
               </span>
-              <h2 className="font-serif display-6 fw-bold text-white mb-0">
-                Landmark Verdicts & Significant Recoveries
+              <h2 className="font-serif fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)' }}>
+                Landmark Verdicts &amp; Significant Recoveries
               </h2>
             </div>
             <Link
               href="/case-results"
-              className="text-crimson text-decoration-none fw-bold small d-flex align-items-center gap-1 hover-white"
+              className="text-crimson text-decoration-none fw-bold small d-flex align-items-center gap-1 hover-white flex-shrink-0"
             >
               <span>View Full Case History</span>
-              <ArrowRight style={{ width: '16px', height: '16px' }} />
+              <ArrowRight style={{ width: '15px', height: '15px' }} />
             </Link>
           </div>
 
@@ -257,73 +257,68 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 7. CLIENT TESTIMONIALS */}
-      <section className="py-5 bg-nepal-dark border-bottom border-sakura">
-        <div className="container-xl py-4">
-          
-          <div className="text-center mx-auto mb-5" style={{ maxWidth: '550px' }}>
-            <span className="text-uppercase text-crimson fw-bold small d-block mb-2" style={{ letterSpacing: '0.1em' }}>
+      {/* ============================================================
+          7. CLIENT TESTIMONIALS  ·  DARK CANVAS
+          ============================================================ */}
+      <section className="section-dark py-section">
+        <div className="container-xl">
+
+          <div className="text-center mx-auto mb-5" style={{ maxWidth: '540px' }}>
+            <div
+              className="badge mb-3 border border-sakura text-crimson fw-bold text-uppercase"
+              style={{ backgroundColor: 'rgba(10,37,64,0.8)', letterSpacing: '0.1em', fontSize: '10px', padding: '0.4rem 0.9rem' }}
+            >
               Client Endorsements
-            </span>
-            <h2 className="font-serif display-6 fw-bold text-white mb-0">
+            </div>
+            <h2 className="font-serif fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)' }}>
               Trusted When Survival Is on the Line
             </h2>
           </div>
 
           <div className="row g-4">
-            <div className="col-12 col-md-4">
-              <div className="sakura-glass-card h-100 p-4 d-flex flex-column justify-content-between">
-                <div>
-                  <Quote className="text-crimson mb-3 opacity-50" style={{ width: '32px', height: '32px' }} />
-                  <p className="text-white-50 small lh-base mb-4 fst-italic">
-                    &ldquo;When our SaaS intellectual property was misappropriated by rogue competitors, Marcus Croft secured an emergency federal injunction in 72 hours. Their technical depth saved our company.&rdquo;
-                  </p>
-                </div>
-                <div className="pt-3 border-top border-sakura">
-                  <span className="font-serif fw-bold text-white d-block small">CTO & Founder</span>
-                  <span className="text-white-50" style={{ fontSize: '11px' }}>Enterprise AI Infrastructure Firm</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-md-4">
-              <div className="sakura-glass-card h-100 p-4 d-flex flex-column justify-content-between">
-                <div>
-                  <Quote className="text-crimson mb-3 opacity-50" style={{ width: '32px', height: '32px' }} />
-                  <p className="text-white-50 small lh-base mb-4 fst-italic">
-                    &ldquo;Eleanor Vance and her trial team fought tenaciously against three corporate insurance carriers after my catastrophic trucking accident. The $14.2M verdict secured my family&apos;s lifelong medical care.&rdquo;
-                  </p>
-                </div>
-                <div className="pt-3 border-top border-sakura">
-                  <span className="font-serif fw-bold text-white d-block small">Michael R.</span>
-                  <span className="text-white-50" style={{ fontSize: '11px' }}>Catastrophic Injury Client</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-md-4">
-              <div className="sakura-glass-card h-100 p-4 d-flex flex-column justify-content-between">
-                <div>
-                  <Quote className="text-crimson mb-3 opacity-50" style={{ width: '32px', height: '32px' }} />
-                  <p className="text-white-50 small lh-base mb-4 fst-italic">
-                    &ldquo;Victoria Hayes took charge of an aggressive federal regulatory inquiry targeting our executive suite. Her strategic engagement led to a complete declination without charges.&rdquo;
-                  </p>
-                </div>
-                <div className="pt-3 border-top border-sakura">
-                  <span className="font-serif fw-bold text-white d-block small">General Counsel</span>
-                  <span className="text-white-50" style={{ fontSize: '11px' }}>Publicly Traded Financial Entity</span>
+            {[
+              {
+                quote: 'When our SaaS intellectual property was misappropriated by rogue competitors, Marcus Croft secured an emergency federal injunction in 72 hours. Their technical depth saved our company.',
+                name: 'CTO & Founder',
+                firm: 'Enterprise AI Infrastructure Firm',
+              },
+              {
+                quote: "Eleanor Vance and her trial team fought tenaciously against three corporate insurance carriers after my catastrophic trucking accident. The $14.2M verdict secured my family\u2019s lifelong medical care.",
+                name: 'Michael R.',
+                firm: 'Catastrophic Injury Client',
+              },
+              {
+                quote: 'Victoria Hayes took charge of an aggressive federal regulatory inquiry targeting our executive suite. Her strategic engagement led to a complete declination without charges.',
+                name: 'General Counsel',
+                firm: 'Publicly Traded Financial Entity',
+              },
+            ].map(({ quote, name, firm }) => (
+              <div key={name} className="col-12 col-md-4">
+                <div className="sakura-glass-card h-100 p-4 d-flex flex-column justify-content-between">
+                  <div>
+                    <Quote className="text-crimson mb-3" style={{ width: '28px', height: '28px', opacity: 0.6 }} />
+                    <p className="text-white-50 small lh-base mb-4 fst-italic">
+                      &ldquo;{quote}&rdquo;
+                    </p>
+                  </div>
+                  <div className="pt-3 border-top border-sakura">
+                    <span className="font-serif fw-bold text-white d-block small">{name}</span>
+                    <span className="text-white-50" style={{ fontSize: '11px' }}>{firm}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
 
         </div>
       </section>
 
-      {/* 8. EMBEDDED CASE EVALUATION SECTION */}
-      <section className="py-5 bg-nepal-surface">
-        <div className="container-xl py-4" style={{ maxWidth: '900px' }}>
-          <ConsultationForm 
+      {/* ============================================================
+          8. CASE EVALUATION FORM  ·  DARK SURFACE
+          ============================================================ */}
+      <section className="section-dark py-section border-top border-sakura">
+        <div className="container-xl" style={{ maxWidth: '860px' }}>
+          <ConsultationForm
             practiceAreas={practiceAreas.map(p => ({ id: p.id, title: p.title }))}
           />
         </div>

@@ -102,25 +102,29 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 // 6. CUSTOM BRAND UTILITIES & ACCESSIBILITY CONTRACTS
 // ==========================================================================
 
-// Brand Utility Classes
-.bg-nepal-blue { background-color: $nepal-blue !important; }
-.bg-nepal-dark { background-color: $nepal-dark !important; }
+// --- Background Colors ---
+.bg-nepal-blue    { background-color: $nepal-blue !important; }
+.bg-nepal-dark    { background-color: $nepal-dark !important; }
 .bg-nepal-surface { background-color: $nepal-surface !important; }
-.bg-crimson { background-color: $crimson !important; }
-.bg-sakura-light { background-color: $sakura-light !important; }
-.bg-canvas-light { background-color: $canvas-light !important; }
+.bg-crimson       { background-color: $crimson !important; }
+.bg-sakura-light  { background-color: $sakura-light !important; }
+.bg-canvas-light  { background-color: $canvas-light !important; }
 
-.text-nepal-blue { color: $nepal-blue !important; }
-.text-nepal-dark { color: $nepal-dark !important; }
-.text-sakura { color: $sakura !important; }
-.text-crimson { color: $crimson !important; }
-.text-white { color: #FFFFFF !important; }
+// --- Text Colors ---
+.text-nepal-blue  { color: $nepal-blue !important; }
+.text-nepal-dark  { color: $nepal-dark !important; }
+.text-sakura      { color: $sakura !important; }
+.text-crimson     { color: $crimson !important; }
+.text-white       { color: #FFFFFF !important; }
+.text-canvas-muted { color: #475569 !important; }
 
-.border-sakura { border-color: rgba(255, 183, 197, 0.4) !important; }
+// --- Border Colors ---
+.border-sakura    { border-color: rgba(255, 183, 197, 0.4) !important; }
 .border-nepal-blue { border-color: $nepal-blue !important; }
-.border-crimson { border-color: $crimson !important; }
+.border-crimson   { border-color: $crimson !important; }
+.border-canvas    { border-color: $canvas-border !important; }
 
-// Global Typography Enforcement
+// --- Typography ---
 h1, h2, h3, h4, h5, h6, .font-serif {
   font-family: $font-family-serif !important;
 }
@@ -129,89 +133,261 @@ body, p, span, a, button, input, select, textarea, label, table, th, td {
   font-family: $font-family-sans-serif;
 }
 
-// Sakura Glass Card
+// ==========================================================================
+// SECTION RHYTHM
+// ==========================================================================
+.py-section {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+.section-dark {
+  background-color: $nepal-dark;
+  color: #FFFFFF;
+
+  h1, h2, h3, h4, h5, h6 { color: #FFFFFF; }
+  p { color: rgba(255,255,255,0.65); }
+}
+
+.section-surface {
+  background-color: $nepal-surface;
+  color: #FFFFFF;
+}
+
+.section-light {
+  background-color: $canvas-light;
+  color: $nepal-dark;
+
+  h1, h2, h3, h4, h5, h6 { color: $nepal-dark; }
+  p { color: #475569; }
+}
+
+// ==========================================================================
+// CARD SYSTEM
+// ==========================================================================
+
+// Dark glass card (hero/dark section cards)
 .sakura-glass-card {
   background: rgba(10, 37, 64, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 183, 197, 0.25);
-  box-shadow: 0 10px 30px -15px rgba(0, 31, 84, 0.7);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 24px -12px rgba(0, 31, 84, 0.7);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 1rem;
+
+  &:hover {
+    border-color: $crimson;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(220, 20, 60, 0.25);
+  }
 }
 
-.sakura-glass-card:hover {
-  border-color: $crimson !important;
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(220, 20, 60, 0.25);
+// Light white card (alabaster sections)
+.card-light {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
+  box-shadow: 0 1px 6px -1px rgba(0, 31, 84, 0.07), 0 2px 4px -1px rgba(0,0,0,0.04);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, transform 0.25s ease;
+
+  h1, h2, h3, h4, h5, h6 { color: $nepal-dark; }
+  p, .card-text  { color: #475569; }
+
+  &:hover {
+    border-color: rgba(255, 183, 197, 0.6);
+    box-shadow: 0 10px 30px -8px rgba(0, 31, 84, 0.12);
+    transform: translateY(-3px);
+  }
 }
 
-// Crimson Buttons
+// Card icon container (dark on light card)
+.card-icon-dark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  background-color: $nepal-dark;
+  border: 1px solid $nepal-blue;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+// Card icon container (subtle on dark section)
+.card-icon-surface {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  background-color: $nepal-surface;
+  border: 1px solid rgba(255, 183, 197, 0.3);
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+// Category badge (sakura pink, for light card sections)
+.badge-category {
+  display: inline-flex;
+  align-items: center;
+  background-color: $sakura-light;
+  color: $nepal-blue;
+  border: 1px solid rgba(255, 183, 197, 0.5);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+// Sub-discipline pill (light card variant)
+.pill-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: $sakura-light;
+  color: $nepal-dark;
+  border: 1px solid rgba(255, 183, 197, 0.45);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background-color: $crimson;
+    color: #FFFFFF;
+    border-color: $crimson;
+  }
+}
+
+// ==========================================================================
+// BUTTONS
+// ==========================================================================
 .btn-crimson,
 .btn-danger {
   background-color: $crimson !important;
   border-color: $crimson !important;
   color: #FFFFFF !important;
   font-weight: 700;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover, &:focus, &:active {
+    background-color: $crimson-hover !important;
+    border-color: $crimson-hover !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.35);
+  }
+
+  * { color: #FFFFFF !important; }
 }
 
-.btn-crimson:hover,
-.btn-danger:hover {
-  background-color: $crimson-hover !important;
-  border-color: $crimson-hover !important;
-  color: #FFFFFF !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(220, 20, 60, 0.35);
+// Outline light button (used in dark sections)
+.btn-outline-light {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: transparent;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #FFFFFF;
+  }
 }
 
-.btn-crimson *,
-.btn-danger * {
-  color: #FFFFFF !important;
+// Outline dark button (used in light sections)
+.btn-outline-dark-brand {
+  color: $nepal-dark;
+  border: 1.5px solid $nepal-dark;
+  background: transparent;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $nepal-dark;
+    color: #FFFFFF;
+  }
 }
 
-// SVG Color Handling
-svg.text-white,
-.text-white svg {
-  color: #FFFFFF !important;
-  stroke: currentColor;
-}
-
-// Navigation Bar
-header.navbar-apex,
+// ==========================================================================
+// NAVIGATION
+// ==========================================================================
 header {
-  background-color: $nepal-dark !important;
-  border-bottom: 1px solid rgba(255, 183, 197, 0.25);
+  background-color: rgba(0, 31, 84, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 183, 197, 0.2);
 }
 
 .menu-nav-link {
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
+  color: #E2E8F0 !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem;
   text-decoration: none;
   transition: color 0.2s ease;
+  letter-spacing: 0.01em;
+
+  &:hover {
+    color: $sakura !important;
+  }
 }
 
-.menu-nav-link:hover {
-  color: $crimson !important;
-}
-
-.menu-nav-link.active,
-.menu-nav-active {
+.menu-nav-active,
+.menu-nav-link.active {
   color: $crimson !important;
   border-bottom: 2px solid $crimson !important;
+  font-weight: 700 !important;
 }
 
-// GPU-Accelerated Courtroom Background Animation
+// Dropdown hover item
+.hover-bg-nepal {
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: rgba(0, 31, 84, 0.5);
+    border-radius: 0.5rem;
+  }
+}
+
+// ==========================================================================
+// FORMS (DARK SURFACE — used on dark card sections)
+// ==========================================================================
+.form-control, .form-select {
+  background-color: $nepal-navy-deep;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 183, 197, 0.25);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus {
+    background-color: $nepal-navy-deep;
+    color: #FFFFFF;
+    border-color: $sakura;
+    box-shadow: 0 0 0 0.2rem rgba(255, 183, 197, 0.2);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #64748B;
+  }
+}
+
+// ==========================================================================
+// ANIMATIONS
+// ==========================================================================
 @keyframes heroKenBurns {
-  0% {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
-  50% {
-    transform: scale(1.06) translate3d(-12px, -6px, 0);
-  }
-  100% {
-    transform: scale(1) translate3d(0, 0, 0);
-  }
+  0%   { transform: scale(1) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.06) translate3d(-12px, -6px, 0); }
+  100% { transform: scale(1) translate3d(0, 0, 0); }
 }
 
 .hero-ken-burns {
@@ -222,27 +398,18 @@ header {
   -webkit-backface-visibility: hidden;
 }
 
-// Form Inputs Dark/Light Styling
-.form-control, .form-select {
-  background-color: $nepal-navy-deep;
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 183, 197, 0.25);
-  border-radius: 0.5rem;
-  padding: 0.75rem 1rem;
+// ==========================================================================
+// SVG & ICON COLOR CONTRACTS
+// ==========================================================================
+svg.text-white,
+.text-white > svg {
+  color: #FFFFFF !important;
+  stroke: currentColor;
 }
 
-.form-control:focus, .form-select:focus {
-  background-color: $nepal-navy-deep;
-  color: #FFFFFF;
-  border-color: $crimson;
-  box-shadow: 0 0 0 0.25rem rgba(220, 20, 60, 0.25);
-}
-
-.form-control::placeholder {
-  color: #94A3B8;
-}
-
-// Light Mode Adaptations
+// ==========================================================================
+// LIGHT MODE ADAPTATIONS
+// ==========================================================================
 html.light {
   body {
     background-color: $canvas-light;
@@ -253,23 +420,26 @@ html.light {
     background: rgba(255, 255, 255, 0.95);
     border-color: $canvas-border;
     box-shadow: 0 4px 20px -2px rgba(0, 31, 84, 0.05);
+
+    &:hover {
+      border-color: $crimson;
+      box-shadow: 0 16px 32px -6px rgba(220, 20, 60, 0.12);
+    }
+
+    h1, h2, h3, h4, h5, h6 { color: $nepal-dark !important; }
+    p { color: #334155 !important; }
   }
 
-  .sakura-glass-card:hover {
-    border-color: $crimson;
-    box-shadow: 0 16px 32px -6px rgba(220, 20, 60, 0.12);
-  }
-
-  main h1:not(.courtroom-hero *), 
-  main h2:not(.courtroom-hero *), 
-  main h3:not(.courtroom-hero *), 
-  main h4:not(.courtroom-hero *), 
-  main h5:not(.courtroom-hero *), 
+  main h1:not(.courtroom-hero *),
+  main h2:not(.courtroom-hero *),
+  main h3:not(.courtroom-hero *),
+  main h4:not(.courtroom-hero *),
+  main h5:not(.courtroom-hero *),
   main h6:not(.courtroom-hero *) {
     color: $nepal-dark !important;
   }
 
-  main p:not(.courtroom-hero *), 
+  main p:not(.courtroom-hero *),
   section:not(.courtroom-hero) p {
     color: #334155 !important;
   }
@@ -278,12 +448,12 @@ html.light {
     background-color: #FFFFFF;
     color: #0F172A;
     border-color: $canvas-border;
-  }
 
-  .form-control:focus, .form-select:focus {
-    background-color: #FFFFFF;
-    color: #0F172A;
-    border-color: $crimson;
+    &:focus {
+      background-color: #FFFFFF;
+      color: #0F172A;
+      border-color: $crimson;
+    }
   }
 }
 

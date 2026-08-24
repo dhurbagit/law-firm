@@ -10,94 +10,112 @@ interface AttorneyCardProps {
 
 export function AttorneyCard({ attorney }: AttorneyCardProps) {
   return (
-    <div className="card sakura-glass-card h-100 border-0 rounded-4 overflow-hidden d-flex flex-column justify-content-between">
+    <div className="card-light h-100 d-flex flex-column justify-content-between overflow-hidden rounded-4">
       <div>
         {/* Photo Container */}
-        <div className="position-relative w-100 bg-nepal-dark" style={{ height: '300px' }}>
+        <div className="position-relative w-100" style={{ height: '280px', backgroundColor: '#001F54' }}>
           {attorney.photo_url ? (
             <Image
               src={attorney.photo_url}
               alt={attorney.name}
               fill
-              className="object-fit-cover object-fit-top transition"
+              className="object-fit-cover"
+              style={{ objectPosition: 'top' }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
             />
           ) : (
-            <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-nepal-surface text-white">
-              <Scale style={{ width: '64px', height: '64px', opacity: 0.4 }} />
+            <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-nepal-dark">
+              <Scale style={{ width: '56px', height: '56px', opacity: 0.3, color: '#FFFFFF' }} />
             </div>
           )}
 
           {/* Practice Area Badge */}
           {attorney.practice_areas && attorney.practice_areas.length > 0 && (
             <div className="position-absolute top-0 start-0 m-3">
-              <span className="badge bg-nepal-blue text-white px-2 py-1 rounded-pill small fw-bold border border-crimson shadow">
+              <span className="badge-category">
                 {attorney.practice_areas[0].title}
               </span>
             </div>
           )}
 
-          {/* Corner View Profile CTA */}
-          <Link 
+          {/* View Profile Button */}
+          <Link
             href={`/attorneys/${attorney.slug}`}
-            className="position-absolute top-0 end-0 m-3 d-flex align-items-center justify-content-center rounded-circle bg-nepal-blue border border-white text-white text-decoration-none shadow hover-crimson-bg"
-            style={{ width: '32px', height: '32px' }}
+            className="position-absolute top-0 end-0 m-3 d-flex align-items-center justify-content-center rounded-circle bg-white shadow hover-crimson-bg text-decoration-none"
+            style={{ width: '32px', height: '32px', border: '1px solid #E2E8F0' }}
             aria-label={`View profile for ${attorney.name}`}
           >
-            <ArrowUpRight style={{ width: '16px', height: '16px' }} />
+            <ArrowUpRight style={{ width: '15px', height: '15px', color: '#001F54' }} />
           </Link>
         </div>
 
-        {/* Content */}
+        {/* Card Content */}
         <div className="p-4">
-          <span className="text-uppercase text-crimson fw-bold d-block mb-1" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
+          <span
+            className="text-uppercase fw-bold d-block mb-1"
+            style={{ fontSize: '10px', letterSpacing: '0.1em', color: '#DC143C' }}
+          >
             {attorney.designation}
           </span>
-          <h4 className="font-serif fs-5 fw-bold text-white mb-2">
-            <Link href={`/attorneys/${attorney.slug}`} className="text-white text-decoration-none hover-crimson">
+
+          <h4 className="font-serif fw-bold mb-2" style={{ fontSize: '1.05rem', color: '#001F54' }}>
+            <Link
+              href={`/attorneys/${attorney.slug}`}
+              className="text-decoration-none hover-crimson"
+              style={{ color: '#001F54' }}
+            >
               {attorney.name}
             </Link>
           </h4>
 
-          <p className="text-white-50 small lh-base mb-3 line-clamp-3">
+          <p className="small lh-base mb-3 line-clamp-3" style={{ color: '#475569' }}>
             {attorney.bio}
           </p>
 
-          {/* Bar Admissions Tag */}
+          {/* Bar Admission */}
           {attorney.bar_admissions && attorney.bar_admissions.length > 0 && (
-            <div className="pt-2 border-top border-sakura d-flex align-items-center gap-1 small text-white-50">
-              <Award className="text-crimson flex-shrink-0" style={{ width: '14px', height: '14px' }} />
-              <span className="text-truncate" style={{ fontSize: '11px' }}>{attorney.bar_admissions[0]}</span>
+            <div
+              className="pt-2 border-top border-canvas d-flex align-items-center gap-1"
+              style={{ color: '#64748B', fontSize: '11px' }}
+            >
+              <Award style={{ width: '13px', height: '13px', color: '#DC143C', flexShrink: 0 }} />
+              <span className="text-truncate">{attorney.bar_admissions[0]}</span>
             </div>
           )}
         </div>
       </div>
 
-      {/* Footer Contact & Link */}
-      <div className="p-3 bg-nepal-surface border-top border-sakura d-flex align-items-center justify-content-between small">
-        <a 
+      {/* Footer Contact Row */}
+      <div
+        className="px-4 py-3 d-flex align-items-center justify-content-between small border-top border-canvas"
+        style={{ backgroundColor: '#F8FAFC' }}
+      >
+        <a
           href={`mailto:${attorney.email}`}
-          className="text-white-50 text-decoration-none hover-crimson d-flex align-items-center gap-1"
+          className="text-decoration-none hover-crimson d-flex align-items-center gap-1"
+          style={{ color: '#475569' }}
           title={`Email ${attorney.name}`}
         >
-          <Mail className="text-crimson" style={{ width: '14px', height: '14px' }} />
+          <Mail style={{ width: '13px', height: '13px', color: '#DC143C' }} />
           <span>Email</span>
         </a>
 
         {typeof attorney.phone === 'string' && attorney.phone.trim().length > 0 && (
-          <a 
+          <a
             href={`tel:${attorney.phone.replace(/[^0-9+]/g, '')}`}
-            className="text-white-50 text-decoration-none hover-crimson d-flex align-items-center gap-1"
+            className="text-decoration-none hover-crimson d-flex align-items-center gap-1"
+            style={{ color: '#475569' }}
             title={`Call ${attorney.name}`}
           >
-            <Phone className="text-crimson" style={{ width: '14px', height: '14px' }} />
+            <Phone style={{ width: '13px', height: '13px', color: '#DC143C' }} />
             <span>Call</span>
           </a>
         )}
 
-        <Link 
+        <Link
           href={`/attorneys/${attorney.slug}`}
-          className="text-crimson text-decoration-none fw-bold"
+          className="fw-bold text-decoration-none hover-white"
+          style={{ color: '#DC143C', fontSize: '12px' }}
         >
           Full Bio →
         </Link>

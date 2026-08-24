@@ -100,7 +100,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky-top w-100 bg-nepal-dark text-white border-bottom border-sakura shadow-sm">
+    <header className="sticky-top w-100 border-bottom border-sakura shadow-sm" style={{ zIndex: 1030 }}>
       {/* Top Banner - Hotline & Authority */}
       <div className="bg-nepal-surface border-bottom border-sakura py-1 small text-white">
         <div className="container-xl d-flex flex-wrap align-items-center justify-content-between gap-2">
@@ -269,7 +269,7 @@ export function Navbar() {
             <ThemeToggle />
             <Link
               href="/contact#consultation"
-              className="btn btn-danger btn-crimson text-white fw-bold px-4 py-2 rounded-pill shadow-sm"
+              className="btn btn-crimson px-4 py-2 rounded-pill fw-bold shadow-sm"
             >
               Free Case Evaluation
             </Link>
@@ -374,7 +374,7 @@ export function Navbar() {
             <Link
               href="/contact#consultation"
               onClick={() => setMobileMenuOpen(false)}
-              className="btn btn-danger btn-crimson text-white fw-bold w-100 py-3 rounded-3 shadow"
+              className="btn btn-crimson fw-bold w-100 py-3 rounded-3 shadow"
             >
               Request Free Case Evaluation
             </Link>
