@@ -40,8 +40,37 @@ export default async function HomePage() {
       <StatsSection stats={stats} />
 
       {/* 3. FEATURED PRACTICE AREAS */}
-      <section className="py-24 bg-[#001F54] border-b border-sakura-border relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 border-b border-sakura-border relative overflow-hidden">
+        
+        {/* Court Item Background Stickers / Watermarks */}
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0">
+          <div className="absolute -top-12 -left-12 w-96 h-96 text-white/[0.035] -rotate-12">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-full h-full">
+              <line x1="3" y1="22" x2="21" y2="22" />
+              <line x1="6" y1="18" x2="6" y2="11" />
+              <line x1="10" y1="18" x2="10" y2="11" />
+              <line x1="14" y1="18" x2="14" y2="11" />
+              <line x1="18" y1="18" x2="18" y2="11" />
+              <polygon points="12 2 20 7 4 7" />
+            </svg>
+          </div>
+
+          <div className="absolute top-1/3 -right-16 w-80 h-80 text-white/[0.03] rotate-12">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8" className="w-full h-full">
+              <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+              <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+              <path d="M7 21h10" />
+              <path d="M12 3v18" />
+              <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+            </svg>
+          </div>
+
+          <div className="absolute -bottom-16 left-1/3 w-72 h-72 text-white/[0.025] -rotate-45">
+            <Gavel className="w-full h-full stroke-[0.8]" />
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
