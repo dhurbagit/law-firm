@@ -19,6 +19,7 @@ The platform is designed around strict separation of concerns:
 │  │   • Dynamic SSR / SSG routes    │   │      • Live Leads Triage CRM    │  │
 │  │   • Firm branding & hotline     │   │      • Partner Directory CRUD   │  │
 │  │   • Nepal Flag Blue/Red Palette │   │      • Playfair & Roboto Fonts  │  │
+│  │   • Light Mode: Pure White/Soft │   │      • Red Button -> White Text │  │
 │  └────────────────┬────────────────┘   └────────────────┬────────────────┘  │
 └───────────────────┼─────────────────────────────────────┼───────────────────┘
                     │                                     │
@@ -162,7 +163,7 @@ The platform is designed around strict separation of concerns:
 ```
 src/app/
 ├── layout.tsx                     # Global HTML Document Shell (Playfair & Roboto Font Variables)
-├── globals.css                    # Nepal Flag Strict Design System Tokens
+├── globals.css                    # Nepal Flag Strict Design System Tokens (Dark & Light Overrides)
 │
 ├── (public)/                      # 🌐 PUBLIC FIRM WEBSITE (Route Group)
 │   ├── layout.tsx                 # Public Layout (Navbar with 24/7 Hotline + Footer + JSON-LD)
@@ -217,12 +218,13 @@ src/app/
 | **`--nepal-blue`** | `#003893` | `#003893` | Official Nepal Flag Royal Blue (Primary Brand) |
 | **`--nepal-red`** | `#DC143C` | `#DC143C` | Official Nepal Flag Crimson Red (Secondary / Accent) |
 | **`--bg-primary`** | `#000000` (Pure Black) | `#FFFFFF` (Pure White) | Main viewport canvas |
-| **`--bg-secondary`**| `#00122E` (Deep Nepal Navy) | `#F4F7FC` (Ice Blue Tint) | Hero, section, and card backgrounds |
-| **`--bg-surface`** | `#001C4A` (Surface Navy) | `#E6EEFA` (Subtle Ice) | Interactive widgets and dropdown cards |
-| **`--text-primary`**| `#FFFFFF` (Pure White) | `#000000` (Pure Black) | High contrast readability |
-| **`--text-secondary`**| `#E2E8F0` (Off-white) | `#001F54` (Nepal Deep Navy) | Sub-headings and descriptions |
-| **`--border-blue`**| `rgba(0, 56, 147, 0.5)` | `rgba(0, 56, 147, 0.35)` | Structural grid dividers |
-| **`--border-red`** | `rgba(220, 20, 60, 0.5)` | `rgba(220, 20, 60, 0.35)` | Focus rings, alert borders & highlights |
+| **`--bg-secondary`**| `#00122E` (Deep Nepal Navy) | `#F8FAFC` (Clean Off-White) | Section backgrounds (No dark blue/black in light mode) |
+| **`--bg-surface`** | `#001C4A` (Surface Navy) | `#FFFFFF` (Pure White) | Cards and interactive surfaces in light mode |
+| **`--text-primary`**| `#FFFFFF` (Pure White) | `#000000` (Pure Black) | High contrast text |
+| **`--text-secondary`**| `#E2E8F0` (Off-white) | `#1E293B` (Deep Slate) | Secondary descriptions and subtitles |
+| **`--border-blue`**| `rgba(0, 56, 147, 0.6)` | `rgba(0, 56, 147, 0.22)` | Structural grid dividers |
+| **`--border-red`** | `rgba(220, 20, 60, 0.6)` | `rgba(220, 20, 60, 0.3)` | Focus rings, alert borders & highlights |
+| **Red Buttons** | `#DC143C` / `#FFFFFF` | `#DC143C` / `#FFFFFF` | Red background buttons ALWAYS use white text |
 
 ---
 

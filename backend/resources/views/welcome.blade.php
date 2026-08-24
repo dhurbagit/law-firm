@@ -24,16 +24,17 @@
         }
 
         body.light-theme {
+            /* Light mode: clean white and light neutral backgrounds, no blue or black section backgrounds */
             --bg-body: #FFFFFF;
-            --bg-container: #F4F7FC;
+            --bg-container: #F8FAFC;
             --bg-card: #FFFFFF;
-            --bg-badge: #E6EEFA;
+            --bg-badge: #F1F5F9;
             --text-primary: #000000;
-            --text-secondary: #001F54;
+            --text-secondary: #1E293B;
             --text-accent: #DC143C;
-            --border-primary: rgba(0, 56, 147, 0.35);
-            --border-card: rgba(0, 56, 147, 0.25);
-            --code-bg: #F4F7FC;
+            --border-primary: rgba(0, 56, 147, 0.2);
+            --border-card: rgba(0, 56, 147, 0.15);
+            --code-bg: #F8FAFC;
         }
 
         body {
@@ -128,9 +129,9 @@
             gap: 6px;
             padding: 7px 14px;
             border-radius: 9999px;
-            background-color: rgba(0, 56, 147, 0.2);
-            border: 1px solid #003893;
-            color: #FFFFFF;
+            background-color: rgba(0, 56, 147, 0.12);
+            border: 1px solid rgba(0, 56, 147, 0.4);
+            color: var(--text-primary);
             font-size: 12px;
             font-weight: 700;
         }
@@ -147,7 +148,7 @@
             border-radius: 24px;
             padding: 48px;
             margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -183,23 +184,26 @@
             transition: all 0.2s ease;
             cursor: pointer;
         }
+        /* Button with red background ALWAYS has white text */
         .btn-primary {
-            background: #DC143C;
-            color: #FFFFFF;
+            background: #DC143C !important;
+            color: #FFFFFF !important;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 25px rgba(220, 20, 60, 0.35);
+            box-shadow: 0 10px 25px rgba(220, 20, 60, 0.25);
         }
         .btn-primary:hover {
-            filter: brightness(1.1);
+            background: #B00E2F !important;
+            color: #FFFFFF !important;
             transform: translateY(-2px);
         }
         .btn-secondary {
             background: #003893;
-            color: #FFFFFF;
+            color: #FFFFFF !important;
             border: 1px solid #003893;
         }
         .btn-secondary:hover {
             background: #DC143C;
+            color: #FFFFFF !important;
             transform: translateY(-2px);
         }
         .btn-ghost {
@@ -227,7 +231,7 @@
         .card:hover {
             border-color: #DC143C;
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(0, 56, 147, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 56, 147, 0.12);
         }
         .card-header {
             display: flex;
@@ -248,8 +252,10 @@
             border-radius: 6px;
             text-transform: uppercase;
         }
-        .method-get { background: rgba(0, 56, 147, 0.3); color: #FFFFFF; border: 1px solid #003893; }
-        .method-post { background: rgba(220, 20, 60, 0.3); color: #FFFFFF; border: 1px solid #DC143C; }
+        .method-get { background: rgba(0, 56, 147, 0.2); color: #003893; border: 1px solid rgba(0, 56, 147, 0.4); }
+        .method-post { background: rgba(220, 20, 60, 0.2); color: #DC143C; border: 1px solid rgba(220, 20, 60, 0.4); }
+        body:not(.light-theme) .method-get { color: #FFFFFF; }
+        body:not(.light-theme) .method-post { color: #FFFFFF; }
         .card-url {
             font-family: monospace;
             font-size: 12px;
@@ -366,8 +372,8 @@
                     <span class="card-title">Consultation Intake</span>
                     <span class="card-method method-post">POST</span>
                 </div>
-                <span class="card-url">/api/v1/consultation</span>
-                <p class="card-desc">Direct retainer inquiry intake endpoint with email notification dispatch.</p>
+                <span class="card-url">/api/v1/consultations</span>
+                <p class="card-desc">Direct retainer inquiry intake endpoint with rate-limited submission protection.</p>
             </div>
 
             <div class="card">

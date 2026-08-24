@@ -22,6 +22,7 @@ The system is architected as a **headless web application**:
   - **Headings**: Editorial Serif (`Playfair Display`).
   - **Body, UI, & Forms**: Modern Clean Sans-Serif (`Roboto`).
   - **Color Palette (Exclusive)**: **Nepal Flag Royal Blue** (`#003893` Primary), **Nepal Flag Crimson Red** (`#DC143C` Secondary/Accent), **Pure Black** (`#000000`), and **Pure White** (`#FFFFFF`).
+  - **Light Mode Standards**: Sections use clean pure white (`#FFFFFF`) and off-white (`#F8FAFC`) backgrounds (no dark blue or black section backgrounds). Red background buttons (`#DC143C`) strictly use white text (`#FFFFFF`).
 
 ---
 
@@ -149,8 +150,9 @@ law-firm/
 | **Primary Color** | Nepal Royal Blue | `#003893` | Headers, brand crests, surfaces, borders, nav items |
 | **Secondary Color**| Nepal Crimson Red | `#DC143C` | Badges, CTA buttons, active states, key highlights |
 | **Base Neutrals** | Pure Black & White| `#000000`, `#FFFFFF` | Strictly enforced across all light & dark themes |
-| **Dark Surfaces** | Deep Navy / Black | `#00122E`, `#001C4A` | High contrast, zero glare |
-| **Light Surfaces**| Ice Blue / White  | `#F4F7FC`, `#FFFFFF` | Crisp corporate aesthetic |
+| **Dark Sections** | Deep Navy / Black | `#000000`, `#00122E` | High contrast, zero glare dark mode |
+| **Light Sections**| Pure White & Soft | `#FFFFFF`, `#F8FAFC` | No blue or black section backgrounds in Light mode |
+| **Red Buttons**   | Crimson Red / White| `#DC143C` / `#FFFFFF` | Red buttons ALWAYS use crisp white text in all themes |
 
 ---
 
@@ -208,7 +210,7 @@ npm run dev -- -p 3001
 - `GET /api/v1/attorneys` — Active attorneys directory with practice associations
 - `GET /api/v1/attorneys/{slug}` — Full attorney biographical profile
 - `GET /api/v1/case-results` — Landmark verdicts and recoveries archive
-- `POST /api/v1/consultation` — Inbound consultation lead intake (Rate-limited to 6 req/min)
+- `POST /api/v1/consultations` — Inbound consultation lead intake (Rate-limited to 6 req/min)
 
 ### Admin Operations Endpoints (`auth:sanctum` Guarded)
 - `POST /api/v1/admin/login` — Sanctum Bearer Token generation
