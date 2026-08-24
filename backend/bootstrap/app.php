@@ -18,14 +18,20 @@ return Application::configure(basePath: dirname(__DIR__))
             'api/*',
             'sanctum/*',
         ]);
+        
+        // Prevent 500 error when unauthenticated guests request API routes
+        $middleware->redirectGuestsTo(function (Request $request) {
+            if ($request->is('api/*') || $request->expectsJson()) {
+                return null;
+            }
+            return route('login');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (AuthenticationException $e, Request $request) {
-            if ($request->is('api/*') || $request->expectsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Unauthenticated or invalid token.',
-                ], 401);
-            }
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthenticated or invalid token. Please login at /admin/login.',
+            ], 401);
         });
     })->create();
