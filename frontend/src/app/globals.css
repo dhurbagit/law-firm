@@ -257,6 +257,21 @@ html.light .hero-pattern {
 }
 
 /* ==========================================================================
+   EXPLICIT WHITE TEXT & ICON CONTRAST CONTRACT
+   ========================================================================== */
+.text-white,
+[class*="text-white"] {
+  color: #FFFFFF !important;
+}
+
+svg.text-white,
+.text-white svg,
+[class*="text-white"] svg {
+  color: #FFFFFF !important;
+  stroke: currentColor;
+}
+
+/* ==========================================================================
    WCAG 2.1 AA OPPOSITE-CONTRAST SYSTEM & RATIO CONTRACTS
    ========================================================================== */
 
