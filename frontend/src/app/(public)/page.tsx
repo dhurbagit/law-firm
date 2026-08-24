@@ -7,18 +7,17 @@ import {
   getAttorneys, 
   getCaseResults 
 } from '@/lib/api';
+import { CourtroomHero } from '@/components/CourtroomHero';
 import { StatsSection } from '@/components/StatsSection';
 import { PracticeAreaCard } from '@/components/PracticeAreaCard';
 import { AttorneyCard } from '@/components/AttorneyCard';
 import { CaseResultCard } from '@/components/CaseResultCard';
 import { ConsultationForm } from '@/components/ConsultationForm';
 import { 
-  ShieldCheck, 
   ArrowRight, 
   Award, 
   Gavel, 
   Clock, 
-  CheckCircle2, 
   Building,
   Quote
 } from 'lucide-react';
@@ -34,69 +33,8 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col min-h-screen font-sans bg-nepal-dark text-white">
       
-      {/* 1. HERO SECTION (60% Dominant Midnight Navy Canvas) */}
-      <section className="relative overflow-hidden hero-pattern pt-20 pb-28 md:pt-28 md:pb-36 border-b border-sakura-border">
-        {/* Ambient glows */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[350px] bg-nepal-blue/20 rounded-full blur-[140px] pointer-events-none"></div>
-        <div className="absolute top-10 right-10 w-72 h-72 bg-crimson/15 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl space-y-6">
-            
-            {/* 30% Structure Support: Sakura Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-nepal-surface border border-sakura-border text-xs font-bold text-white tracking-wide shadow-md">
-              <ShieldCheck className="w-4 h-4 text-crimson" />
-              <span>National Trial Litigators & Corporate Counsel</span>
-            </div>
-
-            {/* Main Headline */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
-              Formidable Advocacy. <br />
-              <span className="text-crimson">Decisive Landmark Results.</span>
-            </h1>
-
-            {/* Sub-headline */}
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal font-sans">
-              When high-stakes corporate disputes arise or catastrophic injury demands justice, Apex Legal Counsel commands the courtroom and negotiating table with unwavering precision.
-            </p>
-
-            {/* 10% High Impact Accent CTAs */}
-            <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 font-sans">
-              <Link
-                href="#case-evaluation"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-xl shadow-crimson/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <span>Request Free Case Evaluation</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </Link>
-
-              <Link
-                href="/case-results"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-base font-bold text-white bg-nepal-surface hover:bg-nepal-blue border border-sakura-border transition"
-              >
-                <span>Explore $250M+ In Verdicts</span>
-              </Link>
-            </div>
-
-            {/* Trust Badges */}
-            <div className="pt-8 flex flex-wrap items-center gap-6 sm:gap-10 border-t border-sakura-border/30 text-xs text-slate-300 font-sans">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-crimson" />
-                <span className="font-semibold text-white">Zero Fee Unless We Win</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-crimson" />
-                <span className="font-semibold text-white">24/7 Confidential Response</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-crimson" />
-                <span className="font-semibold text-white">Former Federal Prosecutors</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {/* 1. INTERACTIVE ANIMATED COURTROOM HERO (Transitioning Background & Striking Gavel "Order, Order") */}
+      <CourtroomHero />
 
       {/* 2. STATS SECTION */}
       <StatsSection stats={stats} />

@@ -2,6 +2,7 @@
 
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.5.23-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![Laravel 11](https://img.shields.io/badge/Laravel-11.x-red?style=flat-square&logo=laravel)](https://laravel.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animated_Hero-blueviolet?style=flat-square&logo=framer)](https://www.framer.com/motion/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Semantic_Tokens-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?style=flat-square&logo=mysql)](https://www.mysql.com/)
@@ -16,9 +17,10 @@
 
 The system is architected as a **headless web application**:
 - **Backend API & Core Engine (`/backend`)**: High-performance **Laravel 11 REST API** backed by MySQL, utilizing Laravel Sanctum for secure Bearer Token authentication, Eloquent ORM relations, Form Request validation rules, and API Resource transformations.
-- **Frontend & Public Client (`/frontend`)**: **Next.js 15 App Router + React 19 + TypeScript + Tailwind CSS**, featuring Server-Side Rendering (SSR), Static Site Generation (SSG), Structured Data (JSON-LD SEO Schema), Route Groups, and an adaptive Dark/Light theme system.
+- **Frontend & Public Client (`/frontend`)**: **Next.js 15 App Router + React 19 + TypeScript + Tailwind CSS + Framer Motion**, featuring Server-Side Rendering (SSR), Static Site Generation (SSG), Structured Data (JSON-LD SEO Schema), Route Groups, and an adaptive Dark/Light theme system.
+- **Interactive Animated Courtroom Hero with Striking Gavel ("Order, Order")**: High-performance Framer Motion courtroom centerpiece featuring subtle crossfading supreme courtroom backgrounds, an animated judge's gavel striking on a handcrafted walnut/brass sound block in a rhythmic "Order! Order!" sequence, glowing shockwave impact rings, and optional Web Audio API synthesized acoustic sound effects.
 - **Custom Operations & CMS Dashboard (`/frontend/src/app/admin`)**: A bespoke, proprietary operations center built without third-party monoliths (no Nova/Filament), delivering live firm telemetry, full consultation lead triage CRM, partner directory management, practice discipline administration, and verdict tracking.
-- **Dedicated Public Contact Portal (`/frontend/src/app/(public)/contact`)**: A dedicated, fully featured communication hub featuring an encrypted client intake form, 24/7 emergency dispatch info, interactive multi-city Google Map switcher (New York, Washington D.C., San Francisco), transit directions, and verified legal/social directory profiles.
+- **Dedicated Public Contact Portal (`/frontend/src/app/(public)/contact`)**: A dedicated communication hub with encrypted client intake, 24/7 emergency dispatch, interactive multi-city Google Map switcher (New York, Washington D.C., San Francisco), and verified legal/social directory profiles.
 - **Strict Brand Design System & Typography**:
   - **Headings**: Editorial Serif (`Playfair Display`).
   - **Body, UI, & Forms**: Modern Clean Sans-Serif (`Roboto`).
@@ -44,10 +46,10 @@ The system is architected as a **headless web application**:
                       │    🌐 Public Website      │             │  🛡️ Admin Operations      │
                       │  http://localhost:3001/   │             │ http://localhost:3001/admin│
                       │  • Route Group: (public)  │             │ • Route Group: admin/     │
-                      │  • Firm Navbar & Hotline  │             │ • Dedicated Ops Shell     │
-                      │  • Dedicated Contact Hub  │             │ • Leads CRM & Pipeline    │
-                      │  • Interactive Google Map │             │ • Attorney Management     │
-                      │  • Social Media Profiles  │             │ • Practice & Case CMS     │
+                      │  • Animated Courtroom Hero│             │ • Dedicated Ops Shell     │
+                      │  • Striking Gavel Bench   │             │ • Leads CRM & Pipeline    │
+                      │  • Dedicated Contact Hub  │             │ • Attorney Management     │
+                      │  • Interactive Google Map │             │ • Practice & Case CMS     │
                       │  • Practice Areas / Slugs │             │ • Sanctum Bearer Token    │
                       │  • Attorney Credentials   │             │ • Live KPI Telemetry      │
                       │  • Landmark Verdicts      │             │ • Dark / Light Switch     │
@@ -111,7 +113,7 @@ law-firm/
 │   │   ├── app/
 │   │   │   ├── (public)/                  # Public Site Route Group (Isolated Layout)
 │   │   │   │   ├── layout.tsx             # Public Layout (Firm Navbar + Footer + Schema)
-│   │   │   │   ├── page.tsx               # Public Homepage (Hero, Stats, Practices, Team, Verdicts)
+│   │   │   │   ├── page.tsx               # Public Homepage (Courtroom Hero, Stats, Practices, Team)
 │   │   │   │   ├── practice-areas/        # Directory & Slug Detail Pages
 │   │   │   │   ├── attorneys/             # Partner Directory & Bio Slug Pages
 │   │   │   │   ├── case-results/          # Landmark Verdicts Archive
@@ -128,7 +130,8 @@ law-firm/
 │   │   │   ├── globals.css                # 60-30-10 Tokens & Theme Overrides
 │   │   │   └── layout.tsx                 # Root Document Shell (Playfair & Roboto Font Hydration)
 │   │   ├── components/                    # Reusable Client & Server Components
-│   │   │   ├── Navbar.tsx                 # Public Navigation (Dropdown + Hotline + Theme Toggle)
+│   │   │   ├── CourtroomHero.tsx          # Interactive Animated Hero (Striking Gavel & Crossfade)
+│   │   │   ├── Navbar.tsx                 # Public Navigation (White font & Red Active)
 │   │   │   ├── Footer.tsx                 # Public Credentials Footer
 │   │   │   ├── ThemeToggle.tsx            # Sun/Moon Interactive Toggle
 │   │   │   ├── ConsultationForm.tsx       # Intake Form with 256-bit Encryption Note
