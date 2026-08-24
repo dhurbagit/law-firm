@@ -45,8 +45,8 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
       <div className="relative z-10">
         {/* Header: Icon Crest (Pure White Icon) & Core Badge */}
         <div className="flex items-center justify-between mb-6">
-          <div className="w-13 h-13 rounded-xl bg-transparent border-2 border-white/40 group-hover:border-crimson group-hover:bg-crimson flex items-center justify-center text-white shadow-lg transition-all duration-300 group-hover:scale-105">
-            <IconComponent className="w-6 h-6 text-white" />
+          <div className="w-13 h-13 rounded-xl bg-[#001F54] border-2 border-white/40 group-hover:border-crimson group-hover:bg-crimson flex items-center justify-center text-white shadow-lg transition-all duration-300 group-hover:scale-105">
+            <IconComponent className="w-6 h-6 text-white group-hover:text-white" />
           </div>
           
           {practiceArea.is_featured ? (
@@ -73,7 +73,7 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
           {practiceArea.short_summary}
         </p>
 
-        {/* Sub-Specialties Pill Badges (White Color Buttons) */}
+        {/* Sub-Specialties Pill Badges */}
         {practiceArea.children && practiceArea.children.length > 0 && (
           <div className="mb-6 pt-4 border-t border-sakura-border/30 space-y-2">
             <span className="text-[10px] uppercase tracking-widest text-crimson font-extrabold block">
@@ -84,10 +84,10 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
                 <Link
                   key={child.id}
                   href={child.slug ? `/practice-areas/${child.slug}` : '/practice-areas'}
-                  className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-white text-[#001F54] font-bold hover:bg-crimson hover:text-white border border-white hover:border-crimson transition shadow-md"
+                  className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-white text-[#001F54] font-bold hover:bg-crimson hover:text-white border border-white hover:border-crimson transition shadow-md group/sub"
                 >
-                  <span>{child.title}</span>
-                  <ChevronRight className="w-3 h-3 text-crimson group-hover:text-white" />
+                  <span className="group-hover/sub:text-white">{child.title}</span>
+                  <ChevronRight className="w-3 h-3 text-crimson group-hover/sub:text-white group-hover:text-white transition-colors" />
                 </Link>
               ))}
             </div>
@@ -95,14 +95,14 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
         )}
       </div>
 
-      {/* Card Footer: Action Button (White Color Button) */}
+      {/* Card Footer: Action Button (Red Color Button with Pure White Text & White Icon) */}
       <div className="pt-4 border-t border-sakura-border/30 relative z-10">
         <Link 
           href={areaUrl}
-          className="w-full inline-flex items-center justify-between py-2.5 px-4 rounded-xl bg-white hover:bg-crimson text-xs font-bold text-[#001F54] hover:text-white uppercase tracking-wider border border-white hover:border-crimson shadow-lg transition-all duration-300 group/btn"
+          className="w-full inline-flex items-center justify-between py-2.5 px-4 rounded-xl bg-crimson hover:bg-crimson-hover text-xs font-bold text-white uppercase tracking-wider border border-white/20 shadow-lg shadow-crimson/30 transition-all duration-300 group/btn"
         >
-          <span>Explore Practice Group</span>
-          <ArrowRight className="w-4 h-4 text-[#001F54] group-hover/btn:text-white transform group-hover/btn:translate-x-1 transition-all" />
+          <span className="text-white font-bold">Explore Practice Group</span>
+          <ArrowRight className="w-4 h-4 text-white group-hover/btn:translate-x-1 group-hover:text-white transition-all" />
         </Link>
       </div>
 
