@@ -13,8 +13,7 @@ import {
   Scale, 
   HeartPulse, 
   ArrowRight,
-  ChevronRight,
-  Landmark
+  ChevronRight
 } from 'lucide-react';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -39,29 +38,19 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
   return (
     <div className="sakura-glass-card rounded-2xl p-7 flex flex-col justify-between border border-sakura-border relative overflow-hidden group font-sans">
       
-      {/* 1. COURT WATERMARK STICKER BACKGROUND */}
-      <div className="absolute -bottom-8 -right-8 w-44 h-44 text-white/5 group-hover:text-crimson/15 transition-all duration-500 transform group-hover:scale-115 group-hover:-rotate-12 pointer-events-none select-none z-0">
-        <Landmark className="w-full h-full stroke-[1]" />
-      </div>
-
-      {/* Secondary Scales of Justice Motif Watermark */}
-      <div className="absolute top-1/2 -right-12 -translate-y-1/2 w-36 h-36 text-white/[0.03] group-hover:text-nepal-blue/20 transition-all duration-500 pointer-events-none select-none z-0">
-        <Scale className="w-full h-full stroke-[0.8]" />
-      </div>
-
       {/* Top Subtle Red Accent Indicator */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-nepal-blue via-crimson to-nepal-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
-      {/* 2. CARD CONTENT */}
+      {/* Card Body Content */}
       <div className="relative z-10">
-        {/* Header: Icon Crest & Core Badge */}
+        {/* Header: Icon Crest (White Icon) & Core Badge */}
         <div className="flex items-center justify-between mb-6">
-          <div className="w-13 h-13 rounded-xl bg-[#001F54]/90 border border-sakura-border group-hover:border-crimson group-hover:bg-crimson flex items-center justify-center text-white shadow-lg transition-all duration-300 group-hover:scale-105">
+          <div className="w-13 h-13 rounded-xl bg-[#001F54] border border-sakura-border group-hover:border-crimson group-hover:bg-crimson flex items-center justify-center text-white shadow-lg transition-all duration-300 group-hover:scale-105">
             <IconComponent className="w-6 h-6 text-white" />
           </div>
           
           {practiceArea.is_featured ? (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-crimson/15 text-crimson border border-crimson/40 shadow-sm backdrop-blur-md">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold uppercase tracking-wider bg-crimson/15 text-crimson border border-crimson/40 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-crimson animate-pulse" />
               Core Practice
             </span>
@@ -74,7 +63,7 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
 
         {/* Title */}
         <h3 className="font-serif text-2xl font-bold text-white mb-3 group-hover:text-crimson transition-colors leading-tight">
-          <Link href={areaUrl} className="hover:underline">
+          <Link href={areaUrl} className="hover:underline text-white">
             {practiceArea.title}
           </Link>
         </h3>
@@ -95,9 +84,9 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
                 <Link
                   key={child.id}
                   href={child.slug ? `/practice-areas/${child.slug}` : '/practice-areas'}
-                  className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-[#00153B]/90 text-white font-medium hover:bg-crimson hover:text-white border border-sakura-border/40 hover:border-crimson transition shadow-sm backdrop-blur-sm"
+                  className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-[#00153B] text-white font-medium hover:bg-crimson hover:text-white border border-sakura-border/40 hover:border-crimson transition shadow-sm"
                 >
-                  <span>{child.title}</span>
+                  <span className="text-white font-medium">{child.title}</span>
                   <ChevronRight className="w-3 h-3 text-crimson group-hover:text-white" />
                 </Link>
               ))}
@@ -106,13 +95,13 @@ export function PracticeAreaCard({ practiceArea }: PracticeAreaCardProps) {
         )}
       </div>
 
-      {/* 3. CARD FOOTER ACTION */}
+      {/* Card Footer: Action Button (White Color Text) */}
       <div className="pt-4 border-t border-sakura-border/30 relative z-10">
         <Link 
           href={areaUrl}
-          className="w-full inline-flex items-center justify-between py-2.5 px-4 rounded-xl bg-[#001F54]/80 group-hover:bg-crimson text-xs font-bold text-white uppercase tracking-wider border border-sakura-border/60 group-hover:border-crimson shadow transition-all duration-300 backdrop-blur-sm"
+          className="w-full inline-flex items-center justify-between py-2.5 px-4 rounded-xl bg-crimson hover:bg-crimson-hover text-xs font-bold text-white uppercase tracking-wider border border-white/20 shadow-md shadow-crimson/25 transition-all duration-300"
         >
-          <span>Explore Practice Group</span>
+          <span className="text-white font-bold">Explore Practice Group</span>
           <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
