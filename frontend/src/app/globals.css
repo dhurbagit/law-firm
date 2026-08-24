@@ -154,6 +154,25 @@ aside nav a[class*="border-[#DC143C]"] {
 }
 
 /* ==========================================================================
+   COURTROOM HERO HIGH-CONTRAST WHITE TEXT CONTRACT (ALL MODES)
+   ========================================================================== */
+.courtroom-hero,
+.courtroom-hero h1,
+.courtroom-hero h2,
+.courtroom-hero h3,
+.courtroom-hero p,
+.courtroom-hero strong,
+.courtroom-hero a:not(.btn-crimson):not([class*="bg-crimson"]),
+.courtroom-hero span:not(.text-crimson):not(.text-\[\#DC143C\]):not([class*="text-crimson"]) {
+  color: #FFFFFF !important;
+}
+
+.courtroom-hero .text-crimson,
+.courtroom-hero [class*="text-crimson"] {
+  color: #DC143C !important;
+}
+
+/* ==========================================================================
    60-30-10 RATIO UTILITIES & GLASSMORPHISM
    ========================================================================== */
 
@@ -239,41 +258,41 @@ a[class*="bg-[#DC143C]"] * {
 }
 
 /* ==========================================================================
-   LIGHT MODE CONTENT OVERRIDES (EXCLUDING HEADER & ASIDE)
+   LIGHT MODE CONTENT OVERRIDES (EXCLUDING HEADER, ASIDE & COURTROOM HERO)
    ========================================================================== */
-html.light main .bg-nepal-dark,
-html.light section.bg-nepal-dark,
-html.light div.bg-nepal-dark:not(header *):not(aside *) {
+html.light main .bg-nepal-dark:not(.courtroom-hero *):not(.courtroom-hero),
+html.light section.bg-nepal-dark:not(.courtroom-hero *):not(.courtroom-hero),
+html.light div.bg-nepal-dark:not(header *):not(aside *):not(.courtroom-hero *):not(.courtroom-hero) {
   background-color: #F8FAFC !important;
 }
 
-html.light main .bg-nepal-surface,
-html.light section.bg-nepal-surface,
-html.light div.bg-nepal-surface:not(header *):not(aside *) {
+html.light main .bg-nepal-surface:not(.courtroom-hero *):not(.courtroom-hero),
+html.light section.bg-nepal-surface:not(.courtroom-hero *):not(.courtroom-hero),
+html.light div.bg-nepal-surface:not(header *):not(aside *):not(.courtroom-hero *):not(.courtroom-hero) {
   background-color: #FFFFFF !important;
   border-color: #E2E8F0 !important;
 }
 
-html.light main h1, html.light main h2, html.light main h3, html.light main h4, html.light main h5, html.light main h6,
-html.light section h1, html.light section h2, html.light section h3, html.light section h4, html.light section h5, html.light section h6 {
+html.light main h1:not(.courtroom-hero *), html.light main h2:not(.courtroom-hero *), html.light main h3:not(.courtroom-hero *), html.light main h4, html.light main h5, html.light main h6,
+html.light section:not(.courtroom-hero) h1, html.light section:not(.courtroom-hero) h2, html.light section:not(.courtroom-hero) h3, html.light section:not(.courtroom-hero) h4, html.light section:not(.courtroom-hero) h5, html.light section:not(.courtroom-hero) h6 {
   color: #000000 !important;
 }
 
-html.light main p, html.light section p {
+html.light main p:not(.courtroom-hero *), html.light section:not(.courtroom-hero) p {
   color: #1E293B !important;
 }
 
-html.light main .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *),
-html.light section .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *) {
+html.light main .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.courtroom-hero *):not(.courtroom-hero),
+html.light section:not(.courtroom-hero) .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.courtroom-hero *) {
   color: #000000 !important;
 }
 
-html.light main .text-slate-200,
-html.light main .text-slate-300,
-html.light main .text-slate-400,
-html.light section .text-slate-200,
-html.light section .text-slate-300,
-html.light section .text-slate-400 {
+html.light main .text-slate-200:not(.courtroom-hero *),
+html.light main .text-slate-300:not(.courtroom-hero *),
+html.light main .text-slate-400:not(.courtroom-hero *),
+html.light section:not(.courtroom-hero) .text-slate-200,
+html.light section:not(.courtroom-hero) .text-slate-300,
+html.light section:not(.courtroom-hero) .text-slate-400 {
   color: #334155 !important;
 }
 

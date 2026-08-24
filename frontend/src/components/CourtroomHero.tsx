@@ -73,7 +73,10 @@ export function CourtroomHero() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#001F54] text-white border-b border-sakura-border font-sans">
+    <section 
+      id="courtroom-hero"
+      className="courtroom-hero relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#001F54] text-white border-b border-sakura-border font-sans"
+    >
       
       {/* 1. FULL BACKGROUND IMAGE WITH CINEMATIC KEN-BURNS ANIMATION */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -99,7 +102,7 @@ export function CourtroomHero() {
           />
         </motion.div>
 
-        {/* Cinematic Multi-Layered Overlays (Reduced by 65% for Vibrant Courtroom Visibility) */}
+        {/* Cinematic Multi-Layered Overlays (Lightened for Full Courtroom Visibility) */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#001F54]/55 via-[#001F54]/35 to-[#001F54]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#001F54]/60 via-transparent to-[#001F54]/40" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#00153B_80%)] opacity-25" />
@@ -123,7 +126,7 @@ export function CourtroomHero() {
               className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#0A2540]/90 border border-sakura-border text-xs font-bold text-white tracking-wide shadow-xl backdrop-blur-md"
             >
               <ShieldCheck className="w-4 h-4 text-crimson" />
-              <span>Nationwide Trial Litigators & Supreme Court Counsel</span>
+              <span className="text-white font-bold">Nationwide Trial Litigators & Supreme Court Counsel</span>
               <span className="w-1.5 h-1.5 rounded-full bg-crimson animate-ping" />
             </motion.div>
 
@@ -132,10 +135,10 @@ export function CourtroomHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)]"
+              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
             >
-              Commanding The Courtroom. <br />
-              <span className="text-crimson drop-shadow-[0_2px_10px_rgba(220,20,60,0.4)]">Decisive Landmark Results.</span>
+              <span className="text-white">Commanding The Courtroom.</span> <br />
+              <span className="text-crimson drop-shadow-[0_2px_10px_rgba(220,20,60,0.5)]">Decisive Landmark Results.</span>
             </motion.h1>
 
             {/* Sub-headline */}
@@ -143,7 +146,7 @@ export function CourtroomHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-base sm:text-lg text-slate-100 leading-relaxed max-w-2xl font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+              className="text-base sm:text-lg text-white leading-relaxed max-w-2xl font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
             >
               When high-stakes corporate disputes arise or catastrophic injury demands justice, Apex Legal Counsel commands the courtroom and negotiating table with unwavering precision.
             </motion.p>
@@ -159,15 +162,15 @@ export function CourtroomHero() {
                 href="#case-evaluation"
                 className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-2xl shadow-crimson/35 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
               >
-                <span>Request Free Case Evaluation</span>
+                <span className="text-white font-bold">Request Free Case Evaluation</span>
                 <ArrowRight className="w-4 h-4 text-white" />
               </Link>
 
               <Link
                 href="/case-results"
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-base font-bold text-white bg-[#0A2540]/80 hover:bg-[#003893] border border-sakura-border backdrop-blur-md transition shadow-lg"
+                className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl text-base font-bold text-white bg-[#0A2540]/90 hover:bg-[#003893] border border-sakura-border backdrop-blur-md transition shadow-lg"
               >
-                <span>Explore $250M+ In Verdicts</span>
+                <span className="text-white font-bold">Explore $250M+ In Verdicts</span>
               </Link>
             </motion.div>
 
@@ -176,7 +179,7 @@ export function CourtroomHero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="pt-6 flex flex-wrap items-center gap-6 sm:gap-8 border-t border-sakura-border/30 text-xs text-slate-200"
+              className="pt-6 flex flex-wrap items-center gap-6 sm:gap-8 border-t border-sakura-border/30 text-xs text-white"
             >
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-crimson" />
@@ -201,7 +204,7 @@ export function CourtroomHero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-full max-w-sm rounded-3xl bg-[#0A2540]/90 border border-sakura-border p-6 shadow-2xl backdrop-blur-xl space-y-6 relative overflow-hidden"
+              className="w-full max-w-sm rounded-3xl bg-[#0A2540]/95 border border-sakura-border p-6 shadow-2xl backdrop-blur-xl space-y-6 relative overflow-hidden text-white"
             >
               
               {/* Subtle Judicial Gold Header Ribbon */}
@@ -221,12 +224,12 @@ export function CourtroomHero() {
                   {soundEnabled ? (
                     <>
                       <Volume2 className="w-3.5 h-3.5 text-crimson" />
-                      <span>Sound ON</span>
+                      <span className="text-white font-bold">Sound ON</span>
                     </>
                   ) : (
                     <>
-                      <VolumeX className="w-3.5 h-3.5 text-slate-400" />
-                      <span>Sound OFF</span>
+                      <VolumeX className="w-3.5 h-3.5 text-white" />
+                      <span className="text-white font-bold">Sound OFF</span>
                     </>
                   )}
                 </button>
@@ -266,7 +269,7 @@ export function CourtroomHero() {
                   className="w-full flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl bg-gradient-to-r from-crimson to-crimson-hover hover:from-crimson-hover hover:to-crimson text-white text-xs font-bold uppercase tracking-wider shadow-lg shadow-crimson/30 transition transform active:scale-95 cursor-pointer border border-white/20"
                 >
                   <Gavel className={`w-4 h-4 text-white transition-transform ${strikeActive ? '-rotate-45' : ''}`} />
-                  <span>{strikeActive ? 'Calling Court to Order...' : 'Strike Courtroom Gavel'}</span>
+                  <span className="text-white font-bold">{strikeActive ? 'Calling Court to Order...' : 'Strike Courtroom Gavel'}</span>
                 </button>
 
                 {/* Animated "ORDER!" Speech Banner */}
@@ -289,13 +292,13 @@ export function CourtroomHero() {
               </div>
 
               {/* Verified Firm Record Ticker */}
-              <div className="pt-3 border-t border-sakura-border/40 flex items-center justify-between text-xs text-slate-300">
+              <div className="pt-3 border-t border-sakura-border/40 flex items-center justify-between text-xs text-white">
                 <div className="flex items-center gap-1.5">
                   <Award className="w-4 h-4 text-crimson" />
-                  <span>Recoveries: <strong className="text-white">$250M+</strong></span>
+                  <span className="text-white font-medium">Recoveries: <strong className="text-white font-bold">$250M+</strong></span>
                 </div>
                 <div className="font-semibold text-white">
-                  Success: <span className="font-bold text-crimson">98.6%</span>
+                  <span className="text-white font-medium">Success: </span><span className="font-bold text-crimson">98.6%</span>
                 </div>
               </div>
 
