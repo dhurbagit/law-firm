@@ -152,12 +152,12 @@ export default function PracticeAreasManagementPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans bg-[#000000] text-white">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#C5A880] block mb-1">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#DC143C] block mb-1 font-sans">
             Core Firm Disciplines
           </span>
           <h1 className="font-serif text-3xl font-extrabold text-white tracking-tight">
@@ -167,7 +167,7 @@ export default function PracticeAreasManagementPage() {
 
         <button
           onClick={openCreateModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] text-[#0A192F] text-xs font-bold shadow-lg shadow-[#C5A880]/20 transition hover:brightness-110 cursor-pointer"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#DC143C] hover:bg-[#B00E2F] text-white text-xs font-bold shadow-lg shadow-[#DC143C]/20 transition cursor-pointer font-sans"
         >
           <Plus className="w-4 h-4" />
           <span>Create Practice Discipline</span>
@@ -175,65 +175,65 @@ export default function PracticeAreasManagementPage() {
       </div>
 
       {alertMsg && (
-        <div className="p-3.5 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-xs text-emerald-200 flex items-center gap-2 animate-in fade-in">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+        <div className="p-3.5 rounded-xl bg-[#001C4A] border border-[#003893] text-xs text-white flex items-center gap-2 animate-in fade-in font-bold">
+          <CheckCircle2 className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
           <span>{alertMsg}</span>
         </div>
       )}
 
       {/* Grid of Practice Areas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
         {loading ? (
           <div className="col-span-3 py-16 text-center text-slate-400">
-            <div className="w-6 h-6 border-2 border-[#C5A880] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+            <div className="w-6 h-6 border-2 border-[#DC143C] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
             <span>Loading practice disciplines...</span>
           </div>
         ) : practiceAreas.map((area) => (
           <div
             key={area.id}
-            className="p-6 rounded-2xl bg-[#0B192C] border border-[#C5A880]/20 flex flex-col justify-between space-y-4 shadow-xl hover:border-[#C5A880]/40 transition group"
+            className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] flex flex-col justify-between space-y-4 shadow-xl hover:border-[#DC143C] transition group"
           >
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-[#0A192F] border border-[#C5A880]/30 flex items-center justify-center text-[#C5A880]">
-                  <Scale className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-xl bg-[#001C4A] border border-[#003893] flex items-center justify-center text-white">
+                  <Scale className="w-5 h-5 text-[#DC143C]" />
                 </div>
                 <div className="flex items-center gap-1.5">
                   {area.is_featured && (
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-[#C5A880]/20 text-[#DFC7A5] border border-[#C5A880]/30">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-[#DC143C]/20 text-[#DC143C] border border-[#DC143C]">
                       Core
                     </span>
                   )}
                   {area.parent && (
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-blue-500/20 text-blue-300">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-[#003893]/30 text-white">
                       Sub-practice
                     </span>
                   )}
                 </div>
               </div>
 
-              <h3 className="font-serif text-lg font-bold text-white group-hover:text-[#DFC7A5] transition-colors">
+              <h3 className="font-serif text-lg font-bold text-white group-hover:text-[#DC143C] transition-colors">
                 {area.title}
               </h3>
 
-              <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+              <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed font-sans">
                 {area.short_summary}
               </p>
 
               {area.attorneys && area.attorneys.length > 0 && (
-                <div className="pt-2 text-[11px] text-[#DFC7A5] flex items-center gap-1.5">
-                  <Users className="w-3.5 h-3.5 text-[#C5A880]" />
+                <div className="pt-2 text-[11px] text-white flex items-center gap-1.5 font-bold">
+                  <Users className="w-3.5 h-3.5 text-[#DC143C]" />
                   <span>{area.attorneys.length} Dedicated Attorney{area.attorneys.length > 1 ? 's' : ''} Assigned</span>
                 </div>
               )}
             </div>
 
             {/* Actions Bar */}
-            <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div className="pt-4 border-t border-[#003893]/40 flex items-center justify-between font-sans">
               <a
                 href={`/practice-areas/${area.slug}`}
                 target="_blank"
-                className="text-xs text-[#C5A880] hover:text-[#DFC7A5] flex items-center gap-1 font-semibold"
+                className="text-xs text-[#DC143C] hover:text-white flex items-center gap-1 font-bold"
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>View Public Page</span>
@@ -242,14 +242,14 @@ export default function PracticeAreasManagementPage() {
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => openEditModal(area)}
-                  className="p-1.5 rounded-lg bg-[#172A45] hover:bg-[#1E2D4A] text-slate-300 hover:text-white transition cursor-pointer"
+                  className="p-1.5 rounded-lg bg-[#001C4A] hover:bg-[#003893] text-white transition cursor-pointer"
                   title="Edit Practice Area"
                 >
                   <Edit className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => handleDelete(area.id, area.title)}
-                  className="p-1.5 rounded-lg bg-red-950/50 hover:bg-red-900 text-red-300 transition cursor-pointer"
+                  className="p-1.5 rounded-lg bg-[#DC143C]/30 hover:bg-[#DC143C] text-white transition cursor-pointer"
                   title="Delete Practice Area"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -263,12 +263,12 @@ export default function PracticeAreasManagementPage() {
 
       {/* CREATE & EDIT MODAL */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-2xl bg-[#0B192C] border border-[#C5A880]/30 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto font-sans">
+          <div className="w-full max-w-2xl bg-[#00122E] border border-[#003893] rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in zoom-in-95 duration-200">
             
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#C5A880] block mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#DC143C] block mb-1 font-sans">
                   CMS Practice Area Editor
                 </span>
                 <h2 className="font-serif text-2xl font-bold text-white">
@@ -277,17 +277,17 @@ export default function PracticeAreasManagementPage() {
               </div>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-2 rounded-xl bg-[#172A45] text-slate-400 hover:text-white cursor-pointer"
+                className="p-2 rounded-xl bg-[#001C4A] text-slate-300 hover:text-white cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 font-sans">
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                     Discipline Title *
                   </label>
                   <input
@@ -296,22 +296,22 @@ export default function PracticeAreasManagementPage() {
                     placeholder="e.g. Antitrust & Competition"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                     Parent Practice Area (Optional)
                   </label>
                   <select
                     value={parentId || ''}
                     onChange={(e) => setParentId(e.target.value ? Number(e.target.value) : null)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880] cursor-pointer"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C] cursor-pointer"
                   >
-                    <option value="" className="bg-[#0B192C] text-slate-400">None (Top-Level Discipline)</option>
+                    <option value="" className="bg-[#000000] text-slate-400">None (Top-Level Discipline)</option>
                     {practiceAreas.filter(p => !editingArea || p.id !== editingArea.id).map(p => (
-                      <option key={p.id} value={p.id} className="bg-[#0B192C] text-white">{p.title}</option>
+                      <option key={p.id} value={p.id} className="bg-[#000000] text-white">{p.title}</option>
                     ))}
                   </select>
                 </div>
@@ -319,7 +319,7 @@ export default function PracticeAreasManagementPage() {
 
               {/* Icon Selector */}
               <div>
-                <label className="block text-xs uppercase font-semibold text-slate-300 mb-1.5">
+                <label className="block text-xs uppercase font-bold text-slate-200 mb-1.5">
                   Prestige Icon Symbol
                 </label>
                 <div className="grid grid-cols-4 gap-2">
@@ -328,13 +328,13 @@ export default function PracticeAreasManagementPage() {
                       type="button"
                       key={ic.name}
                       onClick={() => setIcon(ic.name)}
-                      className={`p-2 rounded-lg text-xs flex items-center gap-2 border transition cursor-pointer ${
+                      className={`p-2 rounded-lg text-xs font-bold flex items-center gap-2 border transition cursor-pointer ${
                         icon === ic.name 
-                          ? 'bg-[#172A45] border-[#C5A880] text-[#DFC7A5]' 
-                          : 'bg-[#0A192F] border-transparent text-slate-400'
+                          ? 'bg-[#003893] border-[#DC143C] text-white' 
+                          : 'bg-[#000000] border-[#003893]/40 text-slate-400'
                       }`}
                     >
-                      <Scale className="w-3.5 h-3.5 text-[#C5A880]" />
+                      <Scale className="w-3.5 h-3.5 text-[#DC143C]" />
                       <span className="truncate">{ic.label}</span>
                     </button>
                   ))}
@@ -343,7 +343,7 @@ export default function PracticeAreasManagementPage() {
 
               {/* Short Summary */}
               <div>
-                <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                   Short Executive Summary *
                 </label>
                 <input
@@ -352,13 +352,13 @@ export default function PracticeAreasManagementPage() {
                   placeholder="One sentence overview for cards and meta descriptions..."
                   value={shortSummary}
                   onChange={(e) => setShortSummary(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880]"
+                  className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
                 />
               </div>
 
               {/* Long Description */}
               <div>
-                <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                   Full Strategic Practice Description *
                 </label>
                 <textarea
@@ -366,7 +366,7 @@ export default function PracticeAreasManagementPage() {
                   required
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880] resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C] resize-none"
                   placeholder="Detailed regulatory scope, trial capabilities, and client representation details..."
                 ></textarea>
               </div>
@@ -378,26 +378,26 @@ export default function PracticeAreasManagementPage() {
                   id="featured-toggle"
                   checked={isFeatured}
                   onChange={(e) => setIsFeatured(e.target.checked)}
-                  className="accent-[#C5A880] w-4 h-4"
+                  className="accent-[#DC143C] w-4 h-4"
                 />
-                <label htmlFor="featured-toggle" className="text-xs text-slate-300 font-semibold cursor-pointer">
+                <label htmlFor="featured-toggle" className="text-xs text-slate-200 font-bold cursor-pointer">
                   Featured Core Practice (Highlighted on Homepage & Header)
                 </label>
               </div>
 
               {/* Submit Buttons */}
-              <div className="pt-4 border-t border-white/5 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-[#003893]/40 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-5 py-2.5 rounded-xl bg-[#172A45] text-slate-300 text-xs font-semibold hover:bg-[#1E2D4A] cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#001C4A] text-slate-200 text-xs font-bold hover:bg-[#003893] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={modalLoading}
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] text-[#0A192F] text-xs font-bold shadow-lg shadow-[#C5A880]/20 hover:brightness-110 cursor-pointer disabled:opacity-50"
+                  className="px-6 py-2.5 rounded-xl bg-[#DC143C] hover:bg-[#B00E2F] text-white text-xs font-bold shadow-lg shadow-[#DC143C]/20 cursor-pointer disabled:opacity-50"
                 >
                   {modalLoading ? 'Saving...' : (editingArea ? 'Update Practice Discipline' : 'Publish Practice Discipline')}
                 </button>

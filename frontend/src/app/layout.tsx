@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Roboto } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -8,9 +8,10 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const roboto = Roboto({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
   display: "swap",
 });
 
@@ -67,7 +68,7 @@ export default function RootLayout({
   return (
     <html 
       lang="en" 
-      className={`${playfair.variable} ${jakarta.variable} scroll-smooth dark`}
+      className={`${playfair.variable} ${roboto.variable} scroll-smooth dark`}
       suppressHydrationWarning
     >
       <head>
@@ -89,7 +90,7 @@ export default function RootLayout({
         />
       </head>
       <body 
-        className="min-h-screen flex flex-col bg-[#0A192F] text-slate-100 antialiased selection:bg-[#C5A880]/30 selection:text-[#DFC7A5]"
+        className="min-h-screen flex flex-col bg-[#000000] text-white antialiased selection:bg-[#DC143C] selection:text-white"
         suppressHydrationWarning
       >
         {children}

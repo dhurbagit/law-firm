@@ -8,7 +8,6 @@ import {
   AlertCircle, 
   Loader2, 
   Shield, 
-  Phone, 
   Lock, 
   HelpCircle 
 } from 'lucide-react';
@@ -105,51 +104,52 @@ export function ConsultationForm({
           case_details: '',
           source: sourceContext,
         });
-        setValidationErrors({});
       } else {
-        setErrorMessage(response.message || 'Failed to submit case inquiry.');
-        if (response.errors) {
-          setValidationErrors(response.errors);
-        }
+        setErrorMessage(response.message || 'We could not process your inquiry at this time.');
       }
     } catch (err: unknown) {
-      console.error(err);
-      setErrorMessage('A network error occurred while sending your request. Please call our direct hotline at (212) 890-4400.');
+      const error = err as { response?: { data?: { message?: string; errors?: Record<string, string[]> } } };
+      if (error.response?.data?.errors) {
+        setValidationErrors(error.response.data.errors);
+        setErrorMessage('Please correct the marked errors below.');
+      } else {
+        setErrorMessage(error.response?.data?.message || 'A network error occurred. Please call our hotline.');
+      }
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div id="case-evaluation" className="relative rounded-2xl bg-[#0B192C]/90 border border-[#C5A880]/30 shadow-2xl p-6 sm:p-10 backdrop-blur-xl">
+    <div id="case-evaluation" className="relative rounded-2xl bg-[#00122E] border border-[#003893] shadow-2xl p-6 sm:p-10 backdrop-blur-xl font-sans">
       {/* Top Header */}
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#172A45] border border-[#C5A880]/30 text-[#DFC7A5] text-xs font-semibold uppercase tracking-wider mb-3">
-          <Shield className="w-3.5 h-3.5 text-[#C5A880]" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#001C4A] border border-[#003893] text-white text-xs font-bold uppercase tracking-wider mb-3">
+          <Shield className="w-3.5 h-3.5 text-[#DC143C]" />
           <span>Strictly Confidential & Privileged</span>
         </div>
         <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">
           {title}
         </h3>
-        <p className="text-slate-400 text-sm mt-2 leading-relaxed">
+        <p className="text-slate-300 text-sm mt-2 leading-relaxed font-sans">
           {subtitle}
         </p>
       </div>
 
-      {/* Success State Confirmation Alert */}
+      {/* Success State Alert */}
       {successMessage && (
-        <div className="mb-8 p-6 rounded-xl bg-[#063220] border border-emerald-500/40 text-white animate-in fade-in zoom-in-95 duration-300">
+        <div className="mb-8 p-6 rounded-xl bg-[#001C4A] border border-[#003893] text-white animate-in fade-in zoom-in-95 duration-300">
           <div className="flex items-start gap-4">
-            <CheckCircle2 className="w-7 h-7 text-emerald-400 flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-7 h-7 text-[#DC143C] flex-shrink-0 mt-0.5" />
             <div className="space-y-2">
-              <h4 className="font-serif font-bold text-lg text-emerald-300">
+              <h4 className="font-serif font-bold text-lg text-white">
                 Inquiry Received (File #{submittedId})
               </h4>
-              <p className="text-emerald-100 text-xs sm:text-sm leading-relaxed">
+              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-sans">
                 {successMessage}
               </p>
-              <div className="pt-2 text-xs text-emerald-200/80 flex items-center gap-2">
-                <Lock className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="pt-2 text-xs text-slate-300 flex items-center gap-2 font-sans">
+                <Lock className="w-3.5 h-3.5 text-[#003893]" />
                 <span>Protected under Preliminary Attorney-Client Confidentiality.</span>
               </div>
             </div>
@@ -159,22 +159,22 @@ export function ConsultationForm({
 
       {/* Error Alert */}
       {errorMessage && (
-        <div className="mb-6 p-4 rounded-xl bg-red-950/80 border border-red-500/40 text-white flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-          <div className="text-xs sm:text-sm text-red-200">
+        <div className="mb-6 p-4 rounded-xl bg-[#000000] border border-[#DC143C] text-white flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-[#DC143C] flex-shrink-0 mt-0.5" />
+          <div className="text-xs sm:text-sm text-slate-200 font-sans">
             {errorMessage}
           </div>
         </div>
       )}
 
       {/* Submission Form */}
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-5 font-sans">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           
           {/* Full Name */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
-              Full Legal Name <span className="text-[#C5A880]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+              Full Legal Name <span className="text-[#DC143C]">*</span>
             </label>
             <input
               type="text"
@@ -182,17 +182,17 @@ export function ConsultationForm({
               placeholder="e.g. Eleanor Vance"
               value={formData.full_name}
               onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-[#0A192F] border ${validationErrors.full_name ? 'border-red-500' : 'border-[#1E2D4A]'} focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880] text-white placeholder-slate-500 text-sm outline-none transition`}
+              className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.full_name ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
             />
             {validationErrors.full_name && (
-              <p className="text-xs text-red-400 mt-1">{validationErrors.full_name[0]}</p>
+              <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.full_name[0]}</p>
             )}
           </div>
 
           {/* Email Address */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
-              Email Address <span className="text-[#C5A880]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+              Email Address <span className="text-[#DC143C]">*</span>
             </label>
             <input
               type="email"
@@ -200,17 +200,17 @@ export function ConsultationForm({
               placeholder="e.g. client@enterprise.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-[#0A192F] border ${validationErrors.email ? 'border-red-500' : 'border-[#1E2D4A]'} focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880] text-white placeholder-slate-500 text-sm outline-none transition`}
+              className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.email ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
             />
             {validationErrors.email && (
-              <p className="text-xs text-red-400 mt-1">{validationErrors.email[0]}</p>
+              <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.email[0]}</p>
             )}
           </div>
 
           {/* Phone Number */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
-              Direct Phone Number <span className="text-[#C5A880]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+              Direct Phone Number <span className="text-[#DC143C]">*</span>
             </label>
             <input
               type="tel"
@@ -218,26 +218,26 @@ export function ConsultationForm({
               placeholder="e.g. +1 (212) 555-0199"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-[#0A192F] border ${validationErrors.phone ? 'border-red-500' : 'border-[#1E2D4A]'} focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880] text-white placeholder-slate-500 text-sm outline-none transition`}
+              className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.phone ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
             />
             {validationErrors.phone && (
-              <p className="text-xs text-red-400 mt-1">{validationErrors.phone[0]}</p>
+              <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.phone[0]}</p>
             )}
           </div>
 
           {/* Practice Area Selector */}
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
-              Practice Discipline <span className="text-[#C5A880]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+              Practice Discipline <span className="text-[#DC143C]">*</span>
             </label>
             <select
               value={formData.practice_area_id || ''}
               onChange={(e) => setFormData({ ...formData, practice_area_id: e.target.value ? Number(e.target.value) : null })}
-              className="w-full px-4 py-3 rounded-lg bg-[#0A192F] border border-[#1E2D4A] focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880] text-white text-sm outline-none transition cursor-pointer"
+              className="w-full px-4 py-3 rounded-lg bg-[#000000] border border-[#003893]/60 focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white text-sm outline-none transition cursor-pointer font-sans"
             >
-              <option value="" className="bg-[#0B192C] text-slate-300">General Legal Consultation</option>
+              <option value="" className="bg-[#000000] text-slate-300">General Legal Consultation</option>
               {practiceAreas.map((area) => (
-                <option key={area.id} value={area.id} className="bg-[#0B192C] text-white py-1">
+                <option key={area.id} value={area.id} className="bg-[#000000] text-white py-1">
                   {area.title}
                 </option>
               ))}
@@ -248,70 +248,52 @@ export function ConsultationForm({
 
         {/* Case Details */}
         <div>
-          <div className="flex items-center justify-between mb-1.5">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-              Summary of Legal Matter <span className="text-[#C5A880]">*</span>
-            </label>
-            <span className="text-[11px] text-slate-500 flex items-center gap-1">
-              <HelpCircle className="w-3 h-3 text-slate-400" />
-              Do not disclose highly sensitive passwords/secrets
-            </span>
-          </div>
+          <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+            Brief Summary of Legal Matter <span className="text-[#DC143C]">*</span>
+          </label>
           <textarea
             required
             rows={4}
-            placeholder="Please provide an overview of your situation, relevant dates, and the specific assistance you require..."
+            placeholder="Please detail key parties involved, dates, jurisdictions, and goals..."
             value={formData.case_details}
             onChange={(e) => setFormData({ ...formData, case_details: e.target.value })}
-            className={`w-full px-4 py-3 rounded-lg bg-[#0A192F] border ${validationErrors.case_details ? 'border-red-500' : 'border-[#1E2D4A]'} focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880] text-white placeholder-slate-500 text-sm outline-none transition resize-none`}
-          ></textarea>
+            className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.case_details ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition resize-none font-sans`}
+          />
           {validationErrors.case_details && (
-            <p className="text-xs text-red-400 mt-1">{validationErrors.case_details[0]}</p>
+            <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.case_details[0]}</p>
           )}
         </div>
 
-        {/* Disclaimer Checkbox / Notice */}
-        <div className="flex items-start gap-3 pt-2">
-          <input
-            type="checkbox"
-            required
-            id="agreement-checkbox"
-            defaultChecked
-            className="mt-1 accent-[#C5A880] rounded"
-          />
-          <label htmlFor="agreement-checkbox" className="text-xs text-slate-400 leading-relaxed">
-            I understand that submitting this inquiry does not create an attorney-client relationship until a formal retainer agreement is executed. All communications are strictly confidential.
-          </label>
+        {/* Confidentiality Notice */}
+        <div className="p-4 rounded-xl bg-[#001C4A]/50 border border-[#003893]/40 flex items-center justify-between gap-4 text-xs text-slate-300">
+          <div className="flex items-center gap-2">
+            <Lock className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+            <span>Encrypted 256-bit transmission to Apex Senior Partners.</span>
+          </div>
+          <div className="hidden sm:flex items-center gap-1.5 text-white font-bold">
+            <HelpCircle className="w-4 h-4 text-[#003893]" />
+            <span>No fee unless we win</span>
+          </div>
         </div>
 
-        {/* Action Button & Hotline Alternative */}
-        <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 rounded-lg text-sm font-bold text-[#0A192F] bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] hover:brightness-110 shadow-lg shadow-[#C5A880]/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin text-[#0A192F]" />
-                <span>Transmitting Securely...</span>
-              </>
-            ) : (
-              <>
-                <Send className="w-4 h-4 text-[#0A192F]" />
-                <span>Request Case Evaluation</span>
-              </>
-            )}
-          </button>
-
-          <a 
-            href="tel:12128904400"
-            className="flex items-center gap-2 text-xs text-slate-400 hover:text-[#C5A880] transition"
-          >
-            <Phone className="w-3.5 h-3.5 text-[#C5A880]" />
-            <span>Prefer to call? <strong>(212) 890-4400</strong></span>
-          </a>
-        </div>
+        {/* Action Button */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-bold text-white bg-[#DC143C] hover:bg-[#B00E2F] border border-white/20 shadow-xl shadow-[#DC143C]/20 transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50"
+        >
+          {loading ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              <span>Transmitting Privileged Intake...</span>
+            </>
+          ) : (
+            <>
+              <span>Submit for Immediate Review</span>
+              <Send className="w-4 h-4" />
+            </>
+          )}
+        </button>
       </form>
     </div>
   );

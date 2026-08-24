@@ -17,20 +17,20 @@ export default async function PracticeAreasPage() {
   const practiceAreas = await getPracticeAreas();
 
   return (
-    <div className="min-h-screen py-16">
+    <div className="min-h-screen py-16 font-sans bg-[#000000] text-white">
       
       {/* Top Banner */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#172A45] border border-[#C5A880]/30 text-[#DFC7A5] text-xs font-semibold uppercase tracking-wider">
-            <Scale className="w-3.5 h-3.5 text-[#C5A880]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#001C4A] border border-[#003893] text-white text-xs font-bold uppercase tracking-wider">
+            <Scale className="w-3.5 h-3.5 text-[#DC143C]" />
             <span>Practice Disciplines</span>
           </div>
           <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
             Comprehensive Trial & <br />
-            <span className="gold-gradient-text">Corporate Practice Groups</span>
+            <span className="text-[#DC143C]">Corporate Practice Groups</span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
             Our firm delivers Tier-1 national depth across complex corporate transactions, intellectual property litigation, and high-exposure catastrophic defense.
           </p>
         </div>

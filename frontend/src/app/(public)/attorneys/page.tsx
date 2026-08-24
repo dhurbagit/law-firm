@@ -17,27 +17,27 @@ export default async function AttorneysPage() {
   const attorneys = await getAttorneys();
 
   return (
-    <div className="min-h-screen py-16">
+    <div className="min-h-screen py-16 font-sans bg-[#000000] text-white">
       
       {/* Top Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 font-sans">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#172A45] border border-[#C5A880]/30 text-[#DFC7A5] text-xs font-semibold uppercase tracking-wider">
-            <Award className="w-3.5 h-3.5 text-[#C5A880]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#001C4A] border border-[#003893] text-white text-xs font-bold uppercase tracking-wider">
+            <Award className="w-3.5 h-3.5 text-[#DC143C]" />
             <span>Trial Counsel & Partners</span>
           </div>
           <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
             Distinguished Advocates. <br />
-            <span className="gold-gradient-text">Relentless Courtroom Leadership.</span>
+            <span className="text-[#DC143C]">Relentless Courtroom Leadership.</span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
             Our attorneys have commanded high-profile trials across federal district courts, the Federal Circuit, the ITC, and state appellate benches.
           </p>
         </div>
       </div>
 
       {/* Grid of Attorneys */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 font-sans">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {attorneys.map((attorney) => (
             <AttorneyCard key={attorney.id} attorney={attorney} />

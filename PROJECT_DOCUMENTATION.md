@@ -18,6 +18,7 @@ The platform is designed around strict separation of concerns:
 │  │   • SEO & JSON-LD metadata      │   │      • Sanctum Auth Guard       │  │
 │  │   • Dynamic SSR / SSG routes    │   │      • Live Leads Triage CRM    │  │
 │  │   • Firm branding & hotline     │   │      • Partner Directory CRUD   │  │
+│  │   • Nepal Flag Blue/Red Palette │   │      • Playfair & Roboto Fonts  │  │
 │  └────────────────┬────────────────┘   └────────────────┬────────────────┘  │
 └───────────────────┼─────────────────────────────────────┼───────────────────┘
                     │                                     │
@@ -68,115 +69,106 @@ The platform is designed around strict separation of concerns:
 | `password` | VARCHAR(255) | NOT NULL | Bcrypt hashed password |
 | `role` | VARCHAR(50) | DEFAULT 'admin' | Role level |
 
----
-
 ### Table: `practice_areas` (Legal Disciplines)
 | Column | Type | Constraints | Description |
 | :--- | :--- | :--- | :--- |
-| `id` | BIGINT UNSIGNED | PK, Auto Increment | Practice Area ID |
+| `id` | BIGINT UNSIGNED | PK, Auto Increment | Practice discipline ID |
+| `parent_id` | BIGINT UNSIGNED | NULLABLE, FK -> `practice_areas(id)` | Hierarchy parent |
 | `title` | VARCHAR(255) | NOT NULL | Discipline title |
-| `slug` | VARCHAR(255) | UNIQUE, NOT NULL | URL slug (e.g. `corporate-law-mergers`) |
-| `short_summary` | TEXT | NULLABLE | Teaser description |
-| `full_description`| LONGTEXT | NOT NULL | Comprehensive practice overview |
-| `key_services` | JSON | NULLABLE | Array of specialty service items |
-| `icon` | VARCHAR(100) | NULLABLE | Lucide icon identifier |
+| `slug` | VARCHAR(255) | UNIQUE, NOT NULL | SEO URL slug |
+| `icon` | VARCHAR(100) | DEFAULT 'Scale' | Lucide icon identifier |
+| `short_summary` | VARCHAR(500) | NOT NULL | Card overview text |
+| `description` | LONGTEXT | NOT NULL | Comprehensive practice details |
 | `is_featured` | BOOLEAN | DEFAULT FALSE | Highlighted on homepage |
-| `parent_id` | BIGINT UNSIGNED | FK -> `practice_areas.id` | Hierarchical parent for sub-specialties |
-| `sort_order` | INT | DEFAULT 0 | Display ordering |
 
----
-
-### Table: `attorneys` (Partners & Litigators)
+### Table: `attorneys` (Counsel & Partners)
 | Column | Type | Constraints | Description |
 | :--- | :--- | :--- | :--- |
-| `id` | BIGINT UNSIGNED | PK, Auto Increment | Attorney ID |
+| `id` | BIGINT UNSIGNED | PK, Auto Increment | Attorney profile ID |
 | `name` | VARCHAR(255) | NOT NULL | Attorney full legal name |
-| `slug` | VARCHAR(255) | UNIQUE, NOT NULL | URL slug (e.g. `jonathan-sterling`) |
-| `designation` | VARCHAR(255) | NOT NULL | Title (e.g. `Founding Partner`) |
+| `slug` | VARCHAR(255) | UNIQUE, NOT NULL | SEO biographical URL slug |
+| `designation` | VARCHAR(255) | NOT NULL | E.g. Senior Partner |
 | `email` | VARCHAR(255) | UNIQUE, NOT NULL | Direct contact email |
-| `phone` | VARCHAR(50) | NULLABLE | Direct telephone number |
-| `bio` | LONGTEXT | NOT NULL | Professional biography |
-| `photo_url` | VARCHAR(500) | NULLABLE | Portrait headshot asset URL |
-| `bar_admissions` | JSON | NULLABLE | Array of jurisdictions admitted |
-| `education` | JSON | NULLABLE | Array of law school & degree credentials |
-| `sort_order` | INT | DEFAULT 0 | Priority ranking |
-
----
+| `phone` | VARCHAR(50) | NULLABLE | Direct phone extension |
+| `photo_url` | VARCHAR(500) | NULLABLE | Headshot asset link |
+| `bio` | LONGTEXT | NOT NULL | Full career biography |
+| `bar_admissions` | JSON | NULLABLE | Array of state/federal bar licenses |
+| `education` | JSON | NULLABLE | Array of law school degrees & honors |
+| `is_active` | BOOLEAN | DEFAULT TRUE | Display status flag |
 
 ### Table: `attorney_practice_area` (Pivot Table)
 | Column | Type | Constraints | Description |
 | :--- | :--- | :--- | :--- |
-| `attorney_id` | BIGINT UNSIGNED | FK -> `attorneys.id`, CASCADE | Attorney reference |
-| `practice_area_id`| BIGINT UNSIGNED | FK -> `practice_areas.id`, CASCADE| Practice discipline reference |
+| `id` | BIGINT UNSIGNED | PK, Auto Increment | Pivot record ID |
+| `attorney_id` | BIGINT UNSIGNED | FK -> `attorneys(id)` ON DELETE CASCADE | Attorney link |
+| `practice_area_id`| BIGINT UNSIGNED | FK -> `practice_areas(id)` ON DELETE CASCADE| Discipline link |
 
----
-
-### Table: `case_results` (Landmark Verdicts & Recoveries)
+### Table: `case_results` (Verdicts & Recoveries)
 | Column | Type | Constraints | Description |
 | :--- | :--- | :--- | :--- |
-| `id` | BIGINT UNSIGNED | PK, Auto Increment | Case Result ID |
-| `title` | VARCHAR(255) | NOT NULL | Case / Matter title |
-| `settlement_verdict`| VARCHAR(100) | NOT NULL | Monetary recovery (e.g. `$42,500,000 Verdict`) |
-| `summary` | TEXT | NOT NULL | Case overview and trial narrative |
-| `case_year` | INT | NOT NULL | Year resolved |
-| `is_featured` | BOOLEAN | DEFAULT FALSE | Displayed on homepage |
-| `practice_area_id`| BIGINT UNSIGNED | FK -> `practice_areas.id` | Associated practice discipline |
-| `lead_attorney_id`| BIGINT UNSIGNED | FK -> `attorneys.id` | Lead trial partner |
+| `id` | BIGINT UNSIGNED | PK, Auto Increment | Verdict ID |
+| `practice_area_id`| BIGINT UNSIGNED | FK -> `practice_areas(id)` | Associated discipline |
+| `lead_attorney_id`| BIGINT UNSIGNED | FK -> `attorneys(id)` | Lead trial litigator |
+| `title` | VARCHAR(255) | NOT NULL | Case / matter title |
+| `settlement_verdict`| VARCHAR(255)| NOT NULL | E.g. "$14,250,000 Verdict" |
+| `summary` | TEXT | NOT NULL | Brief resolution summary |
+| `case_year` | INT | NOT NULL | Year verdict concluded |
 
----
-
-### Table: `consultation_leads` (Inbound CRM Pipeline)
+### Table: `consultation_leads` (Inbound CRM Inquiries)
 | Column | Type | Constraints | Description |
 | :--- | :--- | :--- | :--- |
-| `id` | BIGINT UNSIGNED | PK, Auto Increment | Lead ID |
-| `full_name` | VARCHAR(255) | NOT NULL | Prospective client name |
-| `email` | VARCHAR(255) | NOT NULL | Contact email |
-| `phone` | VARCHAR(50) | NOT NULL | Phone number |
-| `case_details` | LONGTEXT | NOT NULL | Client matter description |
-| `status` | ENUM | `pending`, `reviewed`, `contacted`, `converted`, `rejected` | CRM Pipeline State |
-| `practice_area_id`| BIGINT UNSIGNED | FK -> `practice_areas.id` | Requested legal discipline |
-| `source` | VARCHAR(100) | DEFAULT 'website' | Referral / Landing source |
-| `notes` | TEXT | NULLABLE | Confidential partner intake notes |
+| `id` | BIGINT UNSIGNED | PK, Auto Increment | Intake record ID |
+| `practice_area_id`| BIGINT UNSIGNED | NULLABLE, FK -> `practice_areas(id)` | Requested practice |
+| `full_name` | VARCHAR(255) | NOT NULL | Client full legal name |
+| `email` | VARCHAR(255) | NOT NULL | Client email |
+| `phone` | VARCHAR(50) | NOT NULL | Client direct phone |
+| `case_details` | TEXT | NOT NULL | Privileged case statement |
+| `status` | VARCHAR(50) | DEFAULT 'pending' | State: pending/contacted/scheduled/closed |
+| `source` | VARCHAR(100) | DEFAULT 'website' | Intake source |
 
 ---
 
-## 3. CRM Lead Status State Machine
+## 3. CRM Lead State Machine
 
 ```
-               ┌─────────────┐
-               │   PENDING   │ (Initial Intake via Form)
-               └──────┬──────┘
-                      │
-                      ├──────────────────────────┐
-                      ▼                          ▼
-               ┌─────────────┐            ┌─────────────┐
-               │  REVIEWED   │            │  REJECTED   │ (Out of jurisdiction/scope)
-               └──────┬──────┘            └─────────────┘
-                      │
-                      ▼
-               ┌─────────────┐
-               │  CONTACTED  │ (Initial Client Interview scheduled)
-               └──────┬──────┘
-                      │
-                      ▼
-               ┌─────────────┐
-               │  CONVERTED  │ (Formal Retainer Agreement Executed)
-               └─────────────┘
+   [Prospective Client Inbound Form Submission]
+                        │
+                        ▼
+                 ┌─────────────┐
+                 │   PENDING   │ (New intake file created, awaiting review)
+                 └──────┬──────┘
+                        │
+         ┌──────────────┴──────────────┐
+         ▼                             ▼
+  ┌─────────────┐               ┌─────────────┐
+  │  CONTACTED  │               │   CLOSED    │ (Not suitable / conflict of interest)
+  └──────┬──────┘               └─────────────┘
+         │
+         ▼
+  ┌─────────────┐
+  │  SCHEDULED  │ (Formal partner retainer conference booked)
+  └──────┬──────┘
+         │
+         ▼
+  ┌─────────────┐
+  │   CLOSED    │ (Retained as client / engagement complete)
+  └─────────────┘
 ```
 
 ---
 
-## 4. Frontend Route Groups & Layout Segregation
+## 4. Frontend Route Architecture (Segregated Route Groups)
 
 ```
-frontend/src/app/
-├── layout.tsx                     # <html> & <body> Shell with Flash-Free Theme Hydration
+src/app/
+├── layout.tsx                     # Global HTML Document Shell (Playfair & Roboto Font Variables)
+├── globals.css                    # Nepal Flag Strict Design System Tokens
 │
-├── (public)/                      # 🌐 PUBLIC LAW FIRM PAGES
-│   ├── layout.tsx                 # Public Layout: Firm Navbar + Hotline + Footer + JSON-LD
-│   ├── page.tsx                   # Homepage (Hero, $250M+ Stats, Leaders, Verdicts, Intake)
+├── (public)/                      # 🌐 PUBLIC FIRM WEBSITE (Route Group)
+│   ├── layout.tsx                 # Public Layout (Navbar with 24/7 Hotline + Footer + JSON-LD)
+│   ├── page.tsx                   # Public Homepage ($250M+ Hero, Practices, Partners, Verdicts)
 │   ├── practice-areas/
-│   │   ├── page.tsx               # All 8 Practice Disciplines Directory
+│   │   ├── page.tsx               # All Practice Groups Directory
 │   │   └── [slug]/page.tsx        # Dynamic Practice Discipline with sub-specialties & counsel
 │   ├── attorneys/
 │   │   ├── page.tsx               # Distinguished Attorneys Directory & Filter by Practice
@@ -216,18 +208,21 @@ frontend/src/app/
 
 ---
 
-## 6. Luxury Dark / Light Theme Tokens
+## 6. Official Design System & Typography Tokens
 
-| Token | Dark Mode (Prestige) | Light Mode (Editorial) |
-| :--- | :--- | :--- |
-| **`--bg-primary`** | `#0A192F` (Deep Navy) | `#F8FAFC` (Ivory Alabaster) |
-| **`--bg-secondary`** | `#0B192C` (Navy Surface) | `#FFFFFF` (Pure White) |
-| **`--bg-surface`** | `#060D17` (Darkest Navy) | `#F1F5F9` (Slate Tint) |
-| **`--text-primary`** | `#F8FAFC` (Pure White) | `#0F172A` (Midnight Slate) |
-| **`--text-secondary`** | `#CBD5E1` (Light Slate) | `#334155` (Deep Slate) |
-| **`--text-muted`** | `#94A3B8` (Muted Slate) | `#64748B` (Neutral Slate) |
-| **`--gold-primary`** | `#C5A880` (Warm Legal Gold) | `#9F8259` (Deep Rich Gold) |
-| **`--gold-light`** | `#DFC7A5` (Champagne Gold) | `#856E4D` (Burnished Gold) |
+| Token | Dark Mode (Prestige Dark) | Light Mode (Editorial Light) | Role |
+| :--- | :--- | :--- | :--- |
+| **`--font-serif`** | `Playfair Display` | `Playfair Display` | Editorial authority on all headings (`h1`-`h6`) |
+| **`--font-sans`** | `Roboto` | `Roboto` | Crystal-clear typography for all body, cards, tables, forms |
+| **`--nepal-blue`** | `#003893` | `#003893` | Official Nepal Flag Royal Blue (Primary Brand) |
+| **`--nepal-red`** | `#DC143C` | `#DC143C` | Official Nepal Flag Crimson Red (Secondary / Accent) |
+| **`--bg-primary`** | `#000000` (Pure Black) | `#FFFFFF` (Pure White) | Main viewport canvas |
+| **`--bg-secondary`**| `#00122E` (Deep Nepal Navy) | `#F4F7FC` (Ice Blue Tint) | Hero, section, and card backgrounds |
+| **`--bg-surface`** | `#001C4A` (Surface Navy) | `#E6EEFA` (Subtle Ice) | Interactive widgets and dropdown cards |
+| **`--text-primary`**| `#FFFFFF` (Pure White) | `#000000` (Pure Black) | High contrast readability |
+| **`--text-secondary`**| `#E2E8F0` (Off-white) | `#001F54` (Nepal Deep Navy) | Sub-headings and descriptions |
+| **`--border-blue`**| `rgba(0, 56, 147, 0.5)` | `rgba(0, 56, 147, 0.35)` | Structural grid dividers |
+| **`--border-red`** | `rgba(220, 20, 60, 0.5)` | `rgba(220, 20, 60, 0.35)` | Focus rings, alert borders & highlights |
 
 ---
 

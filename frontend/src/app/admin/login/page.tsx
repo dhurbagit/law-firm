@@ -61,40 +61,40 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 hero-pattern bg-[#060D17]">
-      <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#0A192F] border border-[#C5A880]/30 shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
+    <div className="min-h-screen flex items-center justify-center p-4 hero-pattern bg-[#000000] font-sans text-white">
+      <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#00122E] border border-[#003893] shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
         
         {/* Top ambient glow */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#C5A880]/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-[#003893]/20 rounded-full blur-2xl pointer-events-none"></div>
 
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#172A45] to-[#0A192F] border border-[#C5A880]/50 flex items-center justify-center text-[#C5A880] mx-auto mb-4 shadow-xl">
+          <div className="w-14 h-14 rounded-2xl bg-[#003893] border border-[#DC143C] flex items-center justify-center text-white mx-auto mb-4 shadow-xl">
             <Scale className="w-7 h-7" />
           </div>
-          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#C5A880] block">
+          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#DC143C] block font-sans">
             Apex Legal Counsel LLP
           </span>
           <h1 className="font-serif text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Administrative Portal
           </h1>
-          <p className="text-xs text-slate-400 leading-relaxed font-light">
+          <p className="text-xs text-slate-300 leading-relaxed font-sans">
             Authorized partner and administrator access only. All actions are logged and audited.
           </p>
         </div>
 
         {/* Error message */}
         {error && (
-          <div className="p-3.5 rounded-xl bg-red-950/80 border border-red-500/40 text-xs text-red-200 flex items-start gap-2.5 animate-in fade-in">
-            <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+          <div className="p-3.5 rounded-xl bg-[#000000] border border-[#DC143C] text-xs text-slate-200 flex items-start gap-2.5 animate-in fade-in font-sans">
+            <AlertCircle className="w-4 h-4 text-[#DC143C] flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 font-sans">
           <div>
-            <label className="block text-xs uppercase tracking-wider font-semibold text-slate-300 mb-1.5">
+            <label className="block text-xs uppercase tracking-wider font-bold text-slate-200 mb-1.5 font-sans">
               Counsel / Admin Email
             </label>
             <input
@@ -102,13 +102,13 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-[#060D17] border border-[#1E2D4A] focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880] text-white text-sm outline-none transition"
+              className="w-full px-4 py-3 rounded-xl bg-[#000000] border border-[#003893] focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white text-sm outline-none transition font-sans"
               placeholder="admin@lawfirm.com"
             />
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider font-semibold text-slate-300 mb-1.5">
+            <label className="block text-xs uppercase tracking-wider font-bold text-slate-200 mb-1.5 font-sans">
               Password
             </label>
             <input
@@ -116,7 +116,7 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-[#060D17] border border-[#1E2D4A] focus:border-[#C5A880] focus:ring-1 focus:ring-[#C5A880] text-white text-sm outline-none transition"
+              className="w-full px-4 py-3 rounded-xl bg-[#000000] border border-[#003893] focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white text-sm outline-none transition font-sans"
               placeholder="••••••••••••"
             />
           </div>
@@ -124,7 +124,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl text-sm font-bold text-[#0A192F] bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] hover:brightness-110 shadow-lg shadow-[#C5A880]/20 transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+            className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-[#DC143C] hover:bg-[#B00E2F] border border-white/20 shadow-lg shadow-[#DC143C]/20 transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 font-sans"
           >
             {loading ? (
               <>
@@ -141,25 +141,25 @@ export default function AdminLoginPage() {
         </form>
 
         {/* 1-Click Quick Demo Sign In */}
-        <div className="pt-2">
+        <div className="pt-2 font-sans">
           <button
             type="button"
             onClick={handleQuickDemoLogin}
             disabled={loading}
-            className="w-full py-2.5 rounded-xl text-xs font-semibold text-[#DFC7A5] bg-[#172A45] hover:bg-[#1E2D4A] border border-[#C5A880]/30 transition flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-2.5 rounded-xl text-xs font-bold text-white bg-[#001C4A] hover:bg-[#003893] border border-[#003893] transition flex items-center justify-center gap-2 cursor-pointer"
           >
-            <KeyRound className="w-3.5 h-3.5 text-[#C5A880]" />
+            <KeyRound className="w-3.5 h-3.5 text-[#DC143C]" />
             <span>1-Click Admin Access (Pre-Filled)</span>
           </button>
         </div>
 
         {/* Credentials note */}
-        <div className="pt-4 border-t border-white/5 space-y-2 text-center text-xs text-slate-400">
-          <div className="p-3 rounded-lg bg-[#060D17] border border-white/5 text-[11px] text-slate-400">
-            <span className="text-[#C5A880] font-semibold block mb-1">Seeded Administrator Credentials:</span>
+        <div className="pt-4 border-t border-[#003893]/40 space-y-2 text-center text-xs text-slate-300 font-sans">
+          <div className="p-3 rounded-lg bg-[#000000] border border-[#003893]/40 text-[11px] text-slate-300">
+            <span className="text-[#DC143C] font-bold block mb-1">Seeded Administrator Credentials:</span>
             <code>admin@lawfirm.com</code> &bull; <code>Password123!</code>
           </div>
-          <Link href="/" className="inline-block text-[11px] text-slate-400 hover:text-[#C5A880] transition pt-1">
+          <Link href="/" className="inline-block text-[11px] text-slate-400 hover:text-white transition pt-1">
             ← Return to Public Law Firm Website
           </Link>
         </div>

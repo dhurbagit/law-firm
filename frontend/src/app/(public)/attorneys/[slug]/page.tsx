@@ -88,32 +88,32 @@ export default async function AttorneyBioPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-12 font-sans bg-[#000000] text-white">
       <JsonLd data={personJsonLd} />
       <JsonLd data={breadcrumbSchema} />
 
       {/* Breadcrumbs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <nav className="flex items-center gap-2 text-xs text-slate-400">
-          <Link href="/" className="hover:text-[#C5A880] transition">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 font-sans">
+        <nav className="flex items-center gap-2 text-xs text-slate-300">
+          <Link href="/" className="hover:text-[#DC143C] transition">
             Home
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-          <Link href="/attorneys" className="hover:text-[#C5A880] transition">
+          <ChevronRight className="w-3.5 h-3.5 text-[#003893]" />
+          <Link href="/attorneys" className="hover:text-[#DC143C] transition">
             Attorneys
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
-          <span className="text-[#DFC7A5] font-semibold">{attorney.name}</span>
+          <ChevronRight className="w-3.5 h-3.5 text-[#003893]" />
+          <span className="text-white font-bold">{attorney.name}</span>
         </nav>
       </div>
 
       {/* Attorney Hero / Bio Card */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="rounded-3xl bg-[#0B192C] border border-[#C5A880]/30 shadow-2xl overflow-hidden">
+        <div className="rounded-3xl bg-[#00122E] border border-[#003893] shadow-2xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Left Photo */}
-            <div className="lg:col-span-5 relative min-h-[380px] sm:min-h-[480px] bg-[#0A192F]">
+            <div className="lg:col-span-5 relative min-h-[380px] sm:min-h-[480px] bg-[#000000]">
               {attorney.photo_url ? (
                 <Image
                   src={attorney.photo_url}
@@ -124,17 +124,17 @@ export default async function AttorneyBioPage({ params }: Props) {
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-[#172A45] text-[#C5A880]">
+                <div className="w-full h-full flex items-center justify-center bg-[#001C4A] text-white">
                   <Scale className="w-20 h-20 opacity-30" />
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B192C] via-transparent to-transparent lg:hidden"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent lg:hidden"></div>
             </div>
 
             {/* Right Details */}
             <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between space-y-6">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#C5A880] block mb-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#DC143C] block mb-2 font-sans">
                   {attorney.designation}
                 </span>
                 <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
@@ -143,12 +143,12 @@ export default async function AttorneyBioPage({ params }: Props) {
 
                 {/* Practice Badges */}
                 {attorney.practice_areas && attorney.practice_areas.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-4">
+                  <div className="flex flex-wrap gap-2 mt-4 font-sans">
                     {attorney.practice_areas.map((p) => (
                       <Link
                         key={p.id}
                         href={`/practice-areas/${p.slug}`}
-                        className="px-3 py-1 rounded-full text-xs font-semibold bg-[#172A45] text-[#DFC7A5] border border-[#C5A880]/30 hover:border-[#C5A880] transition"
+                        className="px-3 py-1 rounded-full text-xs font-bold bg-[#001C4A] text-white border border-[#003893] hover:border-[#DC143C] hover:bg-[#003893] transition"
                       >
                         {p.title}
                       </Link>
@@ -157,24 +157,24 @@ export default async function AttorneyBioPage({ params }: Props) {
                 )}
 
                 {/* Bio text */}
-                <div className="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed space-y-3 font-light">
+                <div className="mt-6 text-slate-200 text-sm sm:text-base leading-relaxed space-y-3 font-normal font-sans">
                   <p>{attorney.bio}</p>
                 </div>
               </div>
 
               {/* Direct Contacts & Actions */}
-              <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs">
+              <div className="pt-6 border-t border-[#003893]/40 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-slate-300">
-                    <Mail className="w-4 h-4 text-[#C5A880]" />
-                    <a href={`mailto:${attorney.email}`} className="hover:text-[#DFC7A5] font-medium">
+                  <div className="flex items-center gap-2 text-white">
+                    <Mail className="w-4 h-4 text-[#DC143C]" />
+                    <a href={`mailto:${attorney.email}`} className="hover:text-[#DC143C] font-bold">
                       {attorney.email}
                     </a>
                   </div>
                   {attorney.phone && (
-                    <div className="flex items-center gap-2 text-slate-300">
-                      <Phone className="w-4 h-4 text-[#C5A880]" />
-                      <a href={`tel:${attorney.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-[#DFC7A5] font-medium">
+                    <div className="flex items-center gap-2 text-white">
+                      <Phone className="w-4 h-4 text-[#DC143C]" />
+                      <a href={`tel:${attorney.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-[#DC143C] font-bold">
                         {attorney.phone}
                       </a>
                     </div>
@@ -183,7 +183,7 @@ export default async function AttorneyBioPage({ params }: Props) {
 
                 <a
                   href="#direct-booking"
-                  className="px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-[#0A192F] bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] hover:brightness-110 shadow-lg shadow-[#C5A880]/20 transition"
+                  className="px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-[#DC143C] hover:bg-[#B00E2F] border border-white/20 shadow-lg shadow-[#DC143C]/20 transition"
                 >
                   Book Retainer Consultation
                 </a>
@@ -195,21 +195,21 @@ export default async function AttorneyBioPage({ params }: Props) {
         </div>
       </div>
 
-      {/* Credentials Grid (Bar Admissions, Education, Accolades) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      {/* Credentials Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 font-sans">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Bar Admissions */}
-          <div className="p-8 rounded-2xl bg-[#0B192C]/80 border border-white/5 space-y-4">
-            <div className="flex items-center gap-2.5 text-[#DFC7A5]">
-              <Award className="w-5 h-5 text-[#C5A880]" />
+          <div className="p-8 rounded-2xl bg-[#00122E] border border-[#003893]/40 space-y-4">
+            <div className="flex items-center gap-2.5 text-white">
+              <Award className="w-5 h-5 text-[#DC143C]" />
               <h3 className="font-serif text-xl font-bold text-white">Bar Admissions & Court Licenses</h3>
             </div>
-            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
+            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-200 font-sans">
               {attorney.bar_admissions && attorney.bar_admissions.length > 0 ? (
                 attorney.bar_admissions.map((bar, i) => (
                   <li key={i} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#DC143C]"></span>
                     <span>{bar}</span>
                   </li>
                 ))
@@ -220,16 +220,16 @@ export default async function AttorneyBioPage({ params }: Props) {
           </div>
 
           {/* Education */}
-          <div className="p-8 rounded-2xl bg-[#0B192C]/80 border border-white/5 space-y-4">
-            <div className="flex items-center gap-2.5 text-[#DFC7A5]">
-              <GraduationCap className="w-5 h-5 text-[#C5A880]" />
+          <div className="p-8 rounded-2xl bg-[#00122E] border border-[#003893]/40 space-y-4">
+            <div className="flex items-center gap-2.5 text-white">
+              <GraduationCap className="w-5 h-5 text-[#DC143C]" />
               <h3 className="font-serif text-xl font-bold text-white">Education & Honors</h3>
             </div>
-            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-300">
+            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-200 font-sans">
               {attorney.education && attorney.education.length > 0 ? (
                 attorney.education.map((edu, i) => (
                   <li key={i} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#DC143C]"></span>
                     <span>{edu}</span>
                   </li>
                 ))
@@ -244,9 +244,9 @@ export default async function AttorneyBioPage({ params }: Props) {
 
       {/* Case Wins Led by this Attorney */}
       {attorney.case_results && attorney.case_results.length > 0 && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 font-sans">
           <div className="mb-8">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#C5A880] block mb-1">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#DC143C] block mb-1 font-sans">
               Trial Record
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">

@@ -153,7 +153,7 @@ export default function AttorneysManagementPage() {
 
   const togglePracticeArea = (id: number) => {
     if (selectedPracticeIds.includes(id)) {
-      setSelectedPracticeIds(selectedPracticeIds.filter(pid => pid !== id));
+      setSelectedPracticeIds(selectedPracticeIds.filter(item => item !== id));
     } else {
       setSelectedPracticeIds([...selectedPracticeIds, id]);
     }
@@ -183,60 +183,59 @@ export default function AttorneysManagementPage() {
       if (editingAttorney) {
         const res = await updateAttorney(token, editingAttorney.id, payload);
         if (res.success) {
-          setAlertMsg(`Attorney profile for ${name} updated successfully.`);
+          setAlertMsg(`Attorney "${name}" updated successfully.`);
           setModalOpen(false);
           fetchAttorneysData();
         }
       } else {
         const res = await createAttorney(token, payload);
         if (res.success) {
-          setAlertMsg(`Attorney profile for ${name} created successfully.`);
+          setAlertMsg(`Attorney "${name}" created successfully.`);
           setModalOpen(false);
           fetchAttorneysData();
         }
       }
-    } catch (err: unknown) {
-      alert('Error saving attorney: ' + err);
+    } catch (err) {
+      alert('Failed to save attorney: ' + err);
     } finally {
       setModalLoading(false);
     }
   };
 
   const handleDelete = async (id: number, attorneyName: string) => {
-    if (!confirm(`Are you sure you want to delete the attorney record for "${attorneyName}"?`)) return;
-
+    if (!confirm(`Are you sure you want to delete ${attorneyName}?`)) return;
     const token = sessionStorage.getItem('admin_token') || localStorage.getItem('admin_token');
     if (!token) return;
 
     try {
       const res = await deleteAttorney(token, id);
       if (res.success) {
-        setAlertMsg(`Attorney "${attorneyName}" removed.`);
+        setAlertMsg(`Attorney "${attorneyName}" deleted.`);
         fetchAttorneysData();
       }
-    } catch (err) {
-      alert('Failed to delete attorney: ' + err);
+    } catch {
+      setAlertMsg('Failed to delete attorney.');
     }
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans bg-[#000000] text-white">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#C5A880] block mb-1">
-            Personnel & Partner Profiles
+          <span className="text-xs font-bold uppercase tracking-widest text-[#DC143C] block mb-1 font-sans">
+            Staff & Leadership Roster
           </span>
           <h1 className="font-serif text-3xl font-extrabold text-white tracking-tight">
-            Attorneys Directory Manager
+            Attorneys & Partners Management
           </h1>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 font-sans">
           <button
             onClick={openCreateModal}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] text-[#0A192F] text-xs font-bold shadow-lg shadow-[#C5A880]/20 transition hover:brightness-110 cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#DC143C] hover:bg-[#B00E2F] text-xs font-bold text-white shadow-lg transition cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Add New Attorney</span>
@@ -245,29 +244,29 @@ export default function AttorneysManagementPage() {
       </div>
 
       {alertMsg && (
-        <div className="p-3.5 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-xs text-emerald-200 flex items-center gap-2 animate-in fade-in">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+        <div className="p-3.5 rounded-xl bg-[#001C4A] border border-[#003893] text-xs text-white flex items-center gap-2 animate-in fade-in font-bold">
+          <CheckCircle2 className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
           <span>{alertMsg}</span>
         </div>
       )}
 
       {/* Grid of Attorneys */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
         {loading ? (
           <div className="col-span-3 py-16 text-center text-slate-400">
-            <div className="w-6 h-6 border-2 border-[#C5A880] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+            <div className="w-6 h-6 border-2 border-[#DC143C] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
             <span>Loading attorney profiles...</span>
           </div>
         ) : attorneys.map((attorney) => (
           <div 
             key={attorney.id}
-            className="p-6 rounded-2xl bg-[#0B192C] border border-[#C5A880]/20 flex flex-col justify-between space-y-4 shadow-xl hover:border-[#C5A880]/40 transition group"
+            className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] flex flex-col justify-between space-y-4 shadow-xl hover:border-[#DC143C] transition group"
           >
             <div className="space-y-4">
               
               {/* Photo & Status Badge */}
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 rounded-xl bg-[#0A192F] border border-[#C5A880]/30 overflow-hidden relative flex-shrink-0">
+                <div className="w-16 h-16 rounded-xl bg-[#000000] border border-[#003893] overflow-hidden relative flex-shrink-0">
                   {attorney.photo_url ? (
                     <Image
                       src={attorney.photo_url}
@@ -276,24 +275,24 @@ export default function AttorneysManagementPage() {
                       className="object-cover object-top"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-[#C5A880]">
-                      <Scale className="w-6 h-6" />
+                    <div className="w-full h-full flex items-center justify-center text-white">
+                      <Scale className="w-6 h-6 text-[#DC143C]" />
                     </div>
                   )}
                 </div>
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#C5A880] block truncate">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#DC143C] block truncate">
                       {attorney.designation}
                     </span>
                     <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase ${
-                      attorney.is_active ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-700/50 text-slate-400'
+                      attorney.is_active ? 'bg-[#003893] text-white' : 'bg-slate-800 text-slate-400'
                     }`}>
                       {attorney.is_active ? 'Active' : 'Inactive'}
                     </span>
                   </div>
-                  <h3 className="font-serif text-lg font-bold text-white truncate group-hover:text-[#DFC7A5]">
+                  <h3 className="font-serif text-lg font-bold text-white truncate group-hover:text-[#DC143C]">
                     {attorney.name}
                   </h3>
                   <div className="text-xs text-slate-400 truncate mt-0.5">{attorney.email}</div>
@@ -306,7 +305,7 @@ export default function AttorneysManagementPage() {
                   {attorney.practice_areas.map((p) => (
                     <span 
                       key={p.id}
-                      className="px-2 py-0.5 rounded bg-[#0A192F] text-[10px] text-slate-300 border border-white/5"
+                      className="px-2 py-0.5 rounded bg-[#001C4A] text-[10px] text-slate-200 border border-[#003893]/40"
                     >
                       {p.title}
                     </span>
@@ -314,18 +313,18 @@ export default function AttorneysManagementPage() {
                 </div>
               )}
 
-              <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+              <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed font-sans">
                 {attorney.bio}
               </p>
 
             </div>
 
             {/* Actions Bar */}
-            <div className="pt-4 border-t border-white/5 flex items-center justify-between">
+            <div className="pt-4 border-t border-[#003893]/40 flex items-center justify-between font-sans">
               <a
                 href={`/attorneys/${attorney.slug}`}
                 target="_blank"
-                className="text-xs text-[#C5A880] hover:text-[#DFC7A5] flex items-center gap-1 font-semibold"
+                className="text-xs text-[#DC143C] hover:text-white flex items-center gap-1 font-bold"
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>View Public Bio</span>
@@ -334,14 +333,14 @@ export default function AttorneysManagementPage() {
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => openEditModal(attorney)}
-                  className="p-1.5 rounded-lg bg-[#172A45] hover:bg-[#1E2D4A] text-slate-300 hover:text-white transition cursor-pointer"
+                  className="p-1.5 rounded-lg bg-[#001C4A] hover:bg-[#003893] text-white transition cursor-pointer"
                   title="Edit Attorney"
                 >
                   <Edit className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => handleDelete(attorney.id, attorney.name)}
-                  className="p-1.5 rounded-lg bg-red-950/50 hover:bg-red-900 text-red-300 transition cursor-pointer"
+                  className="p-1.5 rounded-lg bg-[#DC143C]/30 hover:bg-[#DC143C] text-white transition cursor-pointer"
                   title="Delete Attorney"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -355,13 +354,13 @@ export default function AttorneysManagementPage() {
 
       {/* CREATE & EDIT MODAL */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-3xl bg-[#0B192C] border border-[#C5A880]/30 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto font-sans">
+          <div className="w-full max-w-3xl bg-[#00122E] border border-[#003893] rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
             
             {/* Modal Header */}
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#C5A880] block mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#DC143C] block mb-1">
                   CMS Attorney Editor
                 </span>
                 <h2 className="font-serif text-2xl font-bold text-white">
@@ -370,18 +369,18 @@ export default function AttorneysManagementPage() {
               </div>
               <button
                 onClick={() => setModalOpen(false)}
-                className="p-2 rounded-xl bg-[#172A45] text-slate-400 hover:text-white cursor-pointer"
+                className="p-2 rounded-xl bg-[#001C4A] text-slate-300 hover:text-white cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 font-sans">
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                     Full Legal Name *
                   </label>
                   <input
@@ -390,12 +389,12 @@ export default function AttorneysManagementPage() {
                     placeholder="e.g. Jonathan Sterling, Esq."
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                     Title / Designation *
                   </label>
                   <input
@@ -404,12 +403,12 @@ export default function AttorneysManagementPage() {
                     placeholder="e.g. Senior Managing Partner"
                     value={designation}
                     onChange={(e) => setDesignation(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                     Email Address *
                   </label>
                   <input
@@ -418,12 +417,12 @@ export default function AttorneysManagementPage() {
                     placeholder="e.g. j.sterling@apexlegal.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                     Direct Telephone
                   </label>
                   <input
@@ -431,22 +430,22 @@ export default function AttorneysManagementPage() {
                     placeholder="e.g. +1 (212) 890-4401"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
                   />
                 </div>
               </div>
 
               {/* Photo Uploader Widget */}
-              <div className="p-4 rounded-xl bg-[#0A192F] border border-white/5 space-y-3">
-                <label className="block text-xs uppercase font-semibold text-slate-300">
+              <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/40 space-y-3">
+                <label className="block text-xs uppercase font-bold text-slate-200">
                   Attorney Headshot Image
                 </label>
                 <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-xl bg-[#060D17] border border-[#C5A880]/30 overflow-hidden relative flex-shrink-0">
+                  <div className="w-16 h-16 rounded-xl bg-[#001C4A] border border-[#003893] overflow-hidden relative flex-shrink-0">
                     {photoUrl ? (
                       <Image src={photoUrl} alt="Preview" fill className="object-cover object-top" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-slate-500 text-[10px]">No Photo</div>
+                      <div className="w-full h-full flex items-center justify-center text-slate-400 text-[10px]">No Photo</div>
                     )}
                   </div>
                   
@@ -456,10 +455,10 @@ export default function AttorneysManagementPage() {
                       placeholder="Photo URL or upload below..."
                       value={photoUrl}
                       onChange={(e) => setPhotoUrl(e.target.value)}
-                      className="w-full px-3 py-2 rounded-lg bg-[#060D17] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880]"
+                      className="w-full px-3 py-2 rounded-lg bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
                     />
-                    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#172A45] hover:bg-[#1E2D4A] border border-[#C5A880]/30 text-slate-200 text-xs cursor-pointer font-medium">
-                      <Upload className="w-3.5 h-3.5 text-[#C5A880]" />
+                    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#001C4A] hover:bg-[#003893] border border-[#003893] text-white text-xs cursor-pointer font-bold">
+                      <Upload className="w-3.5 h-3.5 text-[#DC143C]" />
                       <span>{uploadingImage ? 'Uploading...' : 'Upload Headshot File'}</span>
                       <input
                         type="file"
@@ -474,7 +473,7 @@ export default function AttorneysManagementPage() {
 
               {/* Bio */}
               <div>
-                <label className="block text-xs uppercase font-semibold text-slate-300 mb-1">
+                <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
                   Full Biography & Experience *
                 </label>
                 <textarea
@@ -482,14 +481,14 @@ export default function AttorneysManagementPage() {
                   required
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-[#0A192F] border border-[#1E2D4A] text-white text-xs outline-none focus:border-[#C5A880] resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C] resize-none"
                   placeholder="Detailed background, notable litigation, judicial clerkships, and trial philosophy..."
                 ></textarea>
               </div>
 
               {/* Dynamic Bar Admissions Tags */}
-              <div className="p-4 rounded-xl bg-[#0A192F] border border-white/5 space-y-2">
-                <label className="block text-xs uppercase font-semibold text-slate-300">
+              <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/40 space-y-2">
+                <label className="block text-xs uppercase font-bold text-slate-200">
                   Bar Admissions & Federal Courts
                 </label>
                 <div className="flex gap-2">
@@ -499,29 +498,29 @@ export default function AttorneysManagementPage() {
                     value={newBarInput}
                     onChange={(e) => setNewBarInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addBarAdmission(); }}}
-                    className="flex-1 px-3 py-2 rounded-lg bg-[#060D17] border border-[#1E2D4A] text-white text-xs outline-none"
+                    className="flex-1 px-3 py-2 rounded-lg bg-[#000000] border border-[#003893] text-white text-xs outline-none"
                   />
                   <button
                     type="button"
                     onClick={addBarAdmission}
-                    className="px-3 py-2 rounded-lg bg-[#172A45] text-slate-200 text-xs font-semibold"
+                    className="px-3 py-2 rounded-lg bg-[#001C4A] text-white text-xs font-bold"
                   >
                     Add Bar
                   </button>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {barAdmissions.map((bar, index) => (
-                    <span key={index} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#172A45] text-xs text-[#DFC7A5]">
+                    <span key={index} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#001C4A] text-xs text-white">
                       <span>{bar}</span>
-                      <X className="w-3 h-3 cursor-pointer hover:text-red-400" onClick={() => removeBarAdmission(index)} />
+                      <X className="w-3 h-3 cursor-pointer hover:text-[#DC143C]" onClick={() => removeBarAdmission(index)} />
                     </span>
                   ))}
                 </div>
               </div>
 
               {/* Dynamic Education Tags */}
-              <div className="p-4 rounded-xl bg-[#0A192F] border border-white/5 space-y-2">
-                <label className="block text-xs uppercase font-semibold text-slate-300">
+              <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/40 space-y-2">
+                <label className="block text-xs uppercase font-bold text-slate-200">
                   Education & Law Degrees
                 </label>
                 <div className="flex gap-2">
@@ -531,29 +530,29 @@ export default function AttorneysManagementPage() {
                     value={newEduInput}
                     onChange={(e) => setNewEduInput(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addEducation(); }}}
-                    className="flex-1 px-3 py-2 rounded-lg bg-[#060D17] border border-[#1E2D4A] text-white text-xs outline-none"
+                    className="flex-1 px-3 py-2 rounded-lg bg-[#000000] border border-[#003893] text-white text-xs outline-none"
                   />
                   <button
                     type="button"
                     onClick={addEducation}
-                    className="px-3 py-2 rounded-lg bg-[#172A45] text-slate-200 text-xs font-semibold"
+                    className="px-3 py-2 rounded-lg bg-[#001C4A] text-white text-xs font-bold"
                   >
                     Add Degree
                   </button>
                 </div>
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {education.map((edu, index) => (
-                    <span key={index} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#172A45] text-xs text-[#DFC7A5]">
+                    <span key={index} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#001C4A] text-xs text-white">
                       <span>{edu}</span>
-                      <X className="w-3 h-3 cursor-pointer hover:text-red-400" onClick={() => removeEducation(index)} />
+                      <X className="w-3 h-3 cursor-pointer hover:text-[#DC143C]" onClick={() => removeEducation(index)} />
                     </span>
                   ))}
                 </div>
               </div>
 
               {/* Practice Areas Pivot Assignment */}
-              <div className="p-4 rounded-xl bg-[#0A192F] border border-white/5 space-y-2">
-                <label className="block text-xs uppercase font-semibold text-slate-300">
+              <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/40 space-y-2">
+                <label className="block text-xs uppercase font-bold text-slate-200">
                   Assign Practice Group Disciplines
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
@@ -564,14 +563,14 @@ export default function AttorneysManagementPage() {
                         type="button"
                         key={area.id}
                         onClick={() => togglePracticeArea(area.id)}
-                        className={`px-3 py-2 rounded-lg text-left text-xs font-medium flex items-center justify-between transition cursor-pointer ${
+                        className={`px-3 py-2 rounded-lg text-left text-xs font-bold flex items-center justify-between transition cursor-pointer ${
                           isSelected
-                            ? 'bg-[#172A45] text-[#DFC7A5] border border-[#C5A880]/50'
-                            : 'bg-[#060D17] text-slate-400 border border-transparent'
+                            ? 'bg-[#003893] text-white border border-[#DC143C]'
+                            : 'bg-[#001C4A] text-slate-300 border border-transparent'
                         }`}
                       >
                         <span className="truncate">{area.title}</span>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-[#C5A880]" />}
+                        {isSelected && <Check className="w-3.5 h-3.5 text-[#DC143C]" />}
                       </button>
                     );
                   })}
@@ -585,26 +584,26 @@ export default function AttorneysManagementPage() {
                   id="active-toggle"
                   checked={isActive}
                   onChange={(e) => setIsActive(e.target.checked)}
-                  className="accent-[#C5A880] w-4 h-4"
+                  className="accent-[#DC143C] w-4 h-4"
                 />
-                <label htmlFor="active-toggle" className="text-xs text-slate-300 font-semibold cursor-pointer">
+                <label htmlFor="active-toggle" className="text-xs text-slate-200 font-bold cursor-pointer">
                   Publicly Active Profile (Displayed on Firm Website)
                 </label>
               </div>
 
               {/* Submit Buttons */}
-              <div className="pt-4 border-t border-white/5 flex items-center justify-end gap-3">
+              <div className="pt-4 border-t border-[#003893]/40 flex items-center justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setModalOpen(false)}
-                  className="px-5 py-2.5 rounded-xl bg-[#172A45] text-slate-300 text-xs font-semibold hover:bg-[#1E2D4A] cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#001C4A] text-slate-200 text-xs font-bold hover:bg-[#003893] cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={modalLoading}
-                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#DFC7A5] via-[#C5A880] to-[#9F8259] text-[#0A192F] text-xs font-bold shadow-lg shadow-[#C5A880]/20 hover:brightness-110 cursor-pointer disabled:opacity-50"
+                  className="px-6 py-2.5 rounded-xl bg-[#DC143C] hover:bg-[#B00E2F] text-white text-xs font-bold shadow-lg shadow-[#DC143C]/20 cursor-pointer disabled:opacity-50"
                 >
                   {modalLoading ? 'Saving Profile...' : (editingAttorney ? 'Update Attorney Profile' : 'Publish Attorney Profile')}
                 </button>

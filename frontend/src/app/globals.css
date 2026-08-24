@@ -2,192 +2,239 @@
 
 @layer base {
   :root, html.dark {
-    --bg-primary: #0A192F;
-    --bg-secondary: #0B192C;
-    --bg-surface: #060D17;
-    --bg-card: rgba(23, 42, 69, 0.6);
-    --bg-card-solid: #172A45;
-    --text-primary: #F8FAFC;
-    --text-secondary: #CBD5E1;
+    /* Nepal Flag Official Colors */
+    --nepal-blue: #003893;
+    --nepal-blue-dark: #001C4A;
+    --nepal-blue-surface: #002766;
+    --nepal-blue-light: #1A5BC4;
+    --nepal-red: #DC143C;
+    --nepal-red-dark: #99001A;
+    --nepal-red-light: #FF2B4F;
+    
+    /* Neutrals (Black & White Only) */
+    --black-pure: #000000;
+    --black-surface: #080808;
+    --black-card: #0F1218;
+    --white-pure: #FFFFFF;
+    --white-muted: #E2E8F0;
+
+    --bg-primary: #000000;
+    --bg-secondary: #00112C;
+    --bg-surface: #001C4A;
+    --bg-card: rgba(0, 56, 147, 0.2);
+    --bg-card-solid: #00183D;
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #E2E8F0;
     --text-muted: #94A3B8;
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-gold: rgba(197, 168, 128, 0.25);
-    --gold-primary: #C5A880;
-    --gold-light: #DFC7A5;
-    --gold-dark: #9F8259;
-    --gold-muted: #856E4D;
+
+    --border-blue: rgba(0, 56, 147, 0.5);
+    --border-red: rgba(220, 20, 60, 0.5);
+    --border-white: rgba(255, 255, 255, 0.15);
   }
 
   html.light {
-    --bg-primary: #F8FAFC;
-    --bg-secondary: #FFFFFF;
-    --bg-surface: #F1F5F9;
+    --nepal-blue: #003893;
+    --nepal-blue-dark: #00225E;
+    --nepal-blue-surface: #E6F0FA;
+    --nepal-blue-light: #003893;
+    --nepal-red: #DC143C;
+    --nepal-red-dark: #8B0000;
+    --nepal-red-light: #DC143C;
+
+    --black-pure: #000000;
+    --black-surface: #121212;
+    --black-card: #FFFFFF;
+    --white-pure: #FFFFFF;
+    --white-muted: #334155;
+
+    --bg-primary: #FFFFFF;
+    --bg-secondary: #F4F7FC;
+    --bg-surface: #E6EEFA;
     --bg-card: #FFFFFF;
-    --bg-card-solid: #F8FAFC;
-    --text-primary: #0F172A;
-    --text-secondary: #334155;
-    --text-muted: #64748B;
-    --border-subtle: rgba(15, 23, 42, 0.1);
-    --border-gold: rgba(159, 130, 89, 0.35);
-    --gold-primary: #9F8259;
-    --gold-light: #856E4D;
-    --gold-dark: #6C5535;
-    --gold-muted: #6C5535;
+    --bg-card-solid: #FFFFFF;
+
+    --text-primary: #000000;
+    --text-secondary: #001F54;
+    --text-muted: #475569;
+
+    --border-blue: rgba(0, 56, 147, 0.35);
+    --border-red: rgba(220, 20, 60, 0.35);
+    --border-white: rgba(0, 0, 0, 0.1);
   }
 
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+    font-family: var(--font-sans, Roboto, -apple-system, BlinkMacSystemFont, sans-serif);
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  h1, h2, h3, h4, .font-serif-title {
-    font-family: var(--font-serif, Georgia, Cambria, "Times New Roman", Times, serif);
+  h1, h2, h3, h4, h5, h6, .font-serif-title {
+    font-family: var(--font-serif, "Playfair Display", Georgia, serif) !important;
+  }
+
+  p, span, a, button, input, select, textarea, label, div {
+    font-family: var(--font-sans, Roboto, -apple-system, BlinkMacSystemFont, sans-serif);
   }
 }
 
-/* Custom Prestige Legal Utilities */
+/* Nepal Flag Theme Custom Utilities */
+.nepal-gradient-text,
 .gold-gradient-text {
-  background: linear-gradient(135deg, #DFC7A5 0%, #C5A880 50%, #9F8259 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #DC143C 50%, #003893 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+html.light .nepal-gradient-text,
 html.light .gold-gradient-text {
-  background: linear-gradient(135deg, #856E4D 0%, #9F8259 50%, #6C5535 100%);
+  background: linear-gradient(135deg, #DC143C 0%, #003893 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.nepal-red-gradient {
+  background: linear-gradient(135deg, #FF2B4F 0%, #DC143C 60%, #99001A 100%);
+}
+
+.nepal-blue-gradient,
 .gold-gradient-bg {
-  background: linear-gradient(135deg, #DFC7A5 0%, #C5A880 50%, #9F8259 100%);
-}
-
-html.light .gold-gradient-bg {
-  background: linear-gradient(135deg, #C5A880 0%, #9F8259 50%, #856E4D 100%);
-}
-
-.gold-gradient-border {
-  border-image: linear-gradient(135deg, #DFC7A5 0%, #C5A880 50%, transparent 100%) 1;
+  background: linear-gradient(135deg, #003893 0%, #00225E 60%, #00153B 100%);
 }
 
 .navy-card-glow {
-  background: rgba(23, 42, 69, 0.6);
+  background: rgba(0, 28, 74, 0.4);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(197, 168, 128, 0.15);
-  box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
+  border: 1px solid rgba(0, 56, 147, 0.4);
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.8);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navy-card-glow:hover {
-  border-color: rgba(197, 168, 128, 0.4);
+  border-color: #DC143C;
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -15px rgba(197, 168, 128, 0.15);
+  box-shadow: 0 20px 40px -15px rgba(220, 20, 60, 0.3);
 }
 
 html.light .navy-card-glow {
   background: #FFFFFF;
   backdrop-filter: none;
-  border: 1px solid rgba(159, 130, 89, 0.25);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  border: 1px solid rgba(0, 56, 147, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(0, 56, 147, 0.08);
 }
 
 html.light .navy-card-glow:hover {
-  border-color: rgba(159, 130, 89, 0.6);
+  border-color: #DC143C;
   transform: translateY(-4px);
-  box-shadow: 0 20px 35px -10px rgba(159, 130, 89, 0.15);
+  box-shadow: 0 20px 35px -10px rgba(220, 20, 60, 0.18);
 }
 
 .hero-pattern {
-  background-color: #0A192F;
-  background-image: radial-gradient(rgba(197, 168, 128, 0.08) 1px, transparent 0);
+  background-color: #000000;
+  background-image: radial-gradient(rgba(0, 56, 147, 0.2) 1px, transparent 0);
   background-size: 32px 32px;
 }
 
 html.light .hero-pattern {
-  background-color: #F8FAFC;
-  background-image: radial-gradient(rgba(159, 130, 89, 0.12) 1px, transparent 0);
+  background-color: #FFFFFF;
+  background-image: radial-gradient(rgba(0, 56, 147, 0.15) 1px, transparent 0);
   background-size: 32px 32px;
 }
 
-/* Light Theme Component Overrides for Clean Editorial Look */
-html.light .bg-\[\#0A192F\] {
-  background-color: #F8FAFC !important;
+/* Global Strict Color Mapping to Nepal Red, Nepal Blue, Black, White */
+.bg-\[\#0A192F\],
+.bg-\[\#0B192C\],
+.bg-\[\#060D17\],
+.bg-\[\#070E18\],
+.bg-\[\#03070D\] {
+  background-color: #000000 !important;
 }
 
-html.light .bg-\[\#0B192C\] {
-  background-color: #FFFFFF !important;
+.bg-\[\#172A45\],
+.bg-\[\#1E2D4A\] {
+  background-color: #001C4A !important;
 }
 
-html.light .bg-\[\#060D17\] {
-  background-color: #F1F5F9 !important;
+.border-\[\#C5A880\],
+.border-\[\#C5A880\]\/15,
+.border-\[\#C5A880\]\/20,
+.border-\[\#C5A880\]\/30,
+.border-\[\#C5A880\]\/40,
+.border-\[\#C5A880\]\/50,
+.border-\[\#1E2D4A\] {
+  border-color: rgba(0, 56, 147, 0.5) !important;
 }
 
-html.light .bg-\[\#070E18\] {
-  background-color: #F1F5F9 !important;
+.text-\[\#C5A880\],
+.text-\[\#DFC7A5\],
+.text-\[\#9F8259\],
+.text-\[\#856E4D\] {
+  color: #DC143C !important;
 }
 
-html.light .bg-\[\#172A45\] {
-  background-color: #E2E8F0 !important;
-  color: #0F172A !important;
+/* Buttons and Highlights */
+.bg-gradient-to-r.from-\[\#DFC7A5\] {
+  background: linear-gradient(135deg, #DC143C 0%, #B00E2F 100%) !important;
+  color: #FFFFFF !important;
 }
 
-html.light .bg-\[\#172A45\]\/60,
-html.light .bg-\[\#172A45\]\/80,
-html.light .bg-\[\#172A45\]\/90 {
-  background-color: #EEF2F6 !important;
+/* Light Theme Strict Overrides */
+html.light .bg-\[\#0A192F\],
+html.light .bg-\[\#0B192C\],
+html.light .bg-\[\#060D17\],
+html.light .bg-\[\#070E18\],
+html.light .bg-\[\#03070D\] {
+  background-color: #F4F7FC !important;
+}
+
+html.light .bg-\[\#172A45\],
+html.light .bg-\[\#1E2D4A\] {
+  background-color: #E6EEFA !important;
+  color: #003893 !important;
 }
 
 html.light .text-white {
-  color: #0F172A !important;
+  color: #000000 !important;
 }
 
-html.light .text-slate-300 {
-  color: #334155 !important;
-}
-
+html.light .text-slate-300,
 html.light .text-slate-400 {
-  color: #64748B !important;
+  color: #001F54 !important;
 }
 
+html.light .text-\[\#C5A880\],
 html.light .text-\[\#DFC7A5\] {
-  color: #856E4D !important;
+  color: #DC143C !important;
 }
 
-html.light .border-white\/5,
-html.light .border-white\/10 {
-  border-color: rgba(15, 23, 42, 0.08) !important;
-}
-
-html.light .border-\[\#1E2D4A\] {
-  border-color: #E2E8F0 !important;
-}
-
-html.light .border-\[\#C5A880\]\/15,
+html.light .border-\[\#C5A880\],
 html.light .border-\[\#C5A880\]\/20,
-html.light .border-\[\#C5A880\]\/30 {
-  border-color: rgba(159, 130, 89, 0.25) !important;
+html.light .border-\[\#C5A880\]\/30,
+html.light .border-\[\#C5A880\]\/40 {
+  border-color: rgba(0, 56, 147, 0.3) !important;
 }
 
-/* Form Input Overrides in Light Mode */
-html.light input,
-html.light textarea,
-html.light select {
+/* Inputs & Forms in Nepal Palette */
+input, select, textarea {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(0, 56, 147, 0.5) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #DC143C !important;
+  box-shadow: 0 0 0 2px rgba(220, 20, 60, 0.3) !important;
+}
+
+html.light input, html.light select, html.light textarea {
   background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border-color: #CBD5E1 !important;
+  color: #000000 !important;
+  border-color: rgba(0, 56, 147, 0.3) !important;
 }
 
-html.light input:focus,
-html.light textarea:focus,
-html.light select:focus {
-  border-color: #9F8259 !important;
-  box-shadow: 0 0 0 2px rgba(159, 130, 89, 0.2) !important;
-}
-
-html.light option {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
+html.light input:focus, html.light select:focus, html.light textarea:focus {
+  border-color: #DC143C !important;
+  box-shadow: 0 0 0 2px rgba(220, 20, 60, 0.25) !important;
 }
