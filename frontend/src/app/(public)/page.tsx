@@ -88,10 +88,10 @@ export default async function HomePage() {
 
             <Link
               href="/practice-areas"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0A2540] hover:bg-crimson border border-[#003893]/60 hover:border-crimson text-sm font-bold text-white transition shadow-lg flex-shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0A2540] hover:bg-crimson border border-[#003893]/60 hover:border-crimson text-sm font-bold text-white transition shadow-lg flex-shrink-0 group"
             >
-              <span>View All 8 Practice Areas</span>
-              <ArrowRight className="w-4 h-4 text-crimson group-hover:text-white" />
+              <span className="text-white font-bold">View All 8 Practice Areas</span>
+              <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
