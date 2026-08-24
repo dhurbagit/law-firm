@@ -61,18 +61,18 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 hero-pattern bg-[#000000] font-sans text-white">
-      <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-[#00122E] border border-[#003893] shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
+    <div className="min-h-screen flex items-center justify-center p-4 hero-pattern bg-nepal-dark font-sans text-white">
+      <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-nepal-surface border border-sakura-border shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
         
         {/* Top ambient glow */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-[#003893]/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-32 h-32 bg-nepal-blue/20 rounded-full blur-2xl pointer-events-none"></div>
 
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-[#003893] border border-[#DC143C] flex items-center justify-center text-white mx-auto mb-4 shadow-xl">
+          <div className="w-14 h-14 rounded-2xl bg-nepal-blue border border-crimson flex items-center justify-center text-white mx-auto mb-4 shadow-xl">
             <Scale className="w-7 h-7" />
           </div>
-          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#DC143C] block font-sans">
+          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-crimson block font-sans">
             Apex Legal Counsel LLP
           </span>
           <h1 className="font-serif text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -85,8 +85,8 @@ export default function AdminLoginPage() {
 
         {/* Error message */}
         {error && (
-          <div className="p-3.5 rounded-xl bg-[#000000] border border-[#DC143C] text-xs text-slate-200 flex items-start gap-2.5 animate-in fade-in font-sans">
-            <AlertCircle className="w-4 h-4 text-[#DC143C] flex-shrink-0 mt-0.5" />
+          <div className="p-3.5 rounded-xl bg-crimson/15 border border-crimson/40 text-xs text-slate-200 flex items-start gap-2.5 animate-in fade-in font-sans">
+            <AlertCircle className="w-4 h-4 text-crimson flex-shrink-0 mt-0.5" />
             <span>{error}</span>
           </div>
         )}
@@ -102,7 +102,7 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-[#000000] border border-[#003893] focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white text-sm outline-none transition font-sans"
+              className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition font-sans"
               placeholder="admin@lawfirm.com"
             />
           </div>
@@ -116,7 +116,7 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-[#000000] border border-[#003893] focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white text-sm outline-none transition font-sans"
+              className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition font-sans"
               placeholder="••••••••••••"
             />
           </div>
@@ -124,7 +124,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-[#DC143C] hover:bg-[#B00E2F] border border-white/20 shadow-lg shadow-[#DC143C]/20 transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 font-sans"
+            className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-lg shadow-crimson/20 transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 font-sans"
           >
             {loading ? (
               <>
@@ -146,17 +146,17 @@ export default function AdminLoginPage() {
             type="button"
             onClick={handleQuickDemoLogin}
             disabled={loading}
-            className="w-full py-2.5 rounded-xl text-xs font-bold text-white bg-[#001C4A] hover:bg-[#003893] border border-[#003893] transition flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-2.5 rounded-xl text-xs font-bold text-white bg-nepal-dark hover:bg-nepal-blue border border-sakura-border transition flex items-center justify-center gap-2 cursor-pointer"
           >
-            <KeyRound className="w-3.5 h-3.5 text-[#DC143C]" />
+            <KeyRound className="w-3.5 h-3.5 text-crimson" />
             <span>1-Click Admin Access (Pre-Filled)</span>
           </button>
         </div>
 
         {/* Credentials note */}
-        <div className="pt-4 border-t border-[#003893]/40 space-y-2 text-center text-xs text-slate-300 font-sans">
-          <div className="p-3 rounded-lg bg-[#000000] border border-[#003893]/40 text-[11px] text-slate-300">
-            <span className="text-[#DC143C] font-bold block mb-1">Seeded Administrator Credentials:</span>
+        <div className="pt-4 border-t border-sakura-border/40 space-y-2 text-center text-xs text-slate-300 font-sans">
+          <div className="p-3 rounded-lg bg-nepal-dark border border-sakura-border/40 text-[11px] text-slate-300">
+            <span className="text-crimson font-bold block mb-1">Seeded Administrator Credentials:</span>
             <code>admin@lawfirm.com</code> &bull; <code>Password123!</code>
           </div>
           <Link href="/" className="inline-block text-[11px] text-slate-400 hover:text-white transition pt-1">

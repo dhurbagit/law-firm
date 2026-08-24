@@ -35,7 +35,7 @@ export function StatsSection({ stats }: StatsSectionProps) {
   ];
 
   return (
-    <section className="relative z-10 py-12 bg-[#000000] border-y border-[#003893]/40 font-sans">
+    <section className="relative z-10 py-12 bg-nepal-dark border-y border-sakura-border font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {statItems.map((item, index) => {
@@ -43,12 +43,12 @@ export function StatsSection({ stats }: StatsSectionProps) {
             return (
               <div 
                 key={index}
-                className="p-6 rounded-2xl bg-[#00122E] border border-[#003893]/50 relative overflow-hidden group hover:border-[#DC143C] transition-all duration-300 shadow-xl"
+                className="p-6 rounded-2xl bg-nepal-surface border border-sakura-border relative overflow-hidden group hover:border-crimson transition-all duration-300 shadow-xl"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#001C4A] border border-[#003893] flex items-center justify-center text-white mb-4 group-hover:bg-[#DC143C] group-hover:border-[#003893] transition-all">
+                <div className="w-10 h-10 rounded-lg bg-nepal-dark border border-sakura-border flex items-center justify-center text-white mb-4 group-hover:bg-crimson group-hover:border-nepal-blue transition-all">
                   <Icon className="w-5 h-5" />
                 </div>
-                <div className="font-serif text-3xl sm:text-4xl font-extrabold text-[#DC143C] tracking-tight mb-1">
+                <div className="font-serif text-3xl sm:text-4xl font-extrabold text-crimson tracking-tight mb-1">
                   {item.value}
                 </div>
                 <div className="text-sm font-bold text-white uppercase tracking-wider mb-2">

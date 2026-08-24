@@ -19,18 +19,18 @@ export default async function ContactPage() {
   const practiceAreas = await getPracticeAreas();
 
   return (
-    <div className="min-h-screen py-16 font-sans bg-[#000000] text-white">
+    <div className="min-h-screen py-16 font-sans bg-nepal-dark text-white">
       
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 font-sans">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#001C4A] border border-[#003893] text-white text-xs font-bold uppercase tracking-wider font-sans">
-            <Mail className="w-3.5 h-3.5 text-[#DC143C]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-surface border border-sakura-border text-white text-xs font-bold uppercase tracking-wider font-sans">
+            <Mail className="w-3.5 h-3.5 text-crimson" />
             <span>Confidential Intake</span>
           </div>
           <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
             Contact Apex Legal. <br />
-            <span className="text-[#DC143C]">Immediate Case Evaluation.</span>
+            <span className="text-crimson">Immediate Case Evaluation.</span>
           </h1>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal font-sans">
             Our partners and crisis response team are available 24/7 for emergency corporate inquiries, grand jury subpoenas, and catastrophic injury evaluations.
@@ -54,9 +54,9 @@ export default async function ContactPage() {
           <div className="lg:col-span-5 space-y-8 font-sans">
             
             {/* Urgent Hotline Card */}
-            <div className="p-8 rounded-2xl bg-[#00122E] border border-[#003893] shadow-xl space-y-4">
-              <div className="flex items-center gap-2 text-[#DC143C]">
-                <Phone className="w-5 h-5 text-[#DC143C]" />
+            <div className="p-8 rounded-2xl bg-nepal-surface border border-sakura-border shadow-xl space-y-4">
+              <div className="flex items-center gap-2 text-crimson">
+                <Phone className="w-5 h-5 text-crimson" />
                 <span className="text-xs uppercase font-bold tracking-wider font-sans">24/7 Urgent Response</span>
               </div>
               <h3 className="font-serif text-2xl font-bold text-white">
@@ -67,7 +67,7 @@ export default async function ContactPage() {
               </p>
               <a
                 href="tel:12128904400"
-                className="block text-2xl font-serif font-bold text-[#DC143C] hover:text-white transition"
+                className="block text-2xl font-serif font-bold text-crimson hover:text-white transition"
               >
                 (212) 890-4400
               </a>
@@ -75,15 +75,15 @@ export default async function ContactPage() {
 
             {/* Office Locations */}
             <div className="space-y-4 font-sans">
-              <h3 className="font-serif text-xl font-bold text-white uppercase tracking-wider text-[#DC143C]">
+              <h3 className="font-serif text-xl font-bold text-white uppercase tracking-wider text-crimson">
                 National Office Locations
               </h3>
 
               {/* New York Flagship */}
-              <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893]/40 space-y-2">
+              <div className="p-6 rounded-2xl bg-nepal-surface border border-sakura-border/40 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="font-serif font-bold text-white text-base">New York Flagship</span>
-                  <span className="text-[10px] uppercase px-2 py-0.5 rounded bg-[#001C4A] text-white border border-[#DC143C] font-bold">Headquarters</span>
+                  <span className="text-[10px] uppercase px-2 py-0.5 rounded bg-nepal-dark text-white border border-crimson font-bold">Headquarters</span>
                 </div>
                 <p className="text-xs text-slate-300">375 Park Avenue, 28th Floor, New York, NY 10152</p>
                 <div className="text-xs text-slate-400 pt-1 flex items-center gap-4">
@@ -94,7 +94,7 @@ export default async function ContactPage() {
               </div>
 
               {/* Washington D.C. */}
-              <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893]/40 space-y-2">
+              <div className="p-6 rounded-2xl bg-nepal-surface border border-sakura-border/40 space-y-2">
                 <span className="font-serif font-bold text-white text-base block">Washington D.C. Regulatory Group</span>
                 <p className="text-xs text-slate-300">1401 Pennsylvania Avenue NW, Suite 900, Washington, DC 20004</p>
                 <div className="text-xs text-slate-400 pt-1 flex items-center gap-4">
@@ -105,7 +105,7 @@ export default async function ContactPage() {
               </div>
 
               {/* San Francisco */}
-              <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893]/40 space-y-2">
+              <div className="p-6 rounded-2xl bg-nepal-surface border border-sakura-border/40 space-y-2">
                 <span className="font-serif font-bold text-white text-base block">San Francisco & Silicon Valley IP</span>
                 <p className="text-xs text-slate-300">555 California Street, 32nd Floor, San Francisco, CA 94104</p>
                 <div className="text-xs text-slate-400 pt-1 flex items-center gap-4">

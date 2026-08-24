@@ -18,8 +18,8 @@ The platform is designed around strict separation of concerns:
 │  │   • SEO & JSON-LD metadata      │   │      • Sanctum Auth Guard       │  │
 │  │   • Dynamic SSR / SSG routes    │   │      • Live Leads Triage CRM    │  │
 │  │   • Firm branding & hotline     │   │      • Partner Directory CRUD   │  │
-│  │   • Nepal Flag Blue/Red Palette │   │      • Playfair & Roboto Fonts  │  │
-│  │   • Light Mode: Pure White/Soft │   │      • Red Button -> White Text │  │
+│  │   • 60-30-10 Color Tokens       │   │      • Playfair & Roboto Fonts  │  │
+│  │   • WCAG 2.1 AA Contrast        │   │      • Red Button -> White Text │  │
 │  └────────────────┬────────────────┘   └────────────────┬────────────────┘  │
 └───────────────────┼─────────────────────────────────────┼───────────────────┘
                     │                                     │
@@ -163,7 +163,7 @@ The platform is designed around strict separation of concerns:
 ```
 src/app/
 ├── layout.tsx                     # Global HTML Document Shell (Playfair & Roboto Font Variables)
-├── globals.css                    # Nepal Flag Strict Design System Tokens (Dark & Light Overrides)
+├── globals.css                    # 60-30-10 Design Tokens & Glassmorphism Overrides
 │
 ├── (public)/                      # 🌐 PUBLIC FIRM WEBSITE (Route Group)
 │   ├── layout.tsx                 # Public Layout (Navbar with 24/7 Hotline + Footer + JSON-LD)
@@ -209,22 +209,20 @@ src/app/
 
 ---
 
-## 6. Official Design System & Typography Tokens
+## 6. Official 60-30-10 Color System & Typography Tokens
 
-| Token | Dark Mode (Prestige Dark) | Light Mode (Editorial Light) | Role |
+| Token Group | Key Token | Hex / Value | Role in 60-30-10 Rule |
 | :--- | :--- | :--- | :--- |
-| **`--font-serif`** | `Playfair Display` | `Playfair Display` | Editorial authority on all headings (`h1`-`h6`) |
-| **`--font-sans`** | `Roboto` | `Roboto` | Crystal-clear typography for all body, cards, tables, forms |
-| **`--nepal-blue`** | `#003893` | `#003893` | Official Nepal Flag Royal Blue (Primary Brand) |
-| **`--nepal-red`** | `#DC143C` | `#DC143C` | Official Nepal Flag Crimson Red (Secondary / Accent) |
-| **`--bg-primary`** | `#000000` (Pure Black) | `#FFFFFF` (Pure White) | Main viewport canvas |
-| **`--bg-secondary`**| `#00122E` (Deep Nepal Navy) | `#F8FAFC` (Clean Off-White) | Section backgrounds (No dark blue/black in light mode) |
-| **`--bg-surface`** | `#001C4A` (Surface Navy) | `#FFFFFF` (Pure White) | Cards and interactive surfaces in light mode |
-| **`--text-primary`**| `#FFFFFF` (Pure White) | `#000000` (Pure Black) | High contrast text |
-| **`--text-secondary`**| `#E2E8F0` (Off-white) | `#1E293B` (Deep Slate) | Secondary descriptions and subtitles |
-| **`--border-blue`**| `rgba(0, 56, 147, 0.6)` | `rgba(0, 56, 147, 0.22)` | Structural grid dividers |
-| **`--border-red`** | `rgba(220, 20, 60, 0.6)` | `rgba(220, 20, 60, 0.3)` | Focus rings, alert borders & highlights |
-| **Red Buttons** | `#DC143C` / `#FFFFFF` | `#DC143C` / `#FFFFFF` | Red background buttons ALWAYS use white text |
+| **Typography** | `--font-serif` | `Playfair Display` | Editorial authority on all headings (`h1`-`h6`) |
+| **Typography** | `--font-sans` | `Roboto` | Crystal-clear typography for all body, cards, tables, forms |
+| **60% Dominant Canvas** | `nepal.dark` | `#001F54` | Midnight Navy canvas for hero, sections, and footers |
+| **60% Dominant Canvas** | `canvas.light` | `#F8FAFC` | Clean Alabaster canvas for light mode sections |
+| **60% Surface** | `nepal.surface` | `#0A2540` | Elevated dark card surfaces and sidebars |
+| **30% Structure** | `sakura.border` | `rgba(255, 183, 197, 0.25)` | Subtle glass borders & card outlines |
+| **30% Structure** | `sakura.light` | `#FFF0F3` | Ultra-light Cherry Blossom pill badges & highlights |
+| **10% High-Impact Accent** | `crimson.DEFAULT` | `#DC143C` | Primary CTAs & high-converting triggers |
+| **10% High-Impact Accent** | `crimson.hover` | `#B80D30` | Darker Crimson hover state for buttons |
+| **Button Text Contract** | White Text | `#FFFFFF` | Crimson red buttons strictly use crisp white text |
 
 ---
 

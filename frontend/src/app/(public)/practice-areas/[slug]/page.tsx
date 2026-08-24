@@ -84,30 +84,30 @@ export default async function PracticeAreaDetailPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen py-12 font-sans bg-[#000000] text-white">
+    <div className="min-h-screen py-12 font-sans bg-nepal-dark text-white">
       <JsonLd data={breadcrumbSchema} />
 
       {/* Breadcrumb Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 font-sans">
         <nav className="flex items-center gap-2 text-xs text-slate-300">
-          <Link href="/" className="hover:text-[#DC143C] transition">
+          <Link href="/" className="hover:text-crimson transition">
             Home
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-[#003893]" />
-          <Link href="/practice-areas" className="hover:text-[#DC143C] transition">
+          <ChevronRight className="w-3.5 h-3.5 text-nepal-blue" />
+          <Link href="/practice-areas" className="hover:text-crimson transition">
             Practice Areas
           </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-[#003893]" />
+          <ChevronRight className="w-3.5 h-3.5 text-nepal-blue" />
           <span className="text-white font-bold">{area.title}</span>
         </nav>
       </div>
 
       {/* Main Practice Hero Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="p-8 sm:p-12 rounded-3xl bg-[#00122E] border border-[#003893] shadow-2xl relative overflow-hidden">
+        <div className="p-8 sm:p-12 rounded-3xl bg-nepal-surface border border-sakura-border shadow-2xl relative overflow-hidden">
           <div className="max-w-3xl space-y-5 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#001C4A] border border-[#003893] text-white text-xs font-bold uppercase tracking-wider font-sans">
-              <Scale className="w-3.5 h-3.5 text-[#DC143C]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-dark border border-sakura-border text-white text-xs font-bold uppercase tracking-wider font-sans">
+              <Scale className="w-3.5 h-3.5 text-crimson" />
               <span>Apex Legal Practice Discipline</span>
             </div>
 
@@ -122,15 +122,15 @@ export default async function PracticeAreaDetailPage({ params }: Props) {
             <div className="pt-2 flex flex-wrap items-center gap-4 font-sans">
               <a
                 href="#consultation-form"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white bg-[#DC143C] hover:bg-[#B00E2F] border border-white/20 shadow-lg shadow-[#DC143C]/20 transition"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl text-sm font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-lg shadow-crimson/20 transition"
               >
                 Schedule {area.title} Case Evaluation
               </a>
               <a
                 href="tel:12128904400"
-                className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-[#DC143C] transition px-4 py-3"
+                className="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-crimson transition px-4 py-3"
               >
-                <Phone className="w-4 h-4 text-[#DC143C]" />
+                <Phone className="w-4 h-4 text-crimson" />
                 <span>Call Urgent Hotline: (212) 890-4400</span>
               </a>
             </div>
@@ -144,7 +144,7 @@ export default async function PracticeAreaDetailPage({ params }: Props) {
           
           {/* Main Long Description */}
           <div className="lg:col-span-8 space-y-8">
-            <div className="p-8 rounded-2xl bg-[#00122E] border border-[#003893]/40 space-y-6">
+            <div className="p-8 rounded-2xl bg-nepal-surface border border-sakura-border/40 space-y-6">
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 Our Strategic Approach to {area.title}
               </h2>
@@ -155,21 +155,21 @@ export default async function PracticeAreaDetailPage({ params }: Props) {
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#003893]/30 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-200 font-sans">
+              <div className="pt-4 border-t border-sakura-border/30 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-200 font-sans">
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#DC143C]" />
+                  <CheckCircle2 className="w-4 h-4 text-crimson" />
                   <span>Senior Partner Lead on Every Case</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#DC143C]" />
+                  <CheckCircle2 className="w-4 h-4 text-crimson" />
                   <span>Direct Courtroom Trial Experience</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#DC143C]" />
+                  <CheckCircle2 className="w-4 h-4 text-crimson" />
                   <span>Multidisciplinary Technical Support</span>
                 </div>
                 <div className="flex items-center gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-[#DC143C]" />
+                  <CheckCircle2 className="w-4 h-4 text-crimson" />
                   <span>Uncompromising Client Privacy</span>
                 </div>
               </div>
@@ -186,9 +186,9 @@ export default async function PracticeAreaDetailPage({ params }: Props) {
                     <Link
                       key={child.id}
                       href={`/practice-areas/${child.slug}`}
-                      className="p-5 rounded-xl bg-[#001C4A] border border-[#003893]/40 hover:border-[#DC143C] transition group"
+                      className="p-5 rounded-xl bg-nepal-dark border border-sakura-border/40 hover:border-crimson transition group"
                     >
-                      <h4 className="font-serif font-bold text-white group-hover:text-[#DC143C] text-base mb-1">
+                      <h4 className="font-serif font-bold text-white group-hover:text-crimson text-base mb-1">
                         {child.title}
                       </h4>
                       <p className="text-slate-300 text-xs line-clamp-2">
@@ -219,8 +219,8 @@ export default async function PracticeAreaDetailPage({ params }: Props) {
           <div className="lg:col-span-4 space-y-8 font-sans">
             {/* Dedicated Attorneys */}
             {area.attorneys && area.attorneys.length > 0 && (
-              <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893]/40 space-y-4">
-                <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider text-[#DC143C]">
+              <div className="p-6 rounded-2xl bg-nepal-surface border border-sakura-border/40 space-y-4">
+                <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider text-crimson">
                   Practice Group Leaders
                 </h3>
                 <div className="space-y-6">
@@ -232,15 +232,15 @@ export default async function PracticeAreaDetailPage({ params }: Props) {
             )}
 
             {/* Quick Contact Box */}
-            <div className="p-6 rounded-2xl bg-[#001C4A] border border-[#003893] space-y-3">
-              <span className="text-xs uppercase font-bold text-[#DC143C] block font-sans">Direct Consultation</span>
+            <div className="p-6 rounded-2xl bg-nepal-dark border border-sakura-border space-y-3">
+              <span className="text-xs uppercase font-bold text-crimson block font-sans">Direct Consultation</span>
               <h4 className="font-serif text-lg font-bold text-white">Need Urgent Counsel?</h4>
               <p className="text-xs text-slate-300 leading-relaxed font-sans">
                 Contact our emergency intake department to review your matter under strict confidentiality.
               </p>
               <a
                 href="tel:12128904400"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-lg text-xs font-bold text-white bg-[#DC143C] hover:bg-[#B00E2F] transition mt-2 font-sans"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-lg text-xs font-bold text-white bg-crimson hover:bg-crimson-hover transition mt-2 font-sans"
               >
                 <Phone className="w-3.5 h-3.5" />
                 <span>Call (212) 890-4400</span>

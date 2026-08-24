@@ -2,7 +2,7 @@
 
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.5.23-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![Laravel 11](https://img.shields.io/badge/Laravel-11.x-red?style=flat-square&logo=laravel)](https://laravel.com/)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.x-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Semantic_Tokens-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?style=flat-square&logo=mysql)](https://www.mysql.com/)
 [![Sanctum Auth](https://img.shields.io/badge/Laravel-Sanctum_Auth-purple?style=flat-square)](https://laravel.com/docs/11.x/sanctum)
@@ -21,8 +21,10 @@ The system is architected as a **headless web application**:
 - **Strict Brand Design System & Typography**:
   - **Headings**: Editorial Serif (`Playfair Display`).
   - **Body, UI, & Forms**: Modern Clean Sans-Serif (`Roboto`).
-  - **Color Palette (Exclusive)**: **Nepal Flag Royal Blue** (`#003893` Primary), **Nepal Flag Crimson Red** (`#DC143C` Secondary/Accent), **Pure Black** (`#000000`), and **Pure White** (`#FFFFFF`).
-  - **Light Mode Standards**: Sections use clean pure white (`#FFFFFF`) and off-white (`#F8FAFC`) backgrounds (no dark blue or black section backgrounds). Red background buttons (`#DC143C`) strictly use white text (`#FFFFFF`).
+  - **60-30-10 Color System**:
+    - **60% Dominant Canvas**: Nepal Royal Blue (`#003893`), Midnight Navy (`#001F54`), Elevated Surface (`#0A2540`), and Alabaster (`#F8FAFC`).
+    - **30% Structure & Support**: Sakura accents (`#FFB7C5`, `rgba(255, 183, 197, 0.25)`), neutral card borders (`#E2E8F0`), and soft rose containers (`#FFF1F2`).
+    - **10% High-Impact Accent**: Nepal Flag Crimson Red (`#DC143C`, hover `#B80D30`) exclusively for primary CTAs and critical conversion points. Red buttons always have pure white text (`#FFFFFF`).
 
 ---
 
@@ -46,7 +48,7 @@ The system is architected as a **headless web application**:
                       │  • Practice Areas / Slugs │             │ • Attorney Management     │
                       │  • Attorney Credentials   │             │ • Practice & Case CMS     │
                       │  • Landmark Verdicts      │             │ • Sanctum Bearer Token    │
-                      │  • Nepal Blue/Red Theme   │             │ • Live KPI Telemetry      │
+                      │  • 60-30-10 Color System  │             │ • Live KPI Telemetry      │
                       │  • Playfair/Roboto Fonts  │             │ • Dark / Light Switch     │
                       └─────────────┬─────────────┘             └─────────────┬─────────────┘
                                     │                                         │
@@ -102,6 +104,7 @@ law-firm/
 │   └── resources/views/welcome.blade.php  # Executive Portal Dashboard
 │
 ├── frontend/                              # Next.js 15 App Router Frontend
+│   ├── tailwind.config.ts                 # Semantic 60-30-10 Design System Configuration
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── (public)/                  # Public Site Route Group (Isolated Layout)
@@ -120,15 +123,15 @@ law-firm/
 │   │   │   │   ├── practice-areas/        # Practice Disciplines Manager
 │   │   │   │   ├── case-results/          # Landmark Verdicts Manager
 │   │   │   │   └── settings/              # System Health & Infrastructure Telemetry
-│   │   │   ├── globals.css                # Nepal Flag Design System & Theme Tokens
+│   │   │   ├── globals.css                # 60-30-10 Tokens & Theme Overrides
 │   │   │   └── layout.tsx                 # Root Document Shell (Playfair & Roboto Font Hydration)
 │   │   ├── components/                    # Reusable Client & Server Components
 │   │   │   ├── Navbar.tsx                 # Public Navigation (Dropdown + Hotline + Theme Toggle)
 │   │   │   ├── Footer.tsx                 # Public Credentials Footer
 │   │   │   ├── ThemeToggle.tsx            # Sun/Moon Interactive Toggle
 │   │   │   ├── ConsultationForm.tsx       # Intake Form with 256-bit Encryption Note
-│   │   │   ├── PracticeAreaCard.tsx       # Practice Discipline Card
-│   │   │   ├── AttorneyCard.tsx           # Partner Card
+│   │   │   ├── PracticeAreaCard.tsx       # Practice Discipline Card (Sakura Glass Border)
+│   │   │   ├── AttorneyCard.tsx           # Partner Card (Sakura Glass Border)
 │   │   │   ├── CaseResultCard.tsx         # Verdict Showcase Card
 │   │   │   └── StatsSection.tsx           # Firm Recovery Metrics Section
 │   │   └── lib/
@@ -141,18 +144,41 @@ law-firm/
 
 ---
 
-## 🎨 4. Design System & Typography Specifications
+## 🎨 4. Semantic Color System & 60-30-10 Rule
 
-| Category | Specification | Hex / Value | Notes |
+```ts
+// frontend/tailwind.config.ts
+colors: {
+  nepal: {
+    blue: '#003893',        // Primary Nepal Blue
+    dark: '#001F54',        // Midnight Canvas (60% Dominant)
+    surface: '#0A2540',     // Elevated Dark Card Surface
+  },
+  crimson: {
+    DEFAULT: '#DC143C',     // Nepal Flag Red (10% High-Impact Primary CTAs)
+    hover: '#B80D30',       // Darker Crimson on hover
+    subtle: '#FFF1F2',      // Soft Rose container for light cards
+  },
+  sakura: {
+    light: '#FFF0F3',       // Ultra-light Cherry Blossom for badges
+    DEFAULT: '#FFB7C5',     // Cherry Blossom Accent (30% Structure)
+    border: 'rgba(255, 183, 197, 0.25)', // Subtle glass borders
+  },
+  canvas: {
+    light: '#F8FAFC',       // Clean Alabaster for light sections
+    card: '#FFFFFF',        // Pure White card surface
+    border: '#E2E8F0',      // Neutral gray borders
+  },
+}
+```
+
+| Role | Semantic Token | Hex / Value | Purpose |
 |---|---|---|---|
-| **Headings Font** | Playfair Display | `var(--font-serif)` | Editorial authority on `h1`, `h2`, `h3`, `h4`, `h5`, `h6` |
-| **Body & UI Font** | Roboto | `var(--font-sans)` | Ultra-clean readability across cards, tables, inputs, navbars |
-| **Primary Color** | Nepal Royal Blue | `#003893` | Headers, brand crests, surfaces, borders, nav items |
-| **Secondary Color**| Nepal Crimson Red | `#DC143C` | Badges, CTA buttons, active states, key highlights |
-| **Base Neutrals** | Pure Black & White| `#000000`, `#FFFFFF` | Strictly enforced across all light & dark themes |
-| **Dark Sections** | Deep Navy / Black | `#000000`, `#00122E` | High contrast, zero glare dark mode |
-| **Light Sections**| Pure White & Soft | `#FFFFFF`, `#F8FAFC` | No blue or black section backgrounds in Light mode |
-| **Red Buttons**   | Crimson Red / White| `#DC143C` / `#FFFFFF` | Red buttons ALWAYS use crisp white text in all themes |
+| **60% Canvas** | `nepal.dark` / `canvas.light` | `#001F54` / `#F8FAFC` | Main viewport & section backgrounds |
+| **30% Structure** | `sakura.border` / `nepal.surface` | `rgba(255, 183, 197, 0.25)` / `#0A2540` | Subtle borders, pill tags, and cards |
+| **10% Accent** | `crimson.DEFAULT` | `#DC143C` (Hover `#B80D30`) | Primary CTAs & urgent conversion buttons |
+| **Headings Font** | Playfair Display | `var(--font-serif)` | Editorial authority on `h1`-`h6` |
+| **Body & UI Font** | Roboto | `var(--font-sans)` | Ultra-clean readability across all UI elements |
 
 ---
 

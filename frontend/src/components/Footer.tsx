@@ -4,7 +4,7 @@ import { Scale, Phone, Mail, MapPin, ShieldCheck, Lock } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-[#000000] border-t border-[#003893]/50 text-slate-300 text-sm font-sans">
+    <footer className="bg-nepal-dark border-t border-sakura-border text-slate-300 text-sm font-sans">
       {/* Upper Footer: Main Columns */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
@@ -12,12 +12,12 @@ export function Footer() {
           {/* Col 1 & 2: Firm Authority Bio */}
           <div className="lg:col-span-2 space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[#003893] border border-[#DC143C] flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 rounded-lg bg-nepal-blue border border-crimson flex items-center justify-center shadow-lg">
                 <Scale className="w-5 h-5 text-white" />
               </div>
               <div>
                 <span className="font-serif text-2xl font-bold tracking-wide text-white">
-                  APEX <span className="text-[#DC143C] font-light">LEGAL</span>
+                  APEX <span className="text-crimson font-light">LEGAL</span>
                 </span>
                 <span className="block text-[10px] tracking-[0.25em] uppercase text-slate-400 font-semibold">
                   Counselors at Law
@@ -31,15 +31,15 @@ export function Footer() {
 
             <div className="space-y-2 pt-2 text-xs">
               <div className="flex items-center gap-2.5 text-white">
-                <MapPin className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-crimson flex-shrink-0" />
                 <span>375 Park Avenue, 28th Floor, New York, NY 10152</span>
               </div>
               <div className="flex items-center gap-2.5 text-white">
-                <Phone className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+                <Phone className="w-4 h-4 text-crimson flex-shrink-0" />
                 <span>Direct Legal Hotline: (212) 890-4400</span>
               </div>
               <div className="flex items-center gap-2.5 text-white">
-                <Mail className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+                <Mail className="w-4 h-4 text-crimson flex-shrink-0" />
                 <span>Confidential Inquiries: inquiries@apexlegal.com</span>
               </div>
             </div>
@@ -47,37 +47,37 @@ export function Footer() {
 
           {/* Col 3: Practice Disciplines */}
           <div className="space-y-4">
-            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-[#DC143C]">
+            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-crimson">
               Practice Areas
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link href="/practice-areas/corporate-law-mergers" className="hover:text-[#DC143C] transition">
+                <Link href="/practice-areas/corporate-law-mergers" className="hover:text-crimson transition">
                   Corporate Law & M&A
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/personal-injury-catastrophic" className="hover:text-[#DC143C] transition">
+                <Link href="/practice-areas/personal-injury-catastrophic" className="hover:text-crimson transition">
                   Catastrophic Injury & Wrongful Death
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/intellectual-property-patents" className="hover:text-[#DC143C] transition">
+                <Link href="/practice-areas/intellectual-property-patents" className="hover:text-crimson transition">
                   Intellectual Property & Patents
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/white-collar-criminal-defense" className="hover:text-[#DC143C] transition">
+                <Link href="/practice-areas/white-collar-criminal-defense" className="hover:text-crimson transition">
                   White Collar & Investigations
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/commercial-real-estate-development" className="hover:text-[#DC143C] transition">
+                <Link href="/practice-areas/commercial-real-estate-development" className="hover:text-crimson transition">
                   Commercial Real Estate & Land Use
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/employment-labor-arbitration" className="hover:text-[#DC143C] transition">
+                <Link href="/practice-areas/employment-labor-arbitration" className="hover:text-crimson transition">
                   Executive Employment & Labor
                 </Link>
               </li>
@@ -86,28 +86,28 @@ export function Footer() {
 
           {/* Col 4: Quick Navigation */}
           <div className="space-y-4">
-            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-[#DC143C]">
+            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-crimson">
               Firm Overview
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <Link href="/attorneys" className="hover:text-[#DC143C] transition">
+                <Link href="/attorneys" className="hover:text-crimson transition">
                   Distinguished Attorneys
                 </Link>
               </li>
               <li>
-                <Link href="/case-results" className="hover:text-[#DC143C] transition">
+                <Link href="/case-results" className="hover:text-crimson transition">
                   Landmark Case Verdicts
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#DC143C] transition">
+                <Link href="/contact" className="hover:text-crimson transition">
                   Schedule Free Case Evaluation
                 </Link>
               </li>
               <li>
-                <Link href="/admin" className="hover:text-[#DC143C] transition flex items-center gap-1.5 text-slate-400">
-                  <Lock className="w-3 h-3 text-[#003893]" />
+                <Link href="/admin" className="hover:text-crimson transition flex items-center gap-1.5 text-slate-400">
+                  <Lock className="w-3 h-3 text-nepal-blue" />
                   <span>Admin Operations Portal</span>
                 </Link>
               </li>
@@ -116,19 +116,19 @@ export function Footer() {
 
           {/* Col 5: Trust Accreditations */}
           <div className="space-y-4">
-            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-[#DC143C]">
+            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-crimson">
               Accreditations
             </h4>
             <div className="space-y-3 text-xs">
-              <div className="p-3 rounded-lg bg-[#001C4A] border border-[#003893] space-y-1">
+              <div className="p-3 rounded-lg bg-nepal-surface border border-sakura-border space-y-1">
                 <div className="flex items-center gap-1.5 text-white font-bold">
-                  <ShieldCheck className="w-4 h-4 text-[#DC143C]" />
+                  <ShieldCheck className="w-4 h-4 text-crimson" />
                   <span>AV Preeminent® Rated</span>
                 </div>
                 <p className="text-[11px] text-slate-300">Highest Ethical Standing & Professional Excellence by Martindale-Hubbell.</p>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#001C4A] border border-[#003893] space-y-1">
+              <div className="p-3 rounded-lg bg-nepal-surface border border-sakura-border space-y-1">
                 <span className="text-white font-bold block">The Best Lawyers in America®</span>
                 <p className="text-[11px] text-slate-300">Recognized Tier 1 Litigation & M&A practice across regional federal circuits.</p>
               </div>
@@ -139,7 +139,7 @@ export function Footer() {
       </div>
 
       {/* Legal Disclaimers & Ethics Compliance */}
-      <div className="bg-[#000000] border-t border-[#003893]/40 px-4 py-8 text-[11px] text-slate-400">
+      <div className="bg-nepal-dark/80 border-t border-sakura-border/40 px-4 py-8 text-[11px] text-slate-400">
         <div className="max-w-7xl mx-auto space-y-3">
           <p className="leading-relaxed">
             <strong className="text-white font-semibold">ATTORNEY ADVERTISING NOTICE:</strong> Prior results do not guarantee a similar outcome. The materials and information contained on this website are intended for general informational purposes only and do not constitute formal legal advice. Viewing this website or submitting a case inquiry does not form an attorney-client relationship.

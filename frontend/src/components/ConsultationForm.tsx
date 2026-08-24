@@ -121,11 +121,11 @@ export function ConsultationForm({
   };
 
   return (
-    <div id="case-evaluation" className="relative rounded-2xl bg-[#00122E] border border-[#003893] shadow-2xl p-6 sm:p-10 backdrop-blur-xl font-sans">
+    <div id="case-evaluation" className="relative rounded-2xl bg-nepal-surface border border-sakura-border shadow-2xl p-6 sm:p-10 backdrop-blur-xl font-sans">
       {/* Top Header */}
       <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#001C4A] border border-[#003893] text-white text-xs font-bold uppercase tracking-wider mb-3">
-          <Shield className="w-3.5 h-3.5 text-[#DC143C]" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-dark border border-sakura-border text-white text-xs font-bold uppercase tracking-wider mb-3">
+          <Shield className="w-3.5 h-3.5 text-crimson" />
           <span>Strictly Confidential & Privileged</span>
         </div>
         <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">
@@ -138,9 +138,9 @@ export function ConsultationForm({
 
       {/* Success State Alert */}
       {successMessage && (
-        <div className="mb-8 p-6 rounded-xl bg-[#001C4A] border border-[#003893] text-white animate-in fade-in zoom-in-95 duration-300">
+        <div className="mb-8 p-6 rounded-xl bg-nepal-dark border border-sakura-border text-white animate-in fade-in zoom-in-95 duration-300">
           <div className="flex items-start gap-4">
-            <CheckCircle2 className="w-7 h-7 text-[#DC143C] flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-7 h-7 text-crimson flex-shrink-0 mt-0.5" />
             <div className="space-y-2">
               <h4 className="font-serif font-bold text-lg text-white">
                 Inquiry Received (File #{submittedId})
@@ -149,7 +149,7 @@ export function ConsultationForm({
                 {successMessage}
               </p>
               <div className="pt-2 text-xs text-slate-300 flex items-center gap-2 font-sans">
-                <Lock className="w-3.5 h-3.5 text-[#003893]" />
+                <Lock className="w-3.5 h-3.5 text-nepal-blue" />
                 <span>Protected under Preliminary Attorney-Client Confidentiality.</span>
               </div>
             </div>
@@ -159,85 +159,82 @@ export function ConsultationForm({
 
       {/* Error Alert */}
       {errorMessage && (
-        <div className="mb-6 p-4 rounded-xl bg-[#000000] border border-[#DC143C] text-white flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-[#DC143C] flex-shrink-0 mt-0.5" />
-          <div className="text-xs sm:text-sm text-slate-200 font-sans">
-            {errorMessage}
-          </div>
+        <div className="mb-8 p-4 rounded-xl bg-crimson/15 border border-crimson/40 text-xs text-slate-200 flex items-center gap-3">
+          <AlertCircle className="w-5 h-5 text-crimson flex-shrink-0" />
+          <span>{errorMessage}</span>
         </div>
       )}
 
-      {/* Submission Form */}
-      <form onSubmit={handleSubmit} className="space-y-5 font-sans">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          
-          {/* Full Name */}
+      {/* The Form */}
+      <form onSubmit={handleSubmit} className="space-y-6 font-sans">
+        
+        {/* Row 1: Full Name & Email */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
-              Full Legal Name <span className="text-[#DC143C]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+              Full Legal Name <span className="text-crimson">*</span>
             </label>
             <input
               type="text"
               required
-              placeholder="e.g. Eleanor Vance"
+              placeholder="e.g. Robert H. Montgomery"
               value={formData.full_name}
               onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.full_name ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
+              className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.full_name ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
             />
             {validationErrors.full_name && (
-              <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.full_name[0]}</p>
+              <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.full_name[0]}</p>
             )}
           </div>
 
-          {/* Email Address */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
-              Email Address <span className="text-[#DC143C]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+              Email Address <span className="text-crimson">*</span>
             </label>
             <input
               type="email"
               required
-              placeholder="e.g. client@enterprise.com"
+              placeholder="e.g. r.montgomery@enterprise.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.email ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
+              className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.email ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
             />
             {validationErrors.email && (
-              <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.email[0]}</p>
+              <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.email[0]}</p>
             )}
           </div>
+        </div>
 
-          {/* Phone Number */}
+        {/* Row 2: Phone & Practice Area */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
-              Direct Phone Number <span className="text-[#DC143C]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+              Direct Telephone <span className="text-crimson">*</span>
             </label>
             <input
               type="tel"
               required
-              placeholder="e.g. +1 (212) 555-0199"
+              placeholder="e.g. (212) 555-0199"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.phone ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
+              className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.phone ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
             />
             {validationErrors.phone && (
-              <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.phone[0]}</p>
+              <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.phone[0]}</p>
             )}
           </div>
 
-          {/* Practice Area Selector */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
-              Practice Discipline <span className="text-[#DC143C]">*</span>
+            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+              Primary Legal Area of Concern
             </label>
             <select
               value={formData.practice_area_id || ''}
               onChange={(e) => setFormData({ ...formData, practice_area_id: e.target.value ? Number(e.target.value) : null })}
-              className="w-full px-4 py-3 rounded-lg bg-[#000000] border border-[#003893]/60 focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white text-sm outline-none transition cursor-pointer font-sans"
+              className="w-full px-4 py-3 rounded-lg bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition cursor-pointer font-sans"
             >
-              <option value="" className="bg-[#000000] text-slate-300">General Legal Consultation</option>
               {practiceAreas.map((area) => (
-                <option key={area.id} value={area.id} className="bg-[#000000] text-white py-1">
+                <option key={area.id} value={area.id} className="bg-nepal-dark text-white py-1">
                   {area.title}
                 </option>
               ))}
@@ -249,7 +246,7 @@ export function ConsultationForm({
         {/* Case Details */}
         <div>
           <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
-            Brief Summary of Legal Matter <span className="text-[#DC143C]">*</span>
+            Brief Summary of Legal Matter <span className="text-crimson">*</span>
           </label>
           <textarea
             required
@@ -257,21 +254,21 @@ export function ConsultationForm({
             placeholder="Please detail key parties involved, dates, jurisdictions, and goals..."
             value={formData.case_details}
             onChange={(e) => setFormData({ ...formData, case_details: e.target.value })}
-            className={`w-full px-4 py-3 rounded-lg bg-[#000000] border ${validationErrors.case_details ? 'border-[#DC143C]' : 'border-[#003893]/60'} focus:border-[#DC143C] focus:ring-1 focus:ring-[#DC143C] text-white placeholder-slate-500 text-sm outline-none transition resize-none font-sans`}
+            className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.case_details ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition resize-none font-sans`}
           />
           {validationErrors.case_details && (
-            <p className="text-xs text-[#DC143C] mt-1 font-sans">{validationErrors.case_details[0]}</p>
+            <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.case_details[0]}</p>
           )}
         </div>
 
         {/* Confidentiality Notice */}
-        <div className="p-4 rounded-xl bg-[#001C4A]/50 border border-[#003893]/40 flex items-center justify-between gap-4 text-xs text-slate-300">
+        <div className="p-4 rounded-xl bg-nepal-dark/50 border border-sakura-border/40 flex items-center justify-between gap-4 text-xs text-slate-300">
           <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+            <Lock className="w-4 h-4 text-crimson flex-shrink-0" />
             <span>Encrypted 256-bit transmission to Apex Senior Partners.</span>
           </div>
           <div className="hidden sm:flex items-center gap-1.5 text-white font-bold">
-            <HelpCircle className="w-4 h-4 text-[#003893]" />
+            <HelpCircle className="w-4 h-4 text-nepal-blue" />
             <span>No fee unless we win</span>
           </div>
         </div>
@@ -280,7 +277,7 @@ export function ConsultationForm({
         <button
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-bold text-white bg-[#DC143C] hover:bg-[#B00E2F] border border-white/20 shadow-xl shadow-[#DC143C]/20 transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50"
+          className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-xl shadow-crimson/20 transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50"
         >
           {loading ? (
             <>

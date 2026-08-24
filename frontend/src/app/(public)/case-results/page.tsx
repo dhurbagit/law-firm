@@ -20,18 +20,18 @@ export default async function CaseResultsPage() {
   ]);
 
   return (
-    <div className="min-h-screen py-16 font-sans bg-[#000000] text-white">
+    <div className="min-h-screen py-16 font-sans bg-nepal-dark text-white">
       
       {/* Top Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 font-sans">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#001C4A] border border-[#003893] text-white text-xs font-bold uppercase tracking-wider font-sans">
-            <Trophy className="w-3.5 h-3.5 text-[#DC143C]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-surface border border-sakura-border text-white text-xs font-bold uppercase tracking-wider font-sans">
+            <Trophy className="w-3.5 h-3.5 text-crimson" />
             <span>Documented Track Record</span>
           </div>
           <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
             Landmark Verdicts & <br />
-            <span className="text-[#DC143C]">Significant Recoveries</span>
+            <span className="text-crimson">Significant Recoveries</span>
           </h1>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal font-sans">
             Our relentless trial readiness has delivered over $250 Million in aggregate recoveries, precedent-setting appellate decisions, and total declination of federal investigations.
