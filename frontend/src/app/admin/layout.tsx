@@ -219,12 +219,12 @@ export default function AdminLayout({
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition group ${
                     isActive
                       ? 'bg-nepal-blue text-white border border-crimson shadow-md'
-                      : 'text-slate-300 hover:text-white hover:bg-nepal-dark'
+                      : 'text-white hover:text-white hover:bg-nepal-dark'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-crimson' : 'text-slate-400 group-hover:text-white'}`} />
-                    <span>{item.label}</span>
+                    <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-crimson' : 'text-white group-hover:text-white'}`} />
+                    <span className="text-white font-bold">{item.label}</span>
                   </div>
                   {item.badge && (
                     <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-crimson text-white">

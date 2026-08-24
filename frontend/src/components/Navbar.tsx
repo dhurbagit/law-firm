@@ -15,7 +15,7 @@ import {
   Award, 
   Gavel, 
   Building2, 
-  Users,
+  Users, 
   Lock,
   ArrowRight
 } from 'lucide-react';
@@ -110,17 +110,17 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300 font-sans">
+    <header className="sticky top-0 z-50 w-full transition-all duration-300 font-sans bg-[#001F54] text-white border-b border-sakura-border">
       {/* Top Banner - Hotline & Authority */}
-      <div className="bg-nepal-dark border-b border-sakura-border px-4 py-1.5 text-xs text-slate-300">
+      <div className="bg-[#00153B] border-b border-sakura-border/60 px-4 py-2 text-xs text-white">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-white">
-              <ShieldCheck className="w-3.5 h-3.5 text-crimson" />
+            <span className="flex items-center gap-1.5 text-white font-medium">
+              <ShieldCheck className="w-4 h-4 text-crimson" />
               <span className="font-bold text-crimson">Nationwide Trial Counsel</span> | Tier 1 Ranking
             </span>
-            <span className="hidden sm:inline-block text-nepal-blue">•</span>
-            <span className="hidden sm:inline-block text-slate-300">Over $250M+ Recovered For Our Clients</span>
+            <span className="hidden sm:inline-block text-white/40">•</span>
+            <span className="hidden sm:inline-block text-white font-medium">Over $250M+ Recovered For Our Clients</span>
           </div>
           <div className="flex items-center gap-6">
             <a 
@@ -132,10 +132,10 @@ export function Navbar() {
             </a>
             <Link 
               href="/admin" 
-              className="hidden md:flex items-center gap-1 text-slate-400 hover:text-white transition"
+              className="hidden md:flex items-center gap-1 text-white/80 hover:text-white transition font-medium"
               title="Admin Operations Portal"
             >
-              <Lock className="w-3 h-3 text-nepal-blue" />
+              <Lock className="w-3 h-3 text-crimson" />
               <span>Admin Portal</span>
             </Link>
           </div>
@@ -143,7 +143,7 @@ export function Navbar() {
       </div>
 
       {/* Main Navigation Bar */}
-      <div className={`transition-all duration-300 ${isScrolled ? 'bg-nepal-dark/95 backdrop-blur-md shadow-2xl border-b border-sakura-border py-3' : 'bg-nepal-dark/90 backdrop-blur-sm border-b border-sakura-border/60 py-4'}`}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'bg-[#001F54]/95 backdrop-blur-md shadow-2xl py-3' : 'bg-[#001F54] py-4'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Law Firm Crest & Brand */}
@@ -155,17 +155,17 @@ export function Navbar() {
               <span className="block font-serif text-xl sm:text-2xl font-bold tracking-wide text-white group-hover:text-crimson transition">
                 APEX <span className="text-crimson font-light">LEGAL</span>
               </span>
-              <span className="block text-[10px] tracking-[0.25em] uppercase text-slate-300 font-semibold">
+              <span className="block text-[10px] tracking-[0.25em] uppercase text-white font-semibold opacity-90">
                 Counselors at Law
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold">
+          {/* Desktop Nav Links (Crystal Clear Pure White Text) */}
+          <nav className="hidden lg:flex items-center gap-7 text-sm font-bold">
             <Link 
               href="/" 
-              className={`transition hover:text-crimson ${pathname === '/' ? 'text-crimson border-b-2 border-crimson pb-0.5' : 'text-slate-200'}`}
+              className={`transition hover:text-crimson pb-0.5 ${pathname === '/' ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
             >
               Home
             </Link>
@@ -179,15 +179,15 @@ export function Navbar() {
             >
               <button 
                 type="button"
-                className={`flex items-center gap-1.5 transition hover:text-crimson py-1 cursor-pointer font-semibold ${
-                  pathname.startsWith('/practice-areas') ? 'text-crimson border-b-2 border-crimson' : 'text-slate-200'
+                className={`flex items-center gap-1.5 transition hover:text-crimson py-1 cursor-pointer font-bold ${
+                  pathname.startsWith('/practice-areas') ? 'text-crimson border-b-2 border-crimson' : 'text-white'
                 }`}
                 onClick={() => setDropdownOpen((prev) => !prev)}
                 aria-expanded={dropdownOpen}
                 aria-haspopup="true"
               >
                 <span>Practice Areas</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-crimson' : ''}`} />
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-crimson' : 'text-white'}`} />
               </button>
 
               {/* Dropdown Container */}
@@ -197,12 +197,12 @@ export function Navbar() {
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="rounded-2xl bg-nepal-surface border border-sakura-border shadow-2xl p-3 backdrop-blur-xl ring-1 ring-black/80">
+                  <div className="rounded-2xl bg-[#0A2540] border border-sakura-border shadow-2xl p-3 backdrop-blur-xl ring-1 ring-black/80">
                     <div className="px-3 py-2 border-b border-sakura-border/40 flex items-center justify-between mb-1">
                       <span className="text-[10px] font-bold tracking-widest text-crimson uppercase">
                         Legal Practice Disciplines
                       </span>
-                      <span className="text-[10px] text-slate-400 font-bold">Tier-1 Counsel</span>
+                      <span className="text-[10px] text-white/80 font-bold">Tier-1 Counsel</span>
                     </div>
 
                     <div className="space-y-1">
@@ -217,17 +217,17 @@ export function Navbar() {
                             className={`flex items-start gap-3 p-2.5 rounded-xl transition group ${
                               isCurrent
                                 ? 'bg-nepal-blue text-white border border-crimson'
-                                : 'text-slate-300 hover:text-white hover:bg-nepal-dark'
+                                : 'text-white hover:text-white hover:bg-[#001F54]'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg bg-nepal-dark border border-sakura-border/60 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-crimson group-hover:bg-crimson">
+                            <div className="w-8 h-8 rounded-lg bg-[#001F54] border border-sakura-border/60 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-crimson group-hover:bg-crimson">
                               <Icon className="w-4 h-4 text-white" />
                             </div>
                             <div className="min-w-0">
                               <span className="block text-xs font-bold text-white group-hover:text-white transition">
                                 {item.title}
                               </span>
-                              <span className="block text-[11px] text-slate-400 group-hover:text-slate-200 line-clamp-1">
+                              <span className="block text-[11px] text-slate-200 group-hover:text-white line-clamp-1">
                                 {item.desc}
                               </span>
                             </div>
@@ -240,7 +240,7 @@ export function Navbar() {
                       <Link 
                         href="/practice-areas" 
                         onClick={() => setDropdownOpen(false)}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-nepal-dark hover:bg-nepal-blue text-xs text-white font-bold transition border border-sakura-border/50 hover:border-crimson"
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-[#001F54] hover:bg-nepal-blue text-xs text-white font-bold transition border border-sakura-border/50 hover:border-crimson"
                       >
                         <span>View All Practice Groups Directory</span>
                         <ArrowRight className="w-3.5 h-3.5 text-crimson" />
@@ -253,21 +253,21 @@ export function Navbar() {
 
             <Link 
               href="/attorneys" 
-              className={`transition hover:text-crimson ${pathname.startsWith('/attorneys') ? 'text-crimson border-b-2 border-crimson pb-0.5' : 'text-slate-200'}`}
+              className={`transition hover:text-crimson pb-0.5 ${pathname.startsWith('/attorneys') ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
             >
               Attorneys
             </Link>
 
             <Link 
               href="/case-results" 
-              className={`transition hover:text-crimson ${pathname === '/case-results' ? 'text-crimson border-b-2 border-crimson pb-0.5' : 'text-slate-200'}`}
+              className={`transition hover:text-crimson pb-0.5 ${pathname === '/case-results' ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
             >
               Landmark Verdicts
             </Link>
 
             <Link 
               href="/contact" 
-              className={`transition hover:text-crimson ${pathname === '/contact' ? 'text-crimson border-b-2 border-crimson pb-0.5' : 'text-slate-200'}`}
+              className={`transition hover:text-crimson pb-0.5 ${pathname === '/contact' ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
             >
               Contact
             </Link>
@@ -289,10 +289,10 @@ export function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-nepal-surface border border-sakura-border text-white hover:bg-nepal-blue cursor-pointer"
+              className="p-2 rounded-lg bg-[#0A2540] border border-sakura-border text-white hover:bg-nepal-blue cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
             </button>
           </div>
         </div>
@@ -300,19 +300,19 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-nepal-dark border-b border-sakura-border px-6 py-6 space-y-4 animate-in slide-in-from-top duration-300 shadow-2xl max-h-[85vh] overflow-y-auto">
-          <nav className="flex flex-col space-y-2 text-base font-semibold">
+        <div className="lg:hidden bg-[#001F54] border-b border-sakura-border px-6 py-6 space-y-4 animate-in slide-in-from-top duration-300 shadow-2xl max-h-[85vh] overflow-y-auto text-white">
+          <nav className="flex flex-col space-y-2 text-base font-bold text-white">
             <Link 
               href="/" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-nepal-surface hover:text-crimson"
+              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
             >
               Home
             </Link>
             
             {/* Mobile Practice Areas Accordion */}
             <div className="space-y-1">
-              <div className="flex items-center justify-between px-3 py-2 rounded-lg text-white hover:bg-nepal-surface">
+              <div className="flex items-center justify-between px-3 py-2 rounded-lg text-white hover:bg-[#0A2540]">
                 <Link 
                   href="/practice-areas" 
                   onClick={() => setMobileMenuOpen(false)}
@@ -337,7 +337,7 @@ export function Navbar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block px-3 py-1.5 text-xs text-slate-300 hover:text-crimson"
+                      className="block px-3 py-1.5 text-xs text-white hover:text-crimson font-medium"
                     >
                       {item.title}
                     </Link>
@@ -349,7 +349,7 @@ export function Navbar() {
             <Link 
               href="/attorneys" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-nepal-surface hover:text-crimson"
+              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
             >
               Attorneys
             </Link>
@@ -357,7 +357,7 @@ export function Navbar() {
             <Link 
               href="/case-results" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-nepal-surface hover:text-crimson"
+              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
             >
               Landmark Verdicts
             </Link>
@@ -365,7 +365,7 @@ export function Navbar() {
             <Link 
               href="/contact" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-nepal-surface hover:text-crimson"
+              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
             >
               Contact Us
             </Link>
@@ -373,9 +373,9 @@ export function Navbar() {
             <Link 
               href="/admin" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-slate-300 hover:bg-nepal-surface hover:text-white flex items-center gap-2"
+              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson flex items-center gap-2"
             >
-              <Lock className="w-4 h-4 text-nepal-blue" />
+              <Lock className="w-4 h-4 text-crimson" />
               <span>Admin Operations Portal</span>
             </Link>
           </nav>
