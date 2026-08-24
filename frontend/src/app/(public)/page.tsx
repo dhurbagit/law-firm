@@ -223,17 +223,15 @@ export default async function HomePage() {
       </section>
 
       {/* ============================================================
-          6. LANDMARK VERDICTS  ·  DARK SURFACE
+          6. LANDMARK VERDICTS  ·  LIGHT CANVAS
           ============================================================ */}
-      <section className="section-dark py-section border-top border-bottom border-sakura">
+      <section className="section-light py-section border-top border-canvas">
         <div className="container-xl">
 
           <div className="d-flex flex-column flex-md-row align-items-md-end justify-content-between mb-4 gap-3">
             <div>
-              <span className="text-uppercase fw-bold small d-block mb-2 text-crimson" style={{ letterSpacing: '0.1em' }}>
-                Proven Track Record
-              </span>
-              <h2 className="font-serif fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)' }}>
+              <div className="badge-category mb-3">Proven Track Record</div>
+              <h2 className="font-serif fw-bold mb-0" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)', color: '#001F54' }}>
                 Landmark Verdicts &amp; Significant Recoveries
               </h2>
             </div>
@@ -258,19 +256,14 @@ export default async function HomePage() {
       </section>
 
       {/* ============================================================
-          7. CLIENT TESTIMONIALS  ·  DARK CANVAS
+          7. CLIENT TESTIMONIALS  ·  LIGHT CANVAS (ALT SHADE)
           ============================================================ */}
-      <section className="section-dark py-section">
+      <section className="py-section" style={{ backgroundColor: '#EEF2F7' }}>
         <div className="container-xl">
 
           <div className="text-center mx-auto mb-5" style={{ maxWidth: '540px' }}>
-            <div
-              className="badge mb-3 border border-sakura text-crimson fw-bold text-uppercase"
-              style={{ backgroundColor: 'rgba(10,37,64,0.8)', letterSpacing: '0.1em', fontSize: '10px', padding: '0.4rem 0.9rem' }}
-            >
-              Client Endorsements
-            </div>
-            <h2 className="font-serif fw-bold text-white mb-0" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)' }}>
+            <div className="badge-category mb-3">Client Endorsements</div>
+            <h2 className="font-serif fw-bold mb-0" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)', color: '#001F54' }}>
               Trusted When Survival Is on the Line
             </h2>
           </div>
@@ -294,16 +287,16 @@ export default async function HomePage() {
               },
             ].map(({ quote, name, firm }) => (
               <div key={name} className="col-12 col-md-4">
-                <div className="sakura-glass-card h-100 p-4 d-flex flex-column justify-content-between">
+                <div className="card-light h-100 p-4 d-flex flex-column justify-content-between">
                   <div>
-                    <Quote className="text-crimson mb-3" style={{ width: '28px', height: '28px', opacity: 0.6 }} />
-                    <p className="text-white-50 small lh-base mb-4 fst-italic">
+                    <Quote className="text-crimson mb-3" style={{ width: '28px', height: '28px', opacity: 0.7 }} />
+                    <p className="small lh-base mb-4 fst-italic" style={{ color: '#334155' }}>
                       &ldquo;{quote}&rdquo;
                     </p>
                   </div>
-                  <div className="pt-3 border-top border-sakura">
-                    <span className="font-serif fw-bold text-white d-block small">{name}</span>
-                    <span className="text-white-50" style={{ fontSize: '11px' }}>{firm}</span>
+                  <div className="pt-3 border-top border-canvas">
+                    <span className="font-serif fw-bold d-block small" style={{ color: '#001F54' }}>{name}</span>
+                    <span style={{ color: '#64748B', fontSize: '11px' }}>{firm}</span>
                   </div>
                 </div>
               </div>
@@ -314,10 +307,23 @@ export default async function HomePage() {
       </section>
 
       {/* ============================================================
-          8. CASE EVALUATION FORM  ·  DARK SURFACE
+          8. CASE EVALUATION FORM  ·  LIGHT CANVAS
           ============================================================ */}
-      <section className="section-dark py-section border-top border-sakura">
+      <section className="section-light py-section border-top border-canvas">
         <div className="container-xl" style={{ maxWidth: '860px' }}>
+
+          {/* Section intro */}
+          <div className="text-center mb-5">
+            <div className="badge-category mb-3">Free Confidential Consultation</div>
+            <h2 className="font-serif fw-bold mb-2" style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.2rem)', color: '#001F54' }}>
+              Request a Case Evaluation
+            </h2>
+            <p className="mb-0" style={{ color: '#475569', maxWidth: '540px', margin: '0 auto' }}>
+              Speak directly with our senior partners. All submissions are protected under preliminary attorney-client privilege.
+            </p>
+          </div>
+
+          {/* Form card on white surface */}
           <ConsultationForm
             practiceAreas={practiceAreas.map(p => ({ id: p.id, title: p.title }))}
           />

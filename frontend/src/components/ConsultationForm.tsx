@@ -121,35 +121,35 @@ export function ConsultationForm({
   };
 
   return (
-    <div id="case-evaluation" className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 p-md-5 text-white">
+    <div id="case-evaluation" className="card-light rounded-4 p-4 p-md-5">
       {/* Top Header */}
       <div className="mb-4">
-        <div className="badge bg-nepal-dark text-white border border-sakura px-3 py-2 rounded-pill small fw-bold text-uppercase d-inline-flex align-items-center gap-1 mb-3">
-          <Shield className="text-crimson" style={{ width: '14px', height: '14px' }} />
-          <span>Strictly Confidential & Privileged</span>
+        <div className="badge-category d-inline-flex align-items-center gap-1 mb-3">
+          <Shield style={{ width: '13px', height: '13px', color: '#DC143C' }} />
+          <span>Strictly Confidential &amp; Privileged</span>
         </div>
-        <h3 className="font-serif fs-2 fw-bold text-white mb-2">
+        <h3 className="font-serif fs-2 fw-bold mb-2" style={{ color: '#001F54' }}>
           {title}
         </h3>
-        <p className="text-white-50 small mb-0 lh-base">
+        <p className="small mb-0 lh-base" style={{ color: '#475569' }}>
           {subtitle}
         </p>
       </div>
 
       {/* Success State Alert */}
       {successMessage && (
-        <div className="alert bg-nepal-dark border border-sakura text-white p-4 rounded-3 mb-4 shadow">
+        <div className="alert border rounded-3 mb-4 p-4" style={{ backgroundColor: '#F0FDF4', borderColor: '#86EFAC !important' }}>
           <div className="d-flex align-items-start gap-3">
-            <CheckCircle2 className="text-crimson flex-shrink-0 mt-1" style={{ width: '28px', height: '28px' }} />
+            <CheckCircle2 style={{ width: '24px', height: '24px', color: '#16A34A', flexShrink: 0, marginTop: '2px' }} />
             <div>
-              <h5 className="font-serif fw-bold text-white mb-1">
+              <h5 className="font-serif fw-bold mb-1" style={{ color: '#001F54' }}>
                 Inquiry Received (File #{submittedId})
               </h5>
-              <p className="text-white-50 small mb-2 lh-base">
+              <p className="small mb-2 lh-base" style={{ color: '#475569' }}>
                 {successMessage}
               </p>
-              <div className="small text-white-50 d-flex align-items-center gap-1">
-                <Lock className="text-nepal-blue" style={{ width: '14px', height: '14px' }} />
+              <div className="small d-flex align-items-center gap-1" style={{ color: '#64748B' }}>
+                <Lock style={{ width: '13px', height: '13px', color: '#003893' }} />
                 <span>Protected under Preliminary Attorney-Client Privilege.</span>
               </div>
             </div>
@@ -159,19 +159,39 @@ export function ConsultationForm({
 
       {/* Error Alert */}
       {errorMessage && (
-        <div className="alert alert-danger bg-crimson border-0 text-white d-flex align-items-center gap-2 p-3 rounded-3 mb-4">
+        <div className="alert bg-crimson border-0 text-white d-flex align-items-center gap-2 p-3 rounded-3 mb-4">
           <AlertCircle style={{ width: '18px', height: '18px' }} />
           <span className="small fw-semibold">{errorMessage}</span>
         </div>
       )}
 
-      {/* The Form */}
       <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+
+        {/* Labels — use dark text for light card */}
+        <style>{`
+          #case-evaluation .form-label { color: #001F54 !important; }
+          #case-evaluation .form-control,
+          #case-evaluation .form-select {
+            background-color: #F8FAFC;
+            color: #0F172A;
+            border: 1px solid #CBD5E1;
+          }
+          #case-evaluation .form-control:focus,
+          #case-evaluation .form-select:focus {
+            background-color: #FFFFFF;
+            color: #0F172A;
+            border-color: #DC143C;
+            box-shadow: 0 0 0 0.2rem rgba(220,20,60,0.15);
+          }
+          #case-evaluation .form-control::placeholder {
+            color: #94A3B8;
+          }
+        `}</style>
         
         {/* Row 1: Full Name & Email */}
         <div className="row g-3">
           <div className="col-12 col-md-6">
-            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
+            <label className="form-label text-uppercase fw-bold small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Full Legal Name <span className="text-crimson">*</span>
             </label>
             <input
@@ -188,7 +208,7 @@ export function ConsultationForm({
           </div>
 
           <div className="col-12 col-md-6">
-            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
+            <label className="form-label text-uppercase fw-bold small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Email Address <span className="text-crimson">*</span>
             </label>
             <input
@@ -208,7 +228,7 @@ export function ConsultationForm({
         {/* Row 2: Phone & Practice Area */}
         <div className="row g-3">
           <div className="col-12 col-md-6">
-            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
+            <label className="form-label text-uppercase fw-bold small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Direct Telephone <span className="text-crimson">*</span>
             </label>
             <input
@@ -225,7 +245,7 @@ export function ConsultationForm({
           </div>
 
           <div className="col-12 col-md-6">
-            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
+            <label className="form-label text-uppercase fw-bold small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Primary Legal Area of Concern
             </label>
             <select
@@ -244,7 +264,7 @@ export function ConsultationForm({
 
         {/* Case Details */}
         <div>
-          <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
+          <label className="form-label text-uppercase fw-bold small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
             Brief Summary of Legal Matter <span className="text-crimson">*</span>
           </label>
           <textarea
@@ -260,14 +280,13 @@ export function ConsultationForm({
           )}
         </div>
 
-        {/* Confidentiality Notice */}
-        <div className="p-3 rounded-3 bg-nepal-dark border border-sakura d-flex flex-wrap align-items-center justify-content-between gap-3 text-white-50 small">
-          <div className="d-flex align-items-center gap-2">
-            <Lock className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
+        <div className="p-3 rounded-3 border d-flex flex-wrap align-items-center justify-content-between gap-3 small" style={{ backgroundColor: '#F1F5F9', borderColor: '#CBD5E1 !important' }}>
+          <div className="d-flex align-items-center gap-2" style={{ color: '#475569' }}>
+            <Lock className="text-crimson flex-shrink-0" style={{ width: '15px', height: '15px' }} />
             <span>Encrypted 256-bit transmission to Apex Senior Partners.</span>
           </div>
-          <div className="d-none d-sm-flex align-items-center gap-1 text-white fw-bold">
-            <HelpCircle className="text-nepal-blue" style={{ width: '16px', height: '16px' }} />
+          <div className="d-none d-sm-flex align-items-center gap-1 fw-bold" style={{ color: '#001F54' }}>
+            <HelpCircle style={{ width: '15px', height: '15px', color: '#003893' }} />
             <span>No fee unless we win</span>
           </div>
         </div>
