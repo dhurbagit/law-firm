@@ -13,7 +13,6 @@ import {
   Edit, 
   Trash2, 
   CheckCircle2, 
-  X, 
   Scale, 
   Users, 
   Eye
@@ -152,259 +151,267 @@ export default function PracticeAreasManagementPage() {
   };
 
   return (
-    <div className="space-y-6 font-sans bg-[#000000] text-white">
+    <div className="d-flex flex-column gap-4 text-white">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#DC143C] block mb-1 font-sans">
+          <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ letterSpacing: '0.1em' }}>
             Core Firm Disciplines
           </span>
-          <h1 className="font-serif text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="font-serif fs-2 fw-bold text-white mb-0">
             Practice Areas Manager
           </h1>
         </div>
 
-        <button
-          onClick={openCreateModal}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#DC143C] hover:bg-[#B00E2F] text-white text-xs font-bold shadow-lg shadow-[#DC143C]/20 transition cursor-pointer font-sans"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Create Practice Discipline</span>
-        </button>
+        <div>
+          <button
+            onClick={openCreateModal}
+            className="btn btn-danger btn-crimson btn-sm fw-bold px-3 py-2 rounded-3 text-white d-flex align-items-center gap-1 shadow"
+          >
+            <Plus style={{ width: '16px', height: '16px' }} />
+            <span>Create Practice Discipline</span>
+          </button>
+        </div>
       </div>
 
       {alertMsg && (
-        <div className="p-3.5 rounded-xl bg-[#001C4A] border border-[#003893] text-xs text-white flex items-center gap-2 animate-in fade-in font-bold">
-          <CheckCircle2 className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+        <div className="alert alert-success bg-nepal-surface border border-sakura text-white p-3 rounded-3 d-flex align-items-center gap-2 shadow small mb-0">
+          <CheckCircle2 className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
           <span>{alertMsg}</span>
         </div>
       )}
 
       {/* Grid of Practice Areas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-sans">
+      <div className="row g-4">
         {loading ? (
-          <div className="col-span-3 py-16 text-center text-slate-400">
-            <div className="w-6 h-6 border-2 border-[#DC143C] border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-            <span>Loading practice disciplines...</span>
+          <div className="col-12 py-5 text-center text-white-50">
+            <div className="spinner-border text-danger spinner-border-sm mb-2" role="status"></div>
+            <div>Loading practice disciplines...</div>
           </div>
         ) : practiceAreas.map((area) => (
-          <div
-            key={area.id}
-            className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] flex flex-col justify-between space-y-4 shadow-xl hover:border-[#DC143C] transition group"
-          >
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-xl bg-[#001C4A] border border-[#003893] flex items-center justify-center text-white">
-                  <Scale className="w-5 h-5 text-[#DC143C]" />
+          <div key={area.id} className="col-12 col-md-6 col-lg-4">
+            <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white d-flex flex-column justify-content-between h-100 hover-border-crimson">
+              <div className="d-flex flex-column gap-3">
+                <div className="d-flex align-items-center justify-content-between">
+                  <div 
+                    className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-dark border border-sakura text-crimson"
+                    style={{ width: '40px', height: '40px' }}
+                  >
+                    <Scale style={{ width: '20px', height: '20px' }} />
+                  </div>
+                  <div className="d-flex align-items-center gap-1">
+                    {area.is_featured && (
+                      <span className="badge bg-crimson text-white" style={{ fontSize: '9px' }}>
+                        Core
+                      </span>
+                    )}
+                    {area.parent && (
+                      <span className="badge bg-nepal-blue text-white" style={{ fontSize: '9px' }}>
+                        Sub-practice
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  {area.is_featured && (
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-[#DC143C]/20 text-[#DC143C] border border-[#DC143C]">
-                      Core
-                    </span>
-                  )}
-                  {area.parent && (
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase bg-[#003893]/30 text-white">
-                      Sub-practice
-                    </span>
-                  )}
+
+                <h3 className="font-serif fs-5 fw-bold text-white mb-0">
+                  {area.title}
+                </h3>
+
+                <p className="text-white-50 small line-clamp-3 mb-0 lh-base">
+                  {area.short_summary}
+                </p>
+
+                {area.attorneys && area.attorneys.length > 0 && (
+                  <div className="pt-2 text-white fw-bold d-flex align-items-center gap-1 small" style={{ fontSize: '11px' }}>
+                    <Users className="text-crimson" style={{ width: '14px', height: '14px' }} />
+                    <span>{area.attorneys.length} Dedicated Attorney{area.attorneys.length > 1 ? 's' : ''} Assigned</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Actions Bar */}
+              <div className="pt-3 mt-3 border-top border-sakura d-flex align-items-center justify-content-between small">
+                <a
+                  href={`/practice-areas/${area.slug}`}
+                  target="_blank"
+                  className="text-crimson text-decoration-none fw-bold d-flex align-items-center gap-1 hover-white"
+                >
+                  <Eye style={{ width: '14px', height: '14px' }} />
+                  <span>View Public Page</span>
+                </a>
+
+                <div className="d-flex align-items-center gap-1">
+                  <button
+                    onClick={() => openEditModal(area)}
+                    className="btn btn-outline-light btn-sm p-1 border-sakura"
+                    title="Edit Practice Area"
+                  >
+                    <Edit style={{ width: '14px', height: '14px' }} />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(area.id, area.title)}
+                    className="btn btn-outline-danger btn-sm p-1 border-crimson"
+                    title="Delete Practice Area"
+                  >
+                    <Trash2 style={{ width: '14px', height: '14px' }} />
+                  </button>
                 </div>
               </div>
 
-              <h3 className="font-serif text-lg font-bold text-white group-hover:text-[#DC143C] transition-colors">
-                {area.title}
-              </h3>
-
-              <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed font-sans">
-                {area.short_summary}
-              </p>
-
-              {area.attorneys && area.attorneys.length > 0 && (
-                <div className="pt-2 text-[11px] text-white flex items-center gap-1.5 font-bold">
-                  <Users className="w-3.5 h-3.5 text-[#DC143C]" />
-                  <span>{area.attorneys.length} Dedicated Attorney{area.attorneys.length > 1 ? 's' : ''} Assigned</span>
-                </div>
-              )}
             </div>
-
-            {/* Actions Bar */}
-            <div className="pt-4 border-t border-[#003893]/40 flex items-center justify-between font-sans">
-              <a
-                href={`/practice-areas/${area.slug}`}
-                target="_blank"
-                className="text-xs text-[#DC143C] hover:text-white flex items-center gap-1 font-bold"
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>View Public Page</span>
-              </a>
-
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => openEditModal(area)}
-                  className="p-1.5 rounded-lg bg-[#001C4A] hover:bg-[#003893] text-white transition cursor-pointer"
-                  title="Edit Practice Area"
-                >
-                  <Edit className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => handleDelete(area.id, area.title)}
-                  className="p-1.5 rounded-lg bg-[#DC143C]/30 hover:bg-[#DC143C] text-white transition cursor-pointer"
-                  title="Delete Practice Area"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-
           </div>
         ))}
       </div>
 
       {/* CREATE & EDIT MODAL */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto font-sans">
-          <div className="w-full max-w-2xl bg-[#00122E] border border-[#003893] rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in zoom-in-95 duration-200">
-            
-            <div className="flex items-start justify-between">
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#DC143C] block mb-1 font-sans">
-                  CMS Practice Area Editor
-                </span>
-                <h2 className="font-serif text-2xl font-bold text-white">
-                  {editingArea ? `Edit: ${editingArea.title}` : 'Create New Practice Discipline'}
-                </h2>
-              </div>
-              <button
-                onClick={() => setModalOpen(false)}
-                className="p-2 rounded-xl bg-[#001C4A] text-slate-300 hover:text-white cursor-pointer"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4 font-sans">
+        <div className="modal show d-block bg-black bg-opacity-75" tabIndex={-1} role="dialog">
+          <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div className="modal-content bg-nepal-surface border border-sakura rounded-4 text-white p-3 p-md-4 shadow-lg">
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="modal-header border-bottom border-sakura pb-3">
                 <div>
-                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
-                    Discipline Title *
+                  <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
+                    CMS Practice Area Editor
+                  </span>
+                  <h3 className="modal-title font-serif fs-4 fw-bold text-white">
+                    {editingArea ? `Edit: ${editingArea.title}` : 'Create New Practice Discipline'}
+                  </h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setModalOpen(false)}
+                  className="btn-close btn-close-white"
+                  aria-label="Close"
+                ></button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="modal-body py-4 d-flex flex-column gap-3">
+                
+                <div className="row g-3">
+                  <div className="col-12 col-md-6">
+                    <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px' }}>
+                      Discipline Title *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Antitrust & Competition"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="form-control"
+                    />
+                  </div>
+
+                  <div className="col-12 col-md-6">
+                    <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px' }}>
+                      Parent Practice Area (Optional)
+                    </label>
+                    <select
+                      value={parentId || ''}
+                      onChange={(e) => setParentId(e.target.value ? Number(e.target.value) : null)}
+                      className="form-select cursor-pointer"
+                    >
+                      <option value="">None (Top-Level Discipline)</option>
+                      {practiceAreas.filter(p => !editingArea || p.id !== editingArea.id).map(p => (
+                        <option key={p.id} value={p.id}>{p.title}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Icon Selector */}
+                <div>
+                  <label className="form-label text-uppercase fw-bold text-white small mb-1" style={{ fontSize: '11px' }}>
+                    Prestige Icon Symbol
+                  </label>
+                  <div className="row g-2">
+                    {availableIcons.map((ic) => (
+                      <div key={ic.name} className="col-6 col-sm-3">
+                        <button
+                          type="button"
+                          onClick={() => setIcon(ic.name)}
+                          className={`btn btn-sm w-100 d-flex align-items-center gap-1 p-2 rounded-2 fw-bold text-truncate ${
+                            icon === ic.name 
+                              ? 'btn-primary text-white border-crimson' 
+                              : 'btn-outline-light border-sakura text-white-50'
+                          }`}
+                          style={{ fontSize: '11px' }}
+                        >
+                          <Scale className="text-crimson flex-shrink-0" style={{ width: '14px', height: '14px' }} />
+                          <span className="text-truncate">{ic.label}</span>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Short Summary */}
+                <div>
+                  <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px' }}>
+                    Short Executive Summary *
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Antitrust & Competition"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
+                    placeholder="One sentence overview for cards and meta descriptions..."
+                    value={shortSummary}
+                    onChange={(e) => setShortSummary(e.target.value)}
+                    className="form-control"
                   />
                 </div>
 
+                {/* Long Description */}
                 <div>
-                  <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
-                    Parent Practice Area (Optional)
+                  <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px' }}>
+                    Full Strategic Practice Description *
                   </label>
-                  <select
-                    value={parentId || ''}
-                    onChange={(e) => setParentId(e.target.value ? Number(e.target.value) : null)}
-                    className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C] cursor-pointer"
+                  <textarea
+                    rows={4}
+                    required
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="form-control"
+                    placeholder="Detailed regulatory scope, trial capabilities, and client representation details..."
+                  ></textarea>
+                </div>
+
+                {/* Featured Toggle */}
+                <div className="form-check pt-1">
+                  <input
+                    type="checkbox"
+                    id="featured-toggle"
+                    checked={isFeatured}
+                    onChange={(e) => setIsFeatured(e.target.checked)}
+                    className="form-check-input"
+                  />
+                  <label htmlFor="featured-toggle" className="form-check-label text-white small fw-bold">
+                    Featured Core Practice (Highlighted on Homepage & Header)
+                  </label>
+                </div>
+
+                {/* Submit Buttons */}
+                <div className="modal-footer border-top border-sakura pt-3 d-flex align-items-center justify-content-end gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setModalOpen(false)}
+                    className="btn btn-outline-light btn-sm border-sakura"
                   >
-                    <option value="" className="bg-[#000000] text-slate-400">None (Top-Level Discipline)</option>
-                    {practiceAreas.filter(p => !editingArea || p.id !== editingArea.id).map(p => (
-                      <option key={p.id} value={p.id} className="bg-[#000000] text-white">{p.title}</option>
-                    ))}
-                  </select>
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={modalLoading}
+                    className="btn btn-danger btn-crimson btn-sm fw-bold shadow"
+                  >
+                    {modalLoading ? 'Saving...' : (editingArea ? 'Update Practice Discipline' : 'Publish Practice Discipline')}
+                  </button>
                 </div>
-              </div>
 
-              {/* Icon Selector */}
-              <div>
-                <label className="block text-xs uppercase font-bold text-slate-200 mb-1.5">
-                  Prestige Icon Symbol
-                </label>
-                <div className="grid grid-cols-4 gap-2">
-                  {availableIcons.map((ic) => (
-                    <button
-                      type="button"
-                      key={ic.name}
-                      onClick={() => setIcon(ic.name)}
-                      className={`p-2 rounded-lg text-xs font-bold flex items-center gap-2 border transition cursor-pointer ${
-                        icon === ic.name 
-                          ? 'bg-[#003893] border-[#DC143C] text-white' 
-                          : 'bg-[#000000] border-[#003893]/40 text-slate-400'
-                      }`}
-                    >
-                      <Scale className="w-3.5 h-3.5 text-[#DC143C]" />
-                      <span className="truncate">{ic.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              </form>
 
-              {/* Short Summary */}
-              <div>
-                <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
-                  Short Executive Summary *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="One sentence overview for cards and meta descriptions..."
-                  value={shortSummary}
-                  onChange={(e) => setShortSummary(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C]"
-                />
-              </div>
-
-              {/* Long Description */}
-              <div>
-                <label className="block text-xs uppercase font-bold text-slate-200 mb-1">
-                  Full Strategic Practice Description *
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-[#000000] border border-[#003893] text-white text-xs outline-none focus:border-[#DC143C] resize-none"
-                  placeholder="Detailed regulatory scope, trial capabilities, and client representation details..."
-                ></textarea>
-              </div>
-
-              {/* Featured Toggle */}
-              <div className="flex items-center gap-3 pt-1">
-                <input
-                  type="checkbox"
-                  id="featured-toggle"
-                  checked={isFeatured}
-                  onChange={(e) => setIsFeatured(e.target.checked)}
-                  className="accent-[#DC143C] w-4 h-4"
-                />
-                <label htmlFor="featured-toggle" className="text-xs text-slate-200 font-bold cursor-pointer">
-                  Featured Core Practice (Highlighted on Homepage & Header)
-                </label>
-              </div>
-
-              {/* Submit Buttons */}
-              <div className="pt-4 border-t border-[#003893]/40 flex items-center justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setModalOpen(false)}
-                  className="px-5 py-2.5 rounded-xl bg-[#001C4A] text-slate-200 text-xs font-bold hover:bg-[#003893] cursor-pointer"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={modalLoading}
-                  className="px-6 py-2.5 rounded-xl bg-[#DC143C] hover:bg-[#B00E2F] text-white text-xs font-bold shadow-lg shadow-[#DC143C]/20 cursor-pointer disabled:opacity-50"
-                >
-                  {modalLoading ? 'Saving...' : (editingArea ? 'Update Practice Discipline' : 'Publish Practice Discipline')}
-                </button>
-              </div>
-
-            </form>
-
+            </div>
           </div>
         </div>
       )}

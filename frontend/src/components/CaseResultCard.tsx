@@ -9,45 +9,40 @@ interface CaseResultCardProps {
 
 export function CaseResultCard({ result }: CaseResultCardProps) {
   return (
-    <div className="sakura-glass-card rounded-2xl p-7 flex flex-col justify-between border border-sakura-border relative overflow-hidden group font-sans">
-      {/* Background seal glow */}
-      <div className="absolute top-0 right-0 p-6 opacity-5 pointer-events-none group-hover:opacity-15 transition-opacity">
-        <Trophy className="w-32 h-32 text-crimson" />
-      </div>
-
+    <div className="card sakura-glass-card h-100 border-0 rounded-4 p-4 d-flex flex-column justify-content-between position-relative overflow-hidden">
       <div>
         {/* Top Verdict Header */}
-        <div className="flex items-center justify-between gap-4 mb-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-crimson text-white text-xs font-bold uppercase tracking-wider shadow">
-            <Trophy className="w-3.5 h-3.5 text-white" />
+        <div className="d-flex align-items-center justify-content-between gap-3 mb-3">
+          <div className="badge bg-crimson text-white px-3 py-2 rounded-pill small fw-bold text-uppercase d-flex align-items-center gap-1 shadow-sm">
+            <Trophy style={{ width: '14px', height: '14px' }} />
             <span>{result.settlement_verdict}</span>
           </div>
-          <div className="flex items-center gap-1 text-xs text-slate-300 font-bold">
-            <Calendar className="w-3.5 h-3.5 text-nepal-blue" />
+          <div className="d-flex align-items-center gap-1 small text-white-50 fw-bold">
+            <Calendar className="text-nepal-blue" style={{ width: '14px', height: '14px' }} />
             <span>{result.case_year}</span>
           </div>
         </div>
 
         {/* Case Title */}
-        <h3 className="font-serif text-lg sm:text-xl font-bold text-white mb-3 group-hover:text-crimson transition-colors leading-snug">
+        <h4 className="font-serif fs-5 fw-bold text-white mb-2 lh-snug">
           {result.title}
-        </h3>
+        </h4>
 
         {/* Case Summary */}
-        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-6 font-sans">
+        <p className="text-white-50 small lh-base mb-4">
           {result.summary}
         </p>
       </div>
 
       {/* Footer details */}
-      <div className="pt-4 border-t border-sakura-border/30 space-y-2 text-xs font-sans">
-        <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="pt-3 border-top border-sakura">
+        <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 small">
           {result.practice_area && (
             <Link 
               href={result.practice_area.slug ? `/practice-areas/${result.practice_area.slug}` : '/practice-areas'}
-              className="flex items-center gap-1.5 text-slate-300 hover:text-crimson transition"
+              className="text-white-50 text-decoration-none hover-crimson d-flex align-items-center gap-1"
             >
-              <Scale className="w-3.5 h-3.5 text-nepal-blue" />
+              <Scale className="text-nepal-blue" style={{ width: '14px', height: '14px' }} />
               <span>{result.practice_area.title}</span>
             </Link>
           )}
@@ -55,9 +50,9 @@ export function CaseResultCard({ result }: CaseResultCardProps) {
           {result.lead_attorney && (
             <Link 
               href={result.lead_attorney.slug ? `/attorneys/${result.lead_attorney.slug}` : '/attorneys'}
-              className="flex items-center gap-1.5 text-crimson hover:text-white transition font-bold"
+              className="text-crimson text-decoration-none fw-bold d-flex align-items-center gap-1"
             >
-              <UserCheck className="w-3.5 h-3.5" />
+              <UserCheck style={{ width: '14px', height: '14px' }} />
               <span>Lead: {result.lead_attorney.name}</span>
             </Link>
           )}

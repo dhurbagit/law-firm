@@ -61,40 +61,40 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 hero-pattern bg-nepal-dark font-sans text-white">
-      <div className="w-full max-w-md p-8 sm:p-10 rounded-3xl bg-nepal-surface border border-sakura-border shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
+    <div className="min-vh-100 d-flex align-items-center justify-content-center p-3 bg-nepal-dark text-white">
+      <div className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 p-md-5 text-white w-100" style={{ maxWidth: '440px' }}>
         
-        {/* Top ambient glow */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-nepal-blue/20 rounded-full blur-2xl pointer-events-none"></div>
-
         {/* Header */}
-        <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-nepal-blue border border-crimson flex items-center justify-center text-white mx-auto mb-4 shadow-xl">
-            <Scale className="w-7 h-7" />
+        <div className="text-center mb-4">
+          <div 
+            className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-blue border border-crimson text-white mx-auto mb-3 shadow"
+            style={{ width: '54px', height: '54px' }}
+          >
+            <Scale style={{ width: '28px', height: '28px' }} />
           </div>
-          <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-crimson block font-sans">
+          <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ fontSize: '10px', letterSpacing: '0.2em' }}>
             Apex Legal Counsel LLP
           </span>
-          <h1 className="font-serif text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="font-serif fs-3 fw-bold text-white mb-2">
             Administrative Portal
           </h1>
-          <p className="text-xs text-slate-300 leading-relaxed font-sans">
+          <p className="text-white-50 small mb-0 lh-base">
             Authorized partner and administrator access only. All actions are logged and audited.
           </p>
         </div>
 
         {/* Error message */}
         {error && (
-          <div className="p-3.5 rounded-xl bg-crimson/15 border border-crimson/40 text-xs text-slate-200 flex items-start gap-2.5 animate-in fade-in font-sans">
-            <AlertCircle className="w-4 h-4 text-crimson flex-shrink-0 mt-0.5" />
-            <span>{error}</span>
+          <div className="alert alert-danger bg-crimson border-0 text-white d-flex align-items-center gap-2 p-3 rounded-3 mb-4">
+            <AlertCircle style={{ width: '18px', height: '18px' }} />
+            <span className="small fw-semibold">{error}</span>
           </div>
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 font-sans">
+        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3 mb-3">
           <div>
-            <label className="block text-xs uppercase tracking-wider font-bold text-slate-200 mb-1.5 font-sans">
+            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Counsel / Admin Email
             </label>
             <input
@@ -102,13 +102,13 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition font-sans"
+              className="form-control"
               placeholder="admin@lawfirm.com"
             />
           </div>
 
           <div>
-            <label className="block text-xs uppercase tracking-wider font-bold text-slate-200 mb-1.5 font-sans">
+            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Password
             </label>
             <input
@@ -116,7 +116,7 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition font-sans"
+              className="form-control"
               placeholder="••••••••••••"
             />
           </div>
@@ -124,42 +124,42 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl text-sm font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-lg shadow-crimson/20 transition flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 font-sans"
+            className="btn btn-danger btn-crimson btn-lg w-100 fw-bold py-3 rounded-3 shadow d-flex align-items-center justify-content-center gap-2 mt-2"
           >
             {loading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin" />
+                <Loader2 className="animate-spin" style={{ width: '18px', height: '18px' }} />
                 <span>Authenticating with Sanctum...</span>
               </>
             ) : (
               <>
                 <span>Sign In to Operations Portal</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight style={{ width: '16px', height: '16px' }} />
               </>
             )}
           </button>
         </form>
 
         {/* 1-Click Quick Demo Sign In */}
-        <div className="pt-2 font-sans">
+        <div className="mb-4">
           <button
             type="button"
             onClick={handleQuickDemoLogin}
             disabled={loading}
-            className="w-full py-2.5 rounded-xl text-xs font-bold text-white bg-nepal-dark hover:bg-nepal-blue border border-sakura-border transition flex items-center justify-center gap-2 cursor-pointer"
+            className="btn btn-outline-light w-100 py-2 rounded-3 small fw-bold border-sakura text-white d-flex align-items-center justify-content-center gap-2"
           >
-            <KeyRound className="w-3.5 h-3.5 text-crimson" />
+            <KeyRound className="text-crimson" style={{ width: '14px', height: '14px' }} />
             <span>1-Click Admin Access (Pre-Filled)</span>
           </button>
         </div>
 
         {/* Credentials note */}
-        <div className="pt-4 border-t border-sakura-border/40 space-y-2 text-center text-xs text-slate-300 font-sans">
-          <div className="p-3 rounded-lg bg-nepal-dark border border-sakura-border/40 text-[11px] text-slate-300">
-            <span className="text-crimson font-bold block mb-1">Seeded Administrator Credentials:</span>
+        <div className="pt-3 border-top border-sakura text-center small text-white-50">
+          <div className="p-2 rounded-2 bg-nepal-dark border border-sakura text-white-50 mb-2" style={{ fontSize: '11px' }}>
+            <span className="text-crimson fw-bold d-block mb-1">Seeded Administrator Credentials:</span>
             <code>admin@lawfirm.com</code> &bull; <code>Password123!</code>
           </div>
-          <Link href="/" className="inline-block text-[11px] text-slate-400 hover:text-white transition pt-1">
+          <Link href="/" className="text-white-50 text-decoration-none hover-crimson" style={{ fontSize: '11px' }}>
             ← Return to Public Law Firm Website
           </Link>
         </div>

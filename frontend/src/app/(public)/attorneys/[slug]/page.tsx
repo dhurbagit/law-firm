@@ -8,7 +8,6 @@ import { CaseResultCard } from '@/components/CaseResultCard';
 import { ConsultationForm } from '@/components/ConsultationForm';
 import { JsonLd, getAttorneyPersonSchema } from '@/components/JsonLd';
 import { 
-  ChevronRight, 
   Mail, 
   Phone, 
   Award, 
@@ -89,67 +88,72 @@ export default async function AttorneyBioPage({ params }: Props) {
   };
 
   return (
-    <div className="min-h-screen py-12 font-sans bg-nepal-dark text-white">
+    <div className="min-vh-100 py-5 bg-nepal-dark text-white">
       <JsonLd data={personJsonLd} />
       <JsonLd data={breadcrumbSchema} />
 
       {/* Breadcrumbs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 font-sans">
-        <nav className="flex items-center gap-2 text-xs text-slate-300">
-          <Link href="/" className="hover:text-crimson transition">
-            Home
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-nepal-blue" />
-          <Link href="/attorneys" className="hover:text-crimson transition">
-            Attorneys
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5 text-nepal-blue" />
-          <span className="text-white font-bold">{attorney.name}</span>
+      <div className="container-xl mb-4">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb mb-0 small">
+            <li className="breadcrumb-item">
+              <Link href="/" className="text-white-50 text-decoration-none hover-crimson">
+                Home
+              </Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link href="/attorneys" className="text-white-50 text-decoration-none hover-crimson">
+                Attorneys
+              </Link>
+            </li>
+            <li className="breadcrumb-item active text-white fw-bold" aria-current="page">
+              {attorney.name}
+            </li>
+          </ol>
         </nav>
       </div>
 
       {/* Attorney Hero / Bio Card */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="rounded-3xl bg-nepal-surface border border-sakura-border shadow-2xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="container-xl mb-5">
+        <div className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 overflow-hidden text-white">
+          <div className="row g-0 align-items-stretch">
             
             {/* Left Photo */}
-            <div className="lg:col-span-5 relative min-h-[380px] sm:min-h-[480px] bg-nepal-dark">
+            <div className="col-12 col-lg-5 position-relative bg-nepal-dark" style={{ minHeight: '400px' }}>
               {attorney.photo_url ? (
                 <Image
                   src={attorney.photo_url}
                   alt={attorney.name}
                   fill
                   priority
-                  className="object-cover object-top"
+                  className="object-fit-cover object-fit-top"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-nepal-dark text-white">
-                  <Scale className="w-20 h-20 opacity-30" />
+                <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-nepal-dark text-white">
+                  <Scale style={{ width: '80px', height: '80px', opacity: 0.3 }} />
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-nepal-dark via-transparent to-transparent lg:hidden"></div>
             </div>
 
             {/* Right Details */}
-            <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between space-y-6">
+            <div className="col-12 col-lg-7 p-4 p-md-5 d-flex flex-column justify-content-between">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-crimson block mb-2 font-sans">
+                <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ letterSpacing: '0.1em' }}>
                   {attorney.designation}
                 </span>
-                <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+                <h1 className="font-serif display-5 fw-bold text-white mb-3">
                   {attorney.name}
                 </h1>
 
                 {/* Practice Badges */}
                 {attorney.practice_areas && attorney.practice_areas.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-4 font-sans">
+                  <div className="d-flex flex-wrap gap-2 mb-4">
                     {attorney.practice_areas.map((p) => (
                       <Link
                         key={p.id}
                         href={`/practice-areas/${p.slug}`}
-                        className="px-3 py-1 rounded-full text-xs font-bold bg-nepal-dark text-white border border-sakura-border hover:border-crimson hover:bg-nepal-blue transition"
+                        className="badge bg-nepal-dark border border-sakura text-white text-decoration-none px-3 py-2 rounded-pill small fw-bold hover-border-crimson"
                       >
                         {p.title}
                       </Link>
@@ -158,24 +162,24 @@ export default async function AttorneyBioPage({ params }: Props) {
                 )}
 
                 {/* Bio text */}
-                <div className="mt-6 text-slate-200 text-sm sm:text-base leading-relaxed space-y-3 font-normal font-sans">
-                  <p>{attorney.bio}</p>
+                <div className="text-white-50 fs-6 leading-relaxed mb-4">
+                  <p className="mb-0">{attorney.bio}</p>
                 </div>
               </div>
 
               {/* Direct Contacts & Actions */}
-              <div className="pt-6 border-t border-sakura-border/40 flex flex-wrap items-center justify-between gap-4 text-xs font-sans">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-white">
-                    <Mail className="w-4 h-4 text-crimson" />
-                    <a href={`mailto:${attorney.email}`} className="hover:text-crimson font-bold">
+              <div className="pt-4 border-top border-sakura d-flex flex-wrap align-items-center justify-content-between gap-3 small">
+                <div className="d-flex flex-column gap-2">
+                  <div className="d-flex align-items-center gap-2 text-white">
+                    <Mail className="text-crimson" style={{ width: '16px', height: '16px' }} />
+                    <a href={`mailto:${attorney.email}`} className="text-white fw-bold text-decoration-none hover-crimson">
                       {attorney.email}
                     </a>
                   </div>
                   {attorney.phone && (
-                    <div className="flex items-center gap-2 text-white">
-                      <Phone className="w-4 h-4 text-crimson" />
-                      <a href={`tel:${attorney.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-crimson font-bold">
+                    <div className="d-flex align-items-center gap-2 text-white">
+                      <Phone className="text-crimson" style={{ width: '16px', height: '16px' }} />
+                      <a href={`tel:${attorney.phone.replace(/[^0-9+]/g, '')}`} className="text-white fw-bold text-decoration-none hover-crimson">
                         {attorney.phone}
                       </a>
                     </div>
@@ -184,7 +188,7 @@ export default async function AttorneyBioPage({ params }: Props) {
 
                 <a
                   href="#direct-booking"
-                  className="px-6 py-3 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-lg shadow-crimson/20 transition"
+                  className="btn btn-danger btn-crimson px-4 py-2 rounded-pill fw-bold text-white shadow"
                 >
                   Book Retainer Consultation
                 </a>
@@ -197,47 +201,51 @@ export default async function AttorneyBioPage({ params }: Props) {
       </div>
 
       {/* Credentials Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 font-sans">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="container-xl mb-5">
+        <div className="row g-4">
           
           {/* Bar Admissions */}
-          <div className="p-8 rounded-2xl bg-nepal-surface border border-sakura-border/40 space-y-4">
-            <div className="flex items-center gap-2.5 text-white">
-              <Award className="w-5 h-5 text-crimson" />
-              <h3 className="font-serif text-xl font-bold text-white">Bar Admissions & Court Licenses</h3>
+          <div className="col-12 col-md-6">
+            <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 text-white h-100">
+              <div className="d-flex align-items-center gap-2 mb-3">
+                <Award className="text-crimson" style={{ width: '20px', height: '20px' }} />
+                <h3 className="font-serif fs-5 fw-bold text-white mb-0">Bar Admissions & Court Licenses</h3>
+              </div>
+              <ul className="list-unstyled d-flex flex-column gap-2 small text-white-50 mb-0">
+                {attorney.bar_admissions && attorney.bar_admissions.length > 0 ? (
+                  attorney.bar_admissions.map((bar, i) => (
+                    <li key={i} className="d-flex align-items-center gap-2">
+                      <span className="rounded-circle bg-crimson" style={{ width: '6px', height: '6px' }}></span>
+                      <span>{bar}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li>New York State Bar & Federal Southern District</li>
+                )}
+              </ul>
             </div>
-            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-200 font-sans">
-              {attorney.bar_admissions && attorney.bar_admissions.length > 0 ? (
-                attorney.bar_admissions.map((bar, i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-crimson"></span>
-                    <span>{bar}</span>
-                  </li>
-                ))
-              ) : (
-                <li>New York State Bar & Federal Southern District</li>
-              )}
-            </ul>
           </div>
 
           {/* Education */}
-          <div className="p-8 rounded-2xl bg-nepal-surface border border-sakura-border/40 space-y-4">
-            <div className="flex items-center gap-2.5 text-white">
-              <GraduationCap className="w-5 h-5 text-crimson" />
-              <h3 className="font-serif text-xl font-bold text-white">Education & Honors</h3>
+          <div className="col-12 col-md-6">
+            <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 text-white h-100">
+              <div className="d-flex align-items-center gap-2 mb-3">
+                <GraduationCap className="text-crimson" style={{ width: '20px', height: '20px' }} />
+                <h3 className="font-serif fs-5 fw-bold text-white mb-0">Education & Honors</h3>
+              </div>
+              <ul className="list-unstyled d-flex flex-column gap-2 small text-white-50 mb-0">
+                {attorney.education && attorney.education.length > 0 ? (
+                  attorney.education.map((edu, i) => (
+                    <li key={i} className="d-flex align-items-center gap-2">
+                      <span className="rounded-circle bg-crimson" style={{ width: '6px', height: '6px' }}></span>
+                      <span>{edu}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li>Juris Doctor, Columbia Law School</li>
+                )}
+              </ul>
             </div>
-            <ul className="space-y-3 pt-2 text-xs sm:text-sm text-slate-200 font-sans">
-              {attorney.education && attorney.education.length > 0 ? (
-                attorney.education.map((edu, i) => (
-                  <li key={i} className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-crimson"></span>
-                    <span>{edu}</span>
-                  </li>
-                ))
-              ) : (
-                <li>Juris Doctor, Columbia Law School</li>
-              )}
-            </ul>
           </div>
 
         </div>
@@ -245,25 +253,27 @@ export default async function AttorneyBioPage({ params }: Props) {
 
       {/* Case Wins Led by this Attorney */}
       {attorney.case_results && attorney.case_results.length > 0 && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 font-sans">
-          <div className="mb-8">
-            <span className="text-xs font-bold uppercase tracking-widest text-crimson block mb-1 font-sans">
+        <div className="container-xl mb-5">
+          <div className="mb-4">
+            <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ letterSpacing: '0.1em' }}>
               Trial Record
             </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+            <h3 className="font-serif fs-2 fw-bold text-white mb-0">
               Landmark Cases Led by {attorney.name}
             </h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="row g-4">
             {attorney.case_results.map((res) => (
-              <CaseResultCard key={res.id} result={res} />
+              <div key={res.id} className="col-12 col-md-6 col-lg-4">
+                <CaseResultCard result={res} />
+              </div>
             ))}
           </div>
         </div>
       )}
 
       {/* Direct Booking Consultation Form */}
-      <div id="direct-booking" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="direct-booking" className="container-xl" style={{ maxWidth: '900px' }}>
         <ConsultationForm 
           title={`Consult with ${attorney.name}`}
           subtitle={`Submit your confidential case details directly to ${attorney.name}'s lead trial associate.`}

@@ -4,133 +4,140 @@ import { Scale, Phone, Mail, MapPin, ShieldCheck, Lock } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-nepal-dark border-t border-sakura-border text-slate-300 text-sm font-sans">
+    <footer className="bg-nepal-dark border-top border-sakura text-white-50 small">
       {/* Upper Footer: Main Columns */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="container-xl py-5">
+        <div className="row g-4">
           
           {/* Col 1 & 2: Firm Authority Bio */}
-          <div className="lg:col-span-2 space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-nepal-blue border border-crimson flex items-center justify-center shadow-lg">
-                <Scale className="w-5 h-5 text-white" />
+          <div className="col-12 col-lg-5 mb-4 mb-lg-0">
+            <div className="d-flex align-items-center gap-2 mb-3">
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-blue border border-crimson shadow"
+                style={{ width: '40px', height: '40px' }}
+              >
+                <Scale className="text-white" style={{ width: '20px', height: '20px' }} />
               </div>
               <div>
-                <span className="font-serif text-2xl font-bold tracking-wide text-white">
-                  APEX <span className="text-crimson font-light">LEGAL</span>
+                <span className="d-block font-serif fs-4 fw-bold text-white lh-1">
+                  APEX <span className="text-crimson fw-light">LEGAL</span>
                 </span>
-                <span className="block text-[10px] tracking-[0.25em] uppercase text-slate-400 font-semibold">
+                <span className="d-block text-uppercase fw-semibold text-white-50" style={{ fontSize: '9px', letterSpacing: '0.25em' }}>
                   Counselors at Law
                 </span>
               </div>
             </div>
 
-            <p className="text-slate-300 text-xs leading-relaxed max-w-sm">
+            <p className="text-white-50 small pe-lg-4 mb-4 lh-base">
               Apex Legal Counsel is a premier national trial and corporate law firm. With over $250 Million in verdicts and recoveries, we represent enterprises, innovators, and catastrophic injury victims across the United States.
             </p>
 
-            <div className="space-y-2 pt-2 text-xs">
-              <div className="flex items-center gap-2.5 text-white">
-                <MapPin className="w-4 h-4 text-crimson flex-shrink-0" />
+            <div className="d-flex flex-column gap-2 small">
+              <div className="d-flex align-items-center gap-2 text-white">
+                <MapPin className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
                 <span>375 Park Avenue, 28th Floor, New York, NY 10152</span>
               </div>
-              <div className="flex items-center gap-2.5 text-white">
-                <Phone className="w-4 h-4 text-crimson flex-shrink-0" />
+              <div className="d-flex align-items-center gap-2 text-white">
+                <Phone className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
                 <span>Direct Legal Hotline: (212) 890-4400</span>
               </div>
-              <div className="flex items-center gap-2.5 text-white">
-                <Mail className="w-4 h-4 text-crimson flex-shrink-0" />
+              <div className="d-flex align-items-center gap-2 text-white">
+                <Mail className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
                 <span>Confidential Inquiries: inquiries@apexlegal.com</span>
               </div>
             </div>
           </div>
 
           {/* Col 3: Practice Disciplines */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-crimson">
+          <div className="col-12 col-sm-6 col-lg-2">
+            <h5 className="font-serif text-white fw-bold text-uppercase fs-6 mb-3 text-crimson">
               Practice Areas
-            </h4>
-            <ul className="space-y-2.5 text-xs">
+            </h5>
+            <ul className="list-unstyled d-flex flex-column gap-2 small mb-0">
               <li>
-                <Link href="/practice-areas/corporate-law-mergers" className="hover:text-crimson transition">
+                <Link href="/practice-areas/corporate-law-mergers" className="text-white-50 text-decoration-none hover-crimson">
                   Corporate Law & M&A
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/personal-injury-catastrophic" className="hover:text-crimson transition">
-                  Catastrophic Injury & Wrongful Death
+                <Link href="/practice-areas/personal-injury-catastrophic" className="text-white-50 text-decoration-none hover-crimson">
+                  Catastrophic Injury
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/intellectual-property-patents" className="hover:text-crimson transition">
-                  Intellectual Property & Patents
+                <Link href="/practice-areas/intellectual-property-patents" className="text-white-50 text-decoration-none hover-crimson">
+                  Intellectual Property
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/white-collar-criminal-defense" className="hover:text-crimson transition">
-                  White Collar & Investigations
+                <Link href="/practice-areas/white-collar-criminal-defense" className="text-white-50 text-decoration-none hover-crimson">
+                  White Collar & Trial
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/commercial-real-estate-development" className="hover:text-crimson transition">
-                  Commercial Real Estate & Land Use
+                <Link href="/practice-areas/commercial-real-estate-development" className="text-white-50 text-decoration-none hover-crimson">
+                  Commercial Real Estate
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/employment-labor-arbitration" className="hover:text-crimson transition">
-                  Executive Employment & Labor
+                <Link href="/practice-areas/employment-labor-arbitration" className="text-white-50 text-decoration-none hover-crimson">
+                  Executive Employment
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Col 4: Quick Navigation */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-crimson">
+          <div className="col-12 col-sm-6 col-lg-2">
+            <h5 className="font-serif text-white fw-bold text-uppercase fs-6 mb-3 text-crimson">
               Firm Overview
-            </h4>
-            <ul className="space-y-2.5 text-xs">
+            </h5>
+            <ul className="list-unstyled d-flex flex-column gap-2 small mb-0">
               <li>
-                <Link href="/attorneys" className="hover:text-crimson transition">
+                <Link href="/attorneys" className="text-white-50 text-decoration-none hover-crimson">
                   Distinguished Attorneys
                 </Link>
               </li>
               <li>
-                <Link href="/case-results" className="hover:text-crimson transition">
+                <Link href="/case-results" className="text-white-50 text-decoration-none hover-crimson">
                   Landmark Case Verdicts
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-crimson transition">
-                  Schedule Free Case Evaluation
+                <Link href="/contact" className="text-white-50 text-decoration-none hover-crimson">
+                  Free Case Evaluation
                 </Link>
               </li>
               <li>
-                <Link href="/admin" className="hover:text-crimson transition flex items-center gap-1.5 text-slate-400">
-                  <Lock className="w-3 h-3 text-nepal-blue" />
-                  <span>Admin Operations Portal</span>
+                <Link href="/admin" className="text-white-50 text-decoration-none hover-crimson d-flex align-items-center gap-1">
+                  <Lock className="text-crimson" style={{ width: '12px', height: '12px' }} />
+                  <span>Admin Portal</span>
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Col 5: Trust Accreditations */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-white font-bold tracking-wider text-sm uppercase text-crimson">
+          <div className="col-12 col-lg-3">
+            <h5 className="font-serif text-white fw-bold text-uppercase fs-6 mb-3 text-crimson">
               Accreditations
-            </h4>
-            <div className="space-y-3 text-xs">
-              <div className="p-3 rounded-lg bg-nepal-surface border border-sakura-border space-y-1">
-                <div className="flex items-center gap-1.5 text-white font-bold">
-                  <ShieldCheck className="w-4 h-4 text-crimson" />
+            </h5>
+            <div className="d-flex flex-column gap-3">
+              <div className="p-3 rounded-3 bg-nepal-surface border border-sakura">
+                <div className="d-flex align-items-center gap-2 text-white fw-bold small mb-1">
+                  <ShieldCheck className="text-crimson" style={{ width: '16px', height: '16px' }} />
                   <span>AV Preeminent® Rated</span>
                 </div>
-                <p className="text-[11px] text-slate-300">Highest Ethical Standing & Professional Excellence by Martindale-Hubbell.</p>
+                <p className="text-white-50 mb-0" style={{ fontSize: '11px' }}>
+                  Highest Ethical Standing & Professional Excellence by Martindale-Hubbell.
+                </p>
               </div>
 
-              <div className="p-3 rounded-lg bg-nepal-surface border border-sakura-border space-y-1">
-                <span className="text-white font-bold block">The Best Lawyers in America®</span>
-                <p className="text-[11px] text-slate-300">Recognized Tier 1 Litigation & M&A practice across regional federal circuits.</p>
+              <div className="p-3 rounded-3 bg-nepal-surface border border-sakura">
+                <span className="text-white fw-bold d-block small mb-1">The Best Lawyers in America®</span>
+                <p className="text-white-50 mb-0" style={{ fontSize: '11px' }}>
+                  Recognized Tier 1 Litigation & M&A practice across federal circuits.
+                </p>
               </div>
             </div>
           </div>
@@ -139,14 +146,14 @@ export function Footer() {
       </div>
 
       {/* Legal Disclaimers & Ethics Compliance */}
-      <div className="bg-nepal-dark/80 border-t border-sakura-border/40 px-4 py-8 text-[11px] text-slate-400">
-        <div className="max-w-7xl mx-auto space-y-3">
-          <p className="leading-relaxed">
-            <strong className="text-white font-semibold">ATTORNEY ADVERTISING NOTICE:</strong> Prior results do not guarantee a similar outcome. The materials and information contained on this website are intended for general informational purposes only and do not constitute formal legal advice. Viewing this website or submitting a case inquiry does not form an attorney-client relationship.
+      <div className="bg-nepal-surface border-top border-sakura py-4">
+        <div className="container-xl d-flex flex-column gap-3">
+          <p className="text-white-50 mb-0" style={{ fontSize: '11px', lineHeight: '1.6' }}>
+            <strong className="text-white">ATTORNEY ADVERTISING NOTICE:</strong> Prior results do not guarantee a similar outcome. The materials and information contained on this website are intended for general informational purposes only and do not constitute formal legal advice. Viewing this website or submitting a case inquiry does not form an attorney-client relationship.
           </p>
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/10 text-slate-400">
-            <p>© {new Date().getFullYear()} Apex Legal Counsel LLP. All Rights Reserved.</p>
-            <div className="flex items-center gap-6">
+          <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 pt-2 border-top border-white-10 text-white-50" style={{ fontSize: '11px' }}>
+            <span>© {new Date().getFullYear()} Apex Legal Counsel LLP. All Rights Reserved.</span>
+            <div className="d-flex align-items-center gap-3">
               <span>Privacy Policy</span>
               <span>•</span>
               <span>Terms of Representation</span>

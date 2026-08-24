@@ -22,22 +22,12 @@ import {
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobilePracticesOpen, setMobilePracticesOpen] = useState(true);
+  const [mobilePracticesOpen, setMobilePracticesOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
-
-  // Handle scroll styling
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Close menus on route change
   useEffect(() => {
@@ -110,32 +100,32 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300 font-sans bg-[#001F54] text-white border-b border-sakura-border">
+    <header className="sticky-top w-100 bg-nepal-dark text-white border-bottom border-sakura shadow-sm">
       {/* Top Banner - Hotline & Authority */}
-      <div className="bg-[#00153B] border-b border-sakura-border/60 px-4 py-2 text-xs text-white">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-white font-medium">
-              <ShieldCheck className="w-4 h-4 text-crimson" />
-              <span className="font-bold text-crimson">Nationwide Trial Counsel</span> | Tier 1 Ranking
+      <div className="bg-nepal-surface border-bottom border-sakura py-1 small text-white">
+        <div className="container-xl d-flex flex-wrap align-items-center justify-content-between gap-2">
+          <div className="d-flex align-items-center gap-3">
+            <span className="d-flex align-items-center gap-1 text-white fw-medium">
+              <ShieldCheck className="text-crimson" style={{ width: '16px', height: '16px' }} />
+              <strong className="text-crimson">Nationwide Trial Counsel</strong> | Tier 1 Ranking
             </span>
-            <span className="hidden sm:inline-block text-white/40">•</span>
-            <span className="hidden sm:inline-block text-white font-medium">Over $250M+ Recovered For Our Clients</span>
+            <span className="d-none d-sm-inline text-white-50">•</span>
+            <span className="d-none d-sm-inline text-white fw-medium">Over $250M+ Recovered</span>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="d-flex align-items-center gap-4">
             <a 
               href="tel:12128904400" 
-              className="flex items-center gap-1.5 text-white hover:text-crimson transition font-bold"
+              className="d-flex align-items-center gap-1 text-white text-decoration-none fw-bold hover-crimson"
             >
-              <Phone className="w-3.5 h-3.5 text-crimson" />
-              <span>24/7 Urgent Hotline: (212) 890-4400</span>
+              <Phone className="text-crimson" style={{ width: '14px', height: '14px' }} />
+              <span>24/7 Hotline: (212) 890-4400</span>
             </a>
             <Link 
               href="/admin" 
-              className="hidden md:flex items-center gap-1 text-white/80 hover:text-white transition font-medium"
+              className="d-none d-md-flex align-items-center gap-1 text-white-50 text-decoration-none"
               title="Admin Operations Portal"
             >
-              <Lock className="w-3 h-3 text-crimson" />
+              <Lock className="text-crimson" style={{ width: '12px', height: '12px' }} />
               <span>Admin Portal</span>
             </Link>
           </div>
@@ -143,69 +133,71 @@ export function Navbar() {
       </div>
 
       {/* Main Navigation Bar */}
-      <div className={`transition-all duration-300 ${isScrolled ? 'bg-[#001F54]/95 backdrop-blur-md shadow-2xl py-3' : 'bg-[#001F54] py-4'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-nepal-dark py-3">
+        <div className="container-xl d-flex align-items-center justify-content-between">
           
           {/* Law Firm Crest & Brand */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-nepal-blue border border-crimson flex items-center justify-center shadow-lg group-hover:bg-crimson group-hover:border-nepal-blue transition duration-300">
-              <Scale className="w-5 h-5 text-white" />
+          <Link href="/" className="navbar-brand d-flex align-items-center gap-2 text-decoration-none">
+            <div 
+              className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-blue border border-crimson shadow"
+              style={{ width: '42px', height: '42px' }}
+            >
+              <Scale className="text-white" style={{ width: '22px', height: '22px' }} />
             </div>
             <div>
-              <span className="block font-serif text-xl sm:text-2xl font-bold tracking-wide text-white group-hover:text-crimson transition">
-                APEX <span className="text-crimson font-light">LEGAL</span>
+              <span className="d-block font-serif fs-4 fw-bold text-white lh-1">
+                APEX <span className="text-crimson fw-light">LEGAL</span>
               </span>
-              <span className="block text-[10px] tracking-[0.25em] uppercase text-white font-semibold opacity-90">
+              <span className="d-block text-uppercase fw-semibold text-white-50" style={{ fontSize: '9px', letterSpacing: '0.25em' }}>
                 Counselors at Law
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Links (Font color: White | Active color: Nepal Flag Red #DC143C) */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-bold">
+          {/* Desktop Nav Links */}
+          <div className="d-none d-lg-flex align-items-center gap-4">
             <Link 
               href="/" 
-              className={`menu-nav-link ${pathname === '/' ? 'menu-nav-active' : ''}`}
+              className={`menu-nav-link fs-6 fw-bold px-2 py-1 ${pathname === '/' ? 'menu-nav-active' : ''}`}
             >
               Home
             </Link>
 
-            {/* Practice Areas Robust Dropdown */}
+            {/* Practice Areas Dropdown */}
             <div 
               ref={dropdownRef}
-              className="relative py-2"
+              className="position-relative py-2"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <button 
                 type="button"
-                className={`menu-nav-link flex items-center gap-1.5 py-1 cursor-pointer ${
+                className={`menu-nav-link btn btn-link text-decoration-none fs-6 fw-bold d-flex align-items-center gap-1 p-0 ${
                   pathname.startsWith('/practice-areas') ? 'menu-nav-active' : ''
                 }`}
                 onClick={() => setDropdownOpen((prev) => !prev)}
                 aria-expanded={dropdownOpen}
-                aria-haspopup="true"
               >
                 <span>Practice Areas</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'rotate-180 text-crimson' : 'text-white'}`} />
+                <ChevronDown className="text-white" style={{ width: '16px', height: '16px' }} />
               </button>
 
-              {/* Dropdown Container */}
               {dropdownOpen && (
                 <div 
-                  className="absolute top-full left-0 pt-2 w-96 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                  className="position-absolute start-0 pt-2 z-3"
+                  style={{ width: '380px' }}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="rounded-2xl bg-[#0A2540] border border-sakura-border shadow-2xl p-3 backdrop-blur-xl ring-1 ring-black/80">
-                    <div className="px-3 py-2 border-b border-sakura-border/40 flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-bold tracking-widest text-crimson uppercase">
-                        Legal Practice Disciplines
+                  <div className="rounded-4 bg-nepal-surface border border-sakura shadow-lg p-3">
+                    <div className="d-flex align-items-center justify-content-between pb-2 mb-2 border-bottom border-sakura">
+                      <span className="text-uppercase text-crimson fw-bold" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
+                        Legal Disciplines
                       </span>
-                      <span className="text-[10px] text-white/80 font-bold">Tier-1 Counsel</span>
+                      <span className="text-white-50 fw-bold" style={{ fontSize: '10px' }}>Tier-1 Counsel</span>
                     </div>
 
-                    <div className="space-y-1">
+                    <div className="d-flex flex-column gap-1">
                       {practiceAreaLinks.map((item) => {
                         const Icon = item.icon;
                         const isCurrent = pathname === item.href;
@@ -214,36 +206,35 @@ export function Navbar() {
                             key={item.href}
                             href={item.href}
                             onClick={() => setDropdownOpen(false)}
-                            className={`flex items-start gap-3 p-2.5 rounded-xl transition group ${
+                            className={`d-flex align-items-start gap-2 p-2 rounded-3 text-decoration-none transition ${
                               isCurrent
                                 ? 'bg-nepal-blue text-white border border-crimson'
-                                : 'text-white hover:text-crimson hover:bg-[#001F54]'
+                                : 'text-white hover-bg-nepal'
                             }`}
                           >
-                            <div className="w-8 h-8 rounded-lg bg-[#001F54] border border-sakura-border/60 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-crimson group-hover:bg-crimson">
-                              <Icon className="w-4 h-4 text-white" />
+                            <div 
+                              className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-dark border border-sakura flex-shrink-0 mt-1"
+                              style={{ width: '32px', height: '32px' }}
+                            >
+                              <Icon className="text-white" style={{ width: '16px', height: '16px' }} />
                             </div>
-                            <div className="min-w-0">
-                              <span className="block text-xs font-bold text-white group-hover:text-crimson transition">
-                                {item.title}
-                              </span>
-                              <span className="block text-[11px] text-slate-200 group-hover:text-slate-100 line-clamp-1">
-                                {item.desc}
-                              </span>
+                            <div className="text-truncate">
+                              <span className="d-block small fw-bold text-white">{item.title}</span>
+                              <span className="d-block text-white-50 text-truncate" style={{ fontSize: '11px' }}>{item.desc}</span>
                             </div>
                           </Link>
                         );
                       })}
                     </div>
 
-                    <div className="mt-2 pt-2 border-t border-sakura-border/40">
+                    <div className="pt-2 mt-2 border-top border-sakura">
                       <Link 
                         href="/practice-areas" 
                         onClick={() => setDropdownOpen(false)}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-[#001F54] hover:bg-nepal-blue text-xs text-white font-bold transition border border-sakura-border/50 hover:border-crimson"
+                        className="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-between py-2 text-white fw-bold"
                       >
                         <span>View All Practice Groups Directory</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-crimson" />
+                        <ArrowRight style={{ width: '14px', height: '14px' }} />
                       </Link>
                     </div>
                   </div>
@@ -253,95 +244,90 @@ export function Navbar() {
 
             <Link 
               href="/attorneys" 
-              className={`menu-nav-link ${pathname.startsWith('/attorneys') ? 'menu-nav-active' : ''}`}
+              className={`menu-nav-link fs-6 fw-bold px-2 py-1 ${pathname.startsWith('/attorneys') ? 'menu-nav-active' : ''}`}
             >
               Attorneys
             </Link>
 
             <Link 
               href="/case-results" 
-              className={`menu-nav-link ${pathname === '/case-results' ? 'menu-nav-active' : ''}`}
+              className={`menu-nav-link fs-6 fw-bold px-2 py-1 ${pathname === '/case-results' ? 'menu-nav-active' : ''}`}
             >
               Landmark Verdicts
             </Link>
 
             <Link 
               href="/contact" 
-              className={`menu-nav-link ${pathname === '/contact' ? 'menu-nav-active' : ''}`}
+              className={`menu-nav-link fs-6 fw-bold px-2 py-1 ${pathname === '/contact' ? 'menu-nav-active' : ''}`}
             >
               Contact
             </Link>
-          </nav>
+          </div>
 
-          {/* Consultation CTA Button & Theme Toggle */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Controls: CTA Button & Theme Toggle */}
+          <div className="d-none d-sm-flex align-items-center gap-3">
             <ThemeToggle />
             <Link
               href="/contact#consultation"
-              className="relative inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-lg shadow-crimson/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              className="btn btn-danger btn-crimson text-white fw-bold px-4 py-2 rounded-pill shadow-sm"
             >
               Free Case Evaluation
             </Link>
           </div>
 
-          {/* Mobile Right Controls: Theme Toggle + Menu Button */}
-          <div className="flex sm:hidden items-center gap-2">
+          {/* Mobile Right Controls: Toggle */}
+          <div className="d-flex d-lg-none align-items-center gap-2">
             <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-[#0A2540] border border-sakura-border text-white hover:bg-nepal-blue cursor-pointer"
+              className="btn btn-outline-light d-flex align-items-center justify-content-center p-2 rounded-3 border-sakura"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
+              {mobileMenuOpen ? <X style={{ width: '22px', height: '22px' }} /> : <Menu style={{ width: '22px', height: '22px' }} />}
             </button>
           </div>
-        </div>
-      </div>
 
-      {/* Mobile Drawer Menu */}
+        </div>
+      </nav>
+
+      {/* Mobile Collapse Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#001F54] border-b border-sakura-border px-6 py-6 space-y-4 animate-in slide-in-from-top duration-300 shadow-2xl max-h-[85vh] overflow-y-auto text-white">
-          <nav className="flex flex-col space-y-2 text-base font-bold text-white">
+        <div className="d-lg-none bg-nepal-dark border-top border-sakura p-4">
+          <nav className="d-flex flex-column gap-2 fw-bold">
             <Link 
               href="/" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`px-3 py-2 rounded-lg transition ${
-                pathname === '/' ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
-              }`}
+              className={`p-2 rounded-3 text-decoration-none ${pathname === '/' ? 'text-crimson bg-nepal-surface' : 'text-white'}`}
             >
               Home
             </Link>
-            
-            {/* Mobile Practice Areas Accordion */}
-            <div className="space-y-1">
-              <div className="flex items-center justify-between px-3 py-2 rounded-lg text-white hover:bg-[#0A2540]">
+
+            <div>
+              <div className="d-flex align-items-center justify-content-between p-2 rounded-3">
                 <Link 
                   href="/practice-areas" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex-1 font-bold ${pathname.startsWith('/practice-areas') ? 'text-crimson' : 'text-white hover:text-crimson'}`}
+                  className={`text-decoration-none ${pathname.startsWith('/practice-areas') ? 'text-crimson' : 'text-white'}`}
                 >
                   Practice Areas Directory
                 </Link>
                 <button
                   type="button"
                   onClick={() => setMobilePracticesOpen(!mobilePracticesOpen)}
-                  className="p-1 text-crimson hover:text-white cursor-pointer"
-                  aria-label="Toggle practice areas list"
+                  className="btn btn-link text-crimson p-0"
                 >
-                  <ChevronDown className={`w-5 h-5 transition-transform ${mobilePracticesOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown style={{ width: '18px', height: '18px' }} />
                 </button>
               </div>
 
               {mobilePracticesOpen && (
-                <div className="pl-4 space-y-1 pt-1 border-l-2 border-sakura-border/50 ml-3">
+                <div className="ps-3 border-start border-sakura ms-2 d-flex flex-column gap-1 mt-1">
                   {practiceAreaLinks.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`block px-3 py-1.5 text-xs font-semibold ${
-                        pathname === item.href ? 'text-crimson' : 'text-white hover:text-crimson'
-                      }`}
+                      className={`small text-decoration-none py-1 ${pathname === item.href ? 'text-crimson fw-bold' : 'text-white-50'}`}
                     >
                       {item.title}
                     </Link>
@@ -353,9 +339,7 @@ export function Navbar() {
             <Link 
               href="/attorneys" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`px-3 py-2 rounded-lg transition ${
-                pathname.startsWith('/attorneys') ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
-              }`}
+              className={`p-2 rounded-3 text-decoration-none ${pathname.startsWith('/attorneys') ? 'text-crimson bg-nepal-surface' : 'text-white'}`}
             >
               Attorneys
             </Link>
@@ -363,9 +347,7 @@ export function Navbar() {
             <Link 
               href="/case-results" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`px-3 py-2 rounded-lg transition ${
-                pathname === '/case-results' ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
-              }`}
+              className={`p-2 rounded-3 text-decoration-none ${pathname === '/case-results' ? 'text-crimson bg-nepal-surface' : 'text-white'}`}
             >
               Landmark Verdicts
             </Link>
@@ -373,9 +355,7 @@ export function Navbar() {
             <Link 
               href="/contact" 
               onClick={() => setMobileMenuOpen(false)}
-              className={`px-3 py-2 rounded-lg transition ${
-                pathname === '/contact' ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
-              }`}
+              className={`p-2 rounded-3 text-decoration-none ${pathname === '/contact' ? 'text-crimson bg-nepal-surface' : 'text-white'}`}
             >
               Contact Us
             </Link>
@@ -383,18 +363,18 @@ export function Navbar() {
             <Link 
               href="/admin" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson flex items-center gap-2"
+              className="p-2 rounded-3 text-decoration-none text-white d-flex align-items-center gap-2"
             >
-              <Lock className="w-4 h-4 text-crimson" />
+              <Lock className="text-crimson" style={{ width: '14px', height: '14px' }} />
               <span>Admin Operations Portal</span>
             </Link>
           </nav>
 
-          <div className="pt-4 border-t border-sakura-border/40">
+          <div className="pt-3 mt-3 border-top border-sakura">
             <Link
               href="/contact#consultation"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full inline-flex items-center justify-center px-6 py-3 rounded-lg text-sm font-bold text-white bg-crimson hover:bg-crimson-hover shadow-lg shadow-crimson/30"
+              className="btn btn-danger btn-crimson text-white fw-bold w-100 py-3 rounded-3 shadow"
             >
               Request Free Case Evaluation
             </Link>

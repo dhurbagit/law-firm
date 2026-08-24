@@ -82,7 +82,6 @@ export default function ContactPage() {
       label: 'LinkedIn',
       url: 'https://www.linkedin.com',
       icon: Globe,
-      color: 'hover:text-[#0A66C2]',
       desc: 'Official firm announcements & supreme court briefs',
     },
     {
@@ -90,7 +89,6 @@ export default function ContactPage() {
       label: 'X (Twitter)',
       url: 'https://www.x.com',
       icon: Share2,
-      color: 'hover:text-[#1DA1F2]',
       desc: 'Live courtroom updates & appellate commentary',
     },
     {
@@ -98,7 +96,6 @@ export default function ContactPage() {
       label: 'Martindale Profile',
       url: 'https://www.martindale.com',
       icon: Award,
-      color: 'hover:text-crimson',
       desc: 'Verified Tier 1 litigation ranking & ethics rating',
     },
     {
@@ -106,7 +103,6 @@ export default function ContactPage() {
       label: 'YouTube',
       url: 'https://www.youtube.com',
       icon: Globe,
-      color: 'hover:text-[#FF0000]',
       desc: 'Partner mock trial breakdown & masterclasses',
     },
   ];
@@ -175,57 +171,57 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen py-16 font-sans bg-nepal-dark text-white">
+    <div className="min-vh-100 py-5 bg-nepal-dark text-white">
       
       {/* 1. HERO HEADER */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 font-sans">
-        <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-nepal-surface border border-sakura-border text-white text-xs font-bold uppercase tracking-wider font-sans">
-            <Mail className="w-4 h-4 text-crimson" />
+      <div className="container-xl mb-5">
+        <div style={{ maxWidth: '750px' }}>
+          <div className="badge bg-nepal-surface border border-sakura text-white px-3 py-2 rounded-pill small fw-bold text-uppercase d-inline-flex align-items-center gap-2 mb-3">
+            <Mail className="text-crimson" style={{ width: '16px', height: '16px' }} />
             <span>Confidential Inquiries & Counsel Access</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+          <h1 className="font-serif display-4 fw-bold text-white mb-3 lh-tight">
             Contact Apex Legal. <br />
             <span className="text-crimson">Direct Counsel & Immediate Triage.</span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal font-sans">
+          <p className="text-white-50 fs-5 mb-0 leading-relaxed">
             Whether facing an urgent federal subpoena, high-exposure commercial litigation, or catastrophic injury, our senior partners provide decisive counsel 24/7/365.
           </p>
         </div>
       </div>
 
-      {/* 2. PRIMARY CONTACT GRID (Form + Contact Information Cards) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 font-sans">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      {/* 2. PRIMARY CONTACT GRID (Form + Contact Cards) */}
+      <div className="container-xl mb-5">
+        <div className="row g-4 align-items-start">
           
           {/* LEFT: Contact & Case Evaluation Form */}
-          <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-nepal-surface border border-sakura-border shadow-2xl space-y-6 relative overflow-hidden backdrop-blur-xl">
+          <div className="col-12 col-lg-7">
+            <div className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 p-md-5 text-white">
               
               {/* Form Header */}
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-dark border border-sakura-border text-white text-xs font-bold uppercase tracking-wider mb-3">
-                  <ShieldCheck className="w-3.5 h-3.5 text-crimson" />
+              <div className="mb-4">
+                <div className="badge bg-nepal-dark border border-sakura text-white px-3 py-2 rounded-pill small fw-bold text-uppercase d-inline-flex align-items-center gap-1 mb-3">
+                  <ShieldCheck className="text-crimson" style={{ width: '14px', height: '14px' }} />
                   <span>256-Bit Encrypted & Privileged</span>
                 </div>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">
+                <h2 className="font-serif fs-2 fw-bold text-white mb-1">
                   Send a Confidential Inquiry
                 </h2>
-                <p className="text-slate-300 text-xs sm:text-sm mt-1.5 leading-relaxed font-sans">
+                <p className="text-white-50 small mb-0 lh-base">
                   Complete the secure transmission form below. Senior trial counsel reviews all inquiries within 2 hours.
                 </p>
               </div>
 
               {/* Success Alert */}
               {successMessage && (
-                <div className="p-5 rounded-2xl bg-nepal-dark border border-sakura-border text-white animate-in fade-in zoom-in-95 duration-300">
-                  <div className="flex items-start gap-3.5">
-                    <CheckCircle2 className="w-6 h-6 text-crimson flex-shrink-0 mt-0.5" />
-                    <div className="space-y-1 text-xs sm:text-sm">
-                      <h4 className="font-serif font-bold text-white text-base">Inquiry Successfully Transmitted (File #{submittedId})</h4>
-                      <p className="text-slate-200">{successMessage}</p>
-                      <div className="pt-2 text-[11px] text-slate-300 flex items-center gap-1.5">
-                        <Lock className="w-3.5 h-3.5 text-nepal-blue" />
+                <div className="alert bg-nepal-dark border border-sakura text-white p-4 rounded-3 mb-4 shadow">
+                  <div className="d-flex align-items-start gap-3">
+                    <CheckCircle2 className="text-crimson flex-shrink-0 mt-1" style={{ width: '28px', height: '28px' }} />
+                    <div>
+                      <h5 className="font-serif fw-bold text-white mb-1">Inquiry Successfully Transmitted (File #{submittedId})</h5>
+                      <p className="text-white-50 small mb-2">{successMessage}</p>
+                      <div className="small text-white-50 d-flex align-items-center gap-1">
+                        <Lock className="text-nepal-blue" style={{ width: '14px', height: '14px' }} />
                         <span>Protected under preliminary attorney-client privilege.</span>
                       </div>
                     </div>
@@ -235,19 +231,19 @@ export default function ContactPage() {
 
               {/* Error Alert */}
               {errorMessage && (
-                <div className="p-4 rounded-xl bg-crimson/15 border border-crimson/40 text-xs text-slate-200 flex items-center gap-2.5">
-                  <AlertCircle className="w-4 h-4 text-crimson flex-shrink-0" />
-                  <span>{errorMessage}</span>
+                <div className="alert alert-danger bg-crimson border-0 text-white d-flex align-items-center gap-2 p-3 rounded-3 mb-4">
+                  <AlertCircle style={{ width: '18px', height: '18px' }} />
+                  <span className="small fw-semibold">{errorMessage}</span>
                 </div>
               )}
 
               {/* The Form */}
-              <form onSubmit={handleSubmit} className="space-y-5 font-sans">
+              <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
                 
                 {/* Row 1: Name & Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                <div className="row g-3">
+                  <div className="col-12 col-md-6">
+                    <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
                       Full Legal Name <span className="text-crimson">*</span>
                     </label>
                     <input
@@ -256,15 +252,15 @@ export default function ContactPage() {
                       placeholder="e.g. Eleanor Vance"
                       value={formData.full_name}
                       onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans"
+                      className="form-control"
                     />
                     {validationErrors.full_name && (
-                      <p className="text-xs text-crimson mt-1">{validationErrors.full_name[0]}</p>
+                      <div className="text-crimson small mt-1">{validationErrors.full_name[0]}</div>
                     )}
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                  <div className="col-12 col-md-6">
+                    <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
                       Email Address <span className="text-crimson">*</span>
                     </label>
                     <input
@@ -273,18 +269,18 @@ export default function ContactPage() {
                       placeholder="e.g. e.vance@enterprise.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans"
+                      className="form-control"
                     />
                     {validationErrors.email && (
-                      <p className="text-xs text-crimson mt-1">{validationErrors.email[0]}</p>
+                      <div className="text-crimson small mt-1">{validationErrors.email[0]}</div>
                     )}
                   </div>
                 </div>
 
                 {/* Row 2: Phone & Inquiry Type */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                <div className="row g-3">
+                  <div className="col-12 col-md-6">
+                    <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
                       Telephone <span className="text-crimson">*</span>
                     </label>
                     <input
@@ -293,21 +289,21 @@ export default function ContactPage() {
                       placeholder="e.g. (212) 555-0199"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans"
+                      className="form-control"
                     />
                     {validationErrors.phone && (
-                      <p className="text-xs text-crimson mt-1">{validationErrors.phone[0]}</p>
+                      <div className="text-crimson small mt-1">{validationErrors.phone[0]}</div>
                     )}
                   </div>
 
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                  <div className="col-12 col-md-6">
+                    <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
                       Inquiry Nature
                     </label>
                     <select
                       value={formData.inquiry_type}
                       onChange={(e) => setFormData({ ...formData, inquiry_type: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition cursor-pointer font-sans"
+                      className="form-select cursor-pointer"
                     >
                       <option value="Case Evaluation">Free Case Evaluation</option>
                       <option value="Corporate Retention">Corporate Retainer Inquiry</option>
@@ -319,13 +315,13 @@ export default function ContactPage() {
 
                 {/* Row 3: Practice Area Selection */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                  <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
                     Primary Legal Practice Discipline
                   </label>
                   <select
                     value={formData.practice_area_id}
                     onChange={(e) => setFormData({ ...formData, practice_area_id: Number(e.target.value) })}
-                    className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition cursor-pointer font-sans"
+                    className="form-select cursor-pointer"
                   >
                     {practiceOptions.map((opt) => (
                       <option key={opt.id} value={opt.id}>
@@ -337,7 +333,7 @@ export default function ContactPage() {
 
                 {/* Row 4: Summary / Details */}
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+                  <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
                     Matter Summary & Key Facts <span className="text-crimson">*</span>
                   </label>
                   <textarea
@@ -346,36 +342,34 @@ export default function ContactPage() {
                     placeholder="Provide relevant dates, jurisdictions, opposing parties, and primary legal goals..."
                     value={formData.case_details}
                     onChange={(e) => setFormData({ ...formData, case_details: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition resize-none font-sans"
+                    className="form-control"
                   />
                   {validationErrors.case_details && (
-                    <p className="text-xs text-crimson mt-1">{validationErrors.case_details[0]}</p>
+                    <div className="text-crimson small mt-1">{validationErrors.case_details[0]}</div>
                   )}
                 </div>
 
                 {/* Privacy Lock Disclaimer */}
-                <div className="p-3.5 rounded-xl bg-nepal-dark/60 border border-sakura-border/40 flex items-center justify-between text-xs text-slate-300">
-                  <div className="flex items-center gap-2">
-                    <Lock className="w-4 h-4 text-crimson" />
-                    <span>Transmitted via encrypted TLS 1.3 protocol directly to trial counsel.</span>
-                  </div>
+                <div className="p-3 rounded-3 bg-nepal-dark border border-sakura d-flex align-items-center gap-2 text-white-50 small">
+                  <Lock className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
+                  <span>Transmitted via encrypted TLS 1.3 protocol directly to trial counsel.</span>
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-base font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-xl shadow-crimson/20 transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50"
+                  className="btn btn-danger btn-crimson btn-lg w-100 fw-bold py-3 rounded-3 shadow d-flex align-items-center justify-content-center gap-2 mt-2"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin text-white" />
+                      <Loader2 className="animate-spin" style={{ width: '20px', height: '20px' }} />
                       <span>Transmitting Inquiry to Counsel...</span>
                     </>
                   ) : (
                     <>
                       <span>Transmit Confidential Inquiry</span>
-                      <Send className="w-4 h-4 text-white" />
+                      <Send style={{ width: '16px', height: '16px' }} />
                     </>
                   )}
                 </button>
@@ -385,94 +379,95 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT: Contact Information & Office Hubs */}
-          <div className="lg:col-span-5 space-y-6 font-sans">
+          <div className="col-12 col-lg-5 d-flex flex-column gap-4">
             
             {/* 24/7 Emergency Response Card */}
-            <div className="p-7 rounded-3xl bg-nepal-surface border border-sakura-border shadow-xl space-y-3 relative overflow-hidden">
-              <div className="flex items-center gap-2 text-crimson">
-                <Phone className="w-5 h-5 text-crimson" />
-                <span className="text-xs uppercase font-bold tracking-wider">24/7 Crisis Hotline</span>
+            <div className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 text-white">
+              <div className="d-flex align-items-center gap-2 text-crimson mb-2">
+                <Phone style={{ width: '18px', height: '18px' }} />
+                <span className="small text-uppercase fw-bold" style={{ letterSpacing: '0.05em' }}>24/7 Crisis Hotline</span>
               </div>
-              <h3 className="font-serif text-2xl font-bold text-white">
+              <h3 className="font-serif fs-4 fw-bold text-white mb-2">
                 Immediate Urgent Response
               </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-white-50 small mb-3 lh-base">
                 Available around the clock for emergency criminal investigations, search warrants, SEC subpoenas, or catastrophic injury intake.
               </p>
               <a
                 href="tel:12128904400"
-                className="block text-2xl sm:text-3xl font-serif font-extrabold text-crimson hover:text-white transition pt-1"
+                className="font-serif fs-3 fw-bold text-crimson text-decoration-none hover-white"
               >
                 (212) 890-4400
               </a>
             </div>
 
             {/* General Direct Lines */}
-            <div className="p-7 rounded-3xl bg-nepal-surface border border-sakura-border shadow-xl space-y-4">
-              <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider text-crimson">
+            <div className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 text-white">
+              <h4 className="font-serif fs-6 fw-bold text-uppercase text-crimson mb-3" style={{ letterSpacing: '0.1em' }}>
                 Department Inquiries
-              </h3>
+              </h4>
               
-              <div className="space-y-3 text-xs">
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-nepal-dark border border-sakura-border/40">
-                  <Mail className="w-4 h-4 text-crimson flex-shrink-0 mt-0.5" />
+              <div className="d-flex flex-column gap-3 small">
+                <div className="d-flex align-items-start gap-3 p-3 rounded-3 bg-nepal-dark border border-sakura">
+                  <Mail className="text-crimson flex-shrink-0 mt-1" style={{ width: '16px', height: '16px' }} />
                   <div>
-                    <span className="block font-bold text-white">Client Intake & Retainers</span>
-                    <a href="mailto:inquiries@apexlegal.com" className="text-slate-300 hover:text-crimson transition">
+                    <span className="d-block fw-bold text-white">Client Intake & Retainers</span>
+                    <a href="mailto:inquiries@apexlegal.com" className="text-white-50 text-decoration-none hover-crimson">
                       inquiries@apexlegal.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-nepal-dark border border-sakura-border/40">
-                  <Building className="w-4 h-4 text-crimson flex-shrink-0 mt-0.5" />
+                <div className="d-flex align-items-start gap-3 p-3 rounded-3 bg-nepal-dark border border-sakura">
+                  <Building className="text-crimson flex-shrink-0 mt-1" style={{ width: '16px', height: '16px' }} />
                   <div>
-                    <span className="block font-bold text-white">Corporate Counsel & Board Inquiries</span>
-                    <a href="mailto:corporate@apexlegal.com" className="text-slate-300 hover:text-crimson transition">
+                    <span className="d-block fw-bold text-white">Corporate Counsel & Board Inquiries</span>
+                    <a href="mailto:corporate@apexlegal.com" className="text-white-50 text-decoration-none hover-crimson">
                       corporate@apexlegal.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-3 rounded-xl bg-nepal-dark border border-sakura-border/40">
-                  <Clock className="w-4 h-4 text-crimson flex-shrink-0 mt-0.5" />
+                <div className="d-flex align-items-start gap-3 p-3 rounded-3 bg-nepal-dark border border-sakura">
+                  <Clock className="text-crimson flex-shrink-0 mt-1" style={{ width: '16px', height: '16px' }} />
                   <div>
-                    <span className="block font-bold text-white">Operating Counsel Hours</span>
-                    <span className="text-slate-300">Monday – Friday: 8:00 AM – 7:30 PM EST</span>
+                    <span className="d-block fw-bold text-white">Operating Counsel Hours</span>
+                    <span className="text-white-50">Monday – Friday: 8:00 AM – 7:30 PM EST</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Social Media & Legal Accreditations Box */}
-            <div className="p-7 rounded-3xl bg-nepal-surface border border-sakura-border shadow-xl space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="font-serif text-lg font-bold text-white uppercase tracking-wider text-crimson">
-                  Social Media & Legal Profiles
-                </h3>
-                <span className="text-[10px] uppercase font-bold text-slate-400">Verified</span>
+            {/* Social Media & Legal Profiles */}
+            <div className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 text-white">
+              <div className="d-flex align-items-center justify-content-between mb-3">
+                <h4 className="font-serif fs-6 fw-bold text-uppercase text-crimson mb-0" style={{ letterSpacing: '0.1em' }}>
+                  Legal Directory Profiles
+                </h4>
+                <span className="badge bg-nepal-dark border border-sakura text-white-50 small">Verified</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-sans">
+              <div className="row g-2">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-3.5 rounded-xl bg-nepal-dark border border-sakura-border/40 hover:border-crimson hover:bg-nepal-blue/30 transition group flex flex-col justify-between"
-                    >
-                      <div className="flex items-center justify-between mb-1.5">
-                        <div className="flex items-center gap-2">
-                          <Icon className={`w-4 h-4 text-crimson group-hover:text-white transition`} />
-                          <span className="font-bold text-xs text-white group-hover:text-white">{social.label}</span>
+                    <div key={social.name} className="col-12 col-sm-6">
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-3 rounded-3 bg-nepal-dark border border-sakura text-decoration-none d-flex flex-column justify-content-between h-100 hover-border-crimson"
+                      >
+                        <div className="d-flex align-items-center justify-content-between mb-1">
+                          <div className="d-flex align-items-center gap-2 text-white">
+                            <Icon className="text-crimson" style={{ width: '16px', height: '16px' }} />
+                            <span className="fw-bold small">{social.label}</span>
+                          </div>
+                          <ExternalLink className="text-white-50" style={{ width: '12px', height: '12px' }} />
                         </div>
-                        <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-crimson transition" />
-                      </div>
-                      <p className="text-[10px] text-slate-400 line-clamp-1">{social.desc}</p>
-                    </a>
+                        <p className="text-white-50 mb-0 text-truncate" style={{ fontSize: '10px' }}>{social.desc}</p>
+                      </a>
+                    </div>
                   );
                 })}
               </div>
@@ -484,29 +479,27 @@ export default function ContactPage() {
       </div>
 
       {/* 3. INTERACTIVE GOOGLE MAP & NATIONAL OFFICES SECTION */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 font-sans">
-        <div className="p-8 sm:p-12 rounded-3xl bg-nepal-surface border border-sakura-border shadow-2xl space-y-8">
+      <div className="container-xl mb-4">
+        <div className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 p-md-5 text-white">
           
           {/* Header & Office Switcher Tabs */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-sakura-border/40">
+          <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4 pb-4 mb-4 border-bottom border-sakura">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-crimson block mb-1">
+              <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ letterSpacing: '0.1em' }}>
                 National Physical Presence
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              <h2 className="font-serif fs-2 fw-bold text-white mb-0">
                 Interactive Office Locator & Directions
               </h2>
             </div>
 
             {/* Office Switcher Tabs */}
-            <div className="flex items-center gap-2 bg-nepal-dark p-1.5 rounded-2xl border border-sakura-border">
+            <div className="btn-group p-1 bg-nepal-dark rounded-pill border border-sakura">
               <button
                 type="button"
                 onClick={() => setActiveOffice('ny')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
-                  activeOffice === 'ny'
-                    ? 'bg-crimson text-white shadow-lg'
-                    : 'text-slate-300 hover:text-white'
+                className={`btn btn-sm rounded-pill fw-bold px-3 py-2 ${
+                  activeOffice === 'ny' ? 'btn-danger btn-crimson text-white shadow' : 'text-white-50 border-0'
                 }`}
               >
                 New York HQ
@@ -514,10 +507,8 @@ export default function ContactPage() {
               <button
                 type="button"
                 onClick={() => setActiveOffice('dc')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
-                  activeOffice === 'dc'
-                    ? 'bg-crimson text-white shadow-lg'
-                    : 'text-slate-300 hover:text-white'
+                className={`btn btn-sm rounded-pill fw-bold px-3 py-2 ${
+                  activeOffice === 'dc' ? 'btn-danger btn-crimson text-white shadow' : 'text-white-50 border-0'
                 }`}
               >
                 Washington D.C.
@@ -525,10 +516,8 @@ export default function ContactPage() {
               <button
                 type="button"
                 onClick={() => setActiveOffice('sf')}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition cursor-pointer ${
-                  activeOffice === 'sf'
-                    ? 'bg-crimson text-white shadow-lg'
-                    : 'text-slate-300 hover:text-white'
+                className={`btn btn-sm rounded-pill fw-bold px-3 py-2 ${
+                  activeOffice === 'sf' ? 'btn-danger btn-crimson text-white shadow' : 'text-white-50 border-0'
                 }`}
               >
                 San Francisco
@@ -537,75 +526,79 @@ export default function ContactPage() {
           </div>
 
           {/* Active Office Details + Google Map Embed */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          <div className="row g-4 align-items-stretch">
             
             {/* Left Office Card Info */}
-            <div className="lg:col-span-5 p-6 rounded-2xl bg-nepal-dark border border-sakura-border/60 flex flex-col justify-between space-y-6">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-surface border border-crimson/50 text-white text-[11px] font-bold uppercase tracking-wider">
-                  <MapPin className="w-3.5 h-3.5 text-crimson" />
-                  <span>{officeLocations[activeOffice].city}</span>
+            <div className="col-12 col-lg-5">
+              <div className="p-4 rounded-4 bg-nepal-dark border border-sakura d-flex flex-column justify-content-between h-100">
+                <div>
+                  <div className="badge bg-nepal-surface border border-crimson text-white px-3 py-2 rounded-pill small fw-bold text-uppercase d-inline-flex align-items-center gap-1 mb-3">
+                    <MapPin className="text-crimson" style={{ width: '14px', height: '14px' }} />
+                    <span>{officeLocations[activeOffice].city}</span>
+                  </div>
+
+                  <h3 className="font-serif fs-4 fw-bold text-white mb-3">
+                    {officeLocations[activeOffice].title}
+                  </h3>
+
+                  <div className="d-flex flex-column gap-3 small text-white-50">
+                    <div className="d-flex align-items-start gap-2 text-white">
+                      <MapPin className="text-crimson flex-shrink-0 mt-1" style={{ width: '16px', height: '16px' }} />
+                      <span>{officeLocations[activeOffice].address}</span>
+                    </div>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <Phone className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
+                      <a href={`tel:${officeLocations[activeOffice].phone.replace(/[^0-9+]/g, '')}`} className="text-white fw-bold text-decoration-none hover-crimson">
+                        {officeLocations[activeOffice].phone}
+                      </a>
+                    </div>
+
+                    <div className="d-flex align-items-center gap-2">
+                      <Mail className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
+                      <a href={`mailto:${officeLocations[activeOffice].email}`} className="text-white-50 text-decoration-none hover-crimson">
+                        {officeLocations[activeOffice].email}
+                      </a>
+                    </div>
+
+                    <div className="d-flex align-items-start gap-2">
+                      <Navigation className="text-nepal-blue flex-shrink-0 mt-1" style={{ width: '16px', height: '16px' }} />
+                      <span>Transit: {officeLocations[activeOffice].transit}</span>
+                    </div>
+                  </div>
                 </div>
 
-                <h3 className="font-serif text-2xl font-bold text-white">
-                  {officeLocations[activeOffice].title}
-                </h3>
-
-                <div className="space-y-3 pt-2 text-xs">
-                  <div className="flex items-start gap-2.5 text-slate-200">
-                    <MapPin className="w-4 h-4 text-crimson flex-shrink-0 mt-0.5" />
-                    <span>{officeLocations[activeOffice].address}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2.5 text-slate-200">
-                    <Phone className="w-4 h-4 text-crimson flex-shrink-0" />
-                    <a href={`tel:${officeLocations[activeOffice].phone.replace(/[^0-9+]/g, '')}`} className="hover:text-crimson font-bold text-white">
-                      {officeLocations[activeOffice].phone}
-                    </a>
-                  </div>
-
-                  <div className="flex items-center gap-2.5 text-slate-200">
-                    <Mail className="w-4 h-4 text-crimson flex-shrink-0" />
-                    <a href={`mailto:${officeLocations[activeOffice].email}`} className="hover:text-crimson">
-                      {officeLocations[activeOffice].email}
-                    </a>
-                  </div>
-
-                  <div className="flex items-start gap-2.5 text-slate-300">
-                    <Navigation className="w-4 h-4 text-nepal-blue flex-shrink-0 mt-0.5" />
-                    <span>Transit: {officeLocations[activeOffice].transit}</span>
-                  </div>
+                {/* Directions Button */}
+                <div className="pt-4 mt-3 border-top border-sakura">
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${officeLocations[activeOffice].mapQuery}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-danger btn-crimson w-100 py-3 rounded-3 fw-bold small text-white d-flex align-items-center justify-content-center gap-2 shadow"
+                  >
+                    <Navigation style={{ width: '16px', height: '16px' }} />
+                    <span>Get Driving & Subway Directions</span>
+                    <ExternalLink style={{ width: '14px', height: '14px' }} />
+                  </a>
                 </div>
-              </div>
-
-              {/* Directions Button */}
-              <div className="pt-4 border-t border-sakura-border/40">
-                <a
-                  href={`https://www.google.com/maps/search/?api=1&query=${officeLocations[activeOffice].mapQuery}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-bold text-white bg-crimson hover:bg-crimson-hover transition shadow-lg shadow-crimson/20"
-                >
-                  <Navigation className="w-3.5 h-3.5 text-white" />
-                  <span>Get Driving & Subway Directions</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-white" />
-                </a>
               </div>
             </div>
 
             {/* Right Interactive Google Map Embed */}
-            <div className="lg:col-span-7 rounded-2xl overflow-hidden border border-sakura-border/60 shadow-xl min-h-[380px] sm:min-h-[440px] relative bg-nepal-dark">
-              <iframe
-                title={`${officeLocations[activeOffice].city} Office Map`}
-                src={officeLocations[activeOffice].mapEmbedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0, minHeight: '380px' }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full filter saturate-150 contrast-125"
-              />
+            <div className="col-12 col-lg-7">
+              <div className="rounded-4 overflow-hidden border border-sakura shadow-lg h-100 bg-nepal-dark" style={{ minHeight: '380px' }}>
+                <iframe
+                  title={`${officeLocations[activeOffice].city} Office Map`}
+                  src={officeLocations[activeOffice].mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, minHeight: '380px' }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-100 h-100 filter-saturate"
+                />
+              </div>
             </div>
 
           </div>

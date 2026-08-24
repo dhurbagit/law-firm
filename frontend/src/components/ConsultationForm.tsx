@@ -121,36 +121,36 @@ export function ConsultationForm({
   };
 
   return (
-    <div id="case-evaluation" className="relative rounded-2xl bg-nepal-surface border border-sakura-border shadow-2xl p-6 sm:p-10 backdrop-blur-xl font-sans">
+    <div id="case-evaluation" className="card bg-nepal-surface border border-sakura shadow-lg rounded-4 p-4 p-md-5 text-white">
       {/* Top Header */}
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-dark border border-sakura-border text-white text-xs font-bold uppercase tracking-wider mb-3">
-          <Shield className="w-3.5 h-3.5 text-crimson" />
+      <div className="mb-4">
+        <div className="badge bg-nepal-dark text-white border border-sakura px-3 py-2 rounded-pill small fw-bold text-uppercase d-inline-flex align-items-center gap-1 mb-3">
+          <Shield className="text-crimson" style={{ width: '14px', height: '14px' }} />
           <span>Strictly Confidential & Privileged</span>
         </div>
-        <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">
+        <h3 className="font-serif fs-2 fw-bold text-white mb-2">
           {title}
         </h3>
-        <p className="text-slate-300 text-sm mt-2 leading-relaxed font-sans">
+        <p className="text-white-50 small mb-0 lh-base">
           {subtitle}
         </p>
       </div>
 
       {/* Success State Alert */}
       {successMessage && (
-        <div className="mb-8 p-6 rounded-xl bg-nepal-dark border border-sakura-border text-white animate-in fade-in zoom-in-95 duration-300">
-          <div className="flex items-start gap-4">
-            <CheckCircle2 className="w-7 h-7 text-crimson flex-shrink-0 mt-0.5" />
-            <div className="space-y-2">
-              <h4 className="font-serif font-bold text-lg text-white">
+        <div className="alert bg-nepal-dark border border-sakura text-white p-4 rounded-3 mb-4 shadow">
+          <div className="d-flex align-items-start gap-3">
+            <CheckCircle2 className="text-crimson flex-shrink-0 mt-1" style={{ width: '28px', height: '28px' }} />
+            <div>
+              <h5 className="font-serif fw-bold text-white mb-1">
                 Inquiry Received (File #{submittedId})
-              </h4>
-              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed font-sans">
+              </h5>
+              <p className="text-white-50 small mb-2 lh-base">
                 {successMessage}
               </p>
-              <div className="pt-2 text-xs text-slate-300 flex items-center gap-2 font-sans">
-                <Lock className="w-3.5 h-3.5 text-nepal-blue" />
-                <span>Protected under Preliminary Attorney-Client Confidentiality.</span>
+              <div className="small text-white-50 d-flex align-items-center gap-1">
+                <Lock className="text-nepal-blue" style={{ width: '14px', height: '14px' }} />
+                <span>Protected under Preliminary Attorney-Client Privilege.</span>
               </div>
             </div>
           </div>
@@ -159,19 +159,19 @@ export function ConsultationForm({
 
       {/* Error Alert */}
       {errorMessage && (
-        <div className="mb-8 p-4 rounded-xl bg-crimson/15 border border-crimson/40 text-xs text-slate-200 flex items-center gap-3">
-          <AlertCircle className="w-5 h-5 text-crimson flex-shrink-0" />
-          <span>{errorMessage}</span>
+        <div className="alert alert-danger bg-crimson border-0 text-white d-flex align-items-center gap-2 p-3 rounded-3 mb-4">
+          <AlertCircle style={{ width: '18px', height: '18px' }} />
+          <span className="small fw-semibold">{errorMessage}</span>
         </div>
       )}
 
       {/* The Form */}
-      <form onSubmit={handleSubmit} className="space-y-6 font-sans">
+      <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
         
         {/* Row 1: Full Name & Email */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+        <div className="row g-3">
+          <div className="col-12 col-md-6">
+            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Full Legal Name <span className="text-crimson">*</span>
             </label>
             <input
@@ -180,15 +180,15 @@ export function ConsultationForm({
               placeholder="e.g. Robert H. Montgomery"
               value={formData.full_name}
               onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.full_name ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
+              className={`form-control ${validationErrors.full_name ? 'is-invalid border-crimson' : ''}`}
             />
             {validationErrors.full_name && (
-              <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.full_name[0]}</p>
+              <div className="text-crimson small mt-1">{validationErrors.full_name[0]}</div>
             )}
           </div>
 
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+          <div className="col-12 col-md-6">
+            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Email Address <span className="text-crimson">*</span>
             </label>
             <input
@@ -197,18 +197,18 @@ export function ConsultationForm({
               placeholder="e.g. r.montgomery@enterprise.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.email ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
+              className={`form-control ${validationErrors.email ? 'is-invalid border-crimson' : ''}`}
             />
             {validationErrors.email && (
-              <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.email[0]}</p>
+              <div className="text-crimson small mt-1">{validationErrors.email[0]}</div>
             )}
           </div>
         </div>
 
         {/* Row 2: Phone & Practice Area */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+        <div className="row g-3">
+          <div className="col-12 col-md-6">
+            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Direct Telephone <span className="text-crimson">*</span>
             </label>
             <input
@@ -217,35 +217,34 @@ export function ConsultationForm({
               placeholder="e.g. (212) 555-0199"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.phone ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition font-sans`}
+              className={`form-control ${validationErrors.phone ? 'is-invalid border-crimson' : ''}`}
             />
             {validationErrors.phone && (
-              <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.phone[0]}</p>
+              <div className="text-crimson small mt-1">{validationErrors.phone[0]}</div>
             )}
           </div>
 
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5 font-sans">
+          <div className="col-12 col-md-6">
+            <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
               Primary Legal Area of Concern
             </label>
             <select
               value={formData.practice_area_id || ''}
               onChange={(e) => setFormData({ ...formData, practice_area_id: e.target.value ? Number(e.target.value) : null })}
-              className="w-full px-4 py-3 rounded-lg bg-nepal-dark border border-sakura-border/60 focus:border-crimson focus:ring-1 focus:ring-crimson text-white text-sm outline-none transition cursor-pointer font-sans"
+              className="form-select cursor-pointer"
             >
               {practiceAreas.map((area) => (
-                <option key={area.id} value={area.id} className="bg-nepal-dark text-white py-1">
+                <option key={area.id} value={area.id}>
                   {area.title}
                 </option>
               ))}
             </select>
           </div>
-
         </div>
 
         {/* Case Details */}
         <div>
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-200 mb-1.5">
+          <label className="form-label text-uppercase fw-bold text-white small" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
             Brief Summary of Legal Matter <span className="text-crimson">*</span>
           </label>
           <textarea
@@ -254,21 +253,21 @@ export function ConsultationForm({
             placeholder="Please detail key parties involved, dates, jurisdictions, and goals..."
             value={formData.case_details}
             onChange={(e) => setFormData({ ...formData, case_details: e.target.value })}
-            className={`w-full px-4 py-3 rounded-lg bg-nepal-dark border ${validationErrors.case_details ? 'border-crimson' : 'border-sakura-border/60'} focus:border-crimson focus:ring-1 focus:ring-crimson text-white placeholder-slate-500 text-sm outline-none transition resize-none font-sans`}
+            className={`form-control ${validationErrors.case_details ? 'is-invalid border-crimson' : ''}`}
           />
           {validationErrors.case_details && (
-            <p className="text-xs text-crimson mt-1 font-sans">{validationErrors.case_details[0]}</p>
+            <div className="text-crimson small mt-1">{validationErrors.case_details[0]}</div>
           )}
         </div>
 
         {/* Confidentiality Notice */}
-        <div className="p-4 rounded-xl bg-nepal-dark/50 border border-sakura-border/40 flex items-center justify-between gap-4 text-xs text-slate-300">
-          <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-crimson flex-shrink-0" />
+        <div className="p-3 rounded-3 bg-nepal-dark border border-sakura d-flex flex-wrap align-items-center justify-content-between gap-3 text-white-50 small">
+          <div className="d-flex align-items-center gap-2">
+            <Lock className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
             <span>Encrypted 256-bit transmission to Apex Senior Partners.</span>
           </div>
-          <div className="hidden sm:flex items-center gap-1.5 text-white font-bold">
-            <HelpCircle className="w-4 h-4 text-nepal-blue" />
+          <div className="d-none d-sm-flex align-items-center gap-1 text-white fw-bold">
+            <HelpCircle className="text-nepal-blue" style={{ width: '16px', height: '16px' }} />
             <span>No fee unless we win</span>
           </div>
         </div>
@@ -277,17 +276,17 @@ export function ConsultationForm({
         <button
           type="submit"
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2.5 py-4 rounded-xl text-base font-bold text-white bg-crimson hover:bg-crimson-hover border border-white/20 shadow-xl shadow-crimson/20 transition-all cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50"
+          className="btn btn-danger btn-crimson btn-lg w-100 fw-bold py-3 rounded-3 shadow d-flex align-items-center justify-content-center gap-2"
         >
           {loading ? (
             <>
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="animate-spin" style={{ width: '20px', height: '20px' }} />
               <span>Transmitting Privileged Intake...</span>
             </>
           ) : (
             <>
               <span>Submit for Immediate Review</span>
-              <Send className="w-4 h-4" />
+              <Send style={{ width: '16px', height: '16px' }} />
             </>
           )}
         </button>

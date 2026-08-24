@@ -37,79 +37,96 @@ export default function SystemSettingsPage() {
   };
 
   return (
-    <div className="space-y-8 max-w-5xl font-sans bg-[#000000] text-white">
+    <div className="d-flex flex-column gap-4 text-white" style={{ maxWidth: '1000px' }}>
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#DC143C] block mb-1 font-sans">
+          <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ letterSpacing: '0.1em' }}>
             Infrastructure & Configuration
           </span>
-          <h1 className="font-serif text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="font-serif fs-2 fw-bold text-white mb-0">
             System Operations & Health
           </h1>
         </div>
 
-        <button
-          onClick={loadStats}
-          disabled={checking}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#001C4A] hover:bg-[#003893] border border-[#003893] text-xs font-bold text-white transition cursor-pointer font-sans"
-        >
-          <RefreshCw className={`w-3.5 h-3.5 ${checking ? 'animate-spin' : ''}`} />
-          <span>Ping Platform Health</span>
-        </button>
+        <div>
+          <button
+            onClick={loadStats}
+            disabled={checking}
+            className="btn btn-outline-light btn-sm fw-bold border-sakura text-white d-flex align-items-center gap-2"
+          >
+            <RefreshCw className={checking ? 'animate-spin' : ''} style={{ width: '14px', height: '14px' }} />
+            <span>Ping Platform Health</span>
+          </button>
+        </div>
       </div>
 
       {/* Platform Services Status Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 font-sans">
+      <div className="row g-4">
         
         {/* Laravel 11 Backend API */}
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] space-y-3 shadow-xl">
-          <div className="flex items-center justify-between">
-            <div className="w-10 h-10 rounded-xl bg-[#001C4A] border border-[#003893] flex items-center justify-center text-[#DC143C]">
-              <Server className="w-5 h-5" />
+        <div className="col-12 col-sm-6 col-lg-4">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white h-100">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-dark border border-sakura text-crimson"
+                style={{ width: '40px', height: '40px' }}
+              >
+                <Server style={{ width: '20px', height: '20px' }} />
+              </div>
+              <span className="badge bg-nepal-blue text-white border border-crimson" style={{ fontSize: '9px' }}>
+                Online
+              </span>
             </div>
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#003893] text-white border border-[#DC143C] flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#DC143C]"></span> Online
-            </span>
-          </div>
-          <div>
-            <h3 className="font-serif font-bold text-white text-base">Laravel 11 Backend API</h3>
-            <p className="text-xs text-slate-300 mt-0.5">REST API listening on <code>http://localhost:8000/api/v1</code></p>
+            <div>
+              <h4 className="font-serif fs-6 fw-bold text-white mb-1">Laravel 11 Backend API</h4>
+              <p className="text-white-50 small mb-0">REST API listening on <code>http://localhost:8000/api/v1</code></p>
+            </div>
           </div>
         </div>
 
         {/* MySQL Database */}
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] space-y-3 shadow-xl">
-          <div className="flex items-center justify-between">
-            <div className="w-10 h-10 rounded-xl bg-[#001C4A] border border-[#003893] flex items-center justify-center text-[#DC143C]">
-              <Database className="w-5 h-5" />
+        <div className="col-12 col-sm-6 col-lg-4">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white h-100">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-dark border border-sakura text-crimson"
+                style={{ width: '40px', height: '40px' }}
+              >
+                <Database style={{ width: '20px', height: '20px' }} />
+              </div>
+              <span className="badge bg-nepal-blue text-white border border-crimson" style={{ fontSize: '9px' }}>
+                Connected
+              </span>
             </div>
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#003893] text-white border border-[#DC143C] flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#DC143C]"></span> Connected
-            </span>
-          </div>
-          <div>
-            <h3 className="font-serif font-bold text-white text-base">MySQL / MariaDB</h3>
-            <p className="text-xs text-slate-300 mt-0.5">Database: <code>law_firm</code> (utf8mb4_unicode_ci)</p>
+            <div>
+              <h4 className="font-serif fs-6 fw-bold text-white mb-1">MySQL / MariaDB</h4>
+              <p className="text-white-50 small mb-0">Database: <code>law_firm</code> (utf8mb4_unicode_ci)</p>
+            </div>
           </div>
         </div>
 
         {/* Sanctum Auth */}
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] space-y-3 shadow-xl">
-          <div className="flex items-center justify-between">
-            <div className="w-10 h-10 rounded-xl bg-[#001C4A] border border-[#003893] flex items-center justify-center text-[#DC143C]">
-              <Lock className="w-5 h-5" />
+        <div className="col-12 col-sm-6 col-lg-4">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white h-100">
+            <div className="d-flex align-items-center justify-content-between mb-3">
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-dark border border-sakura text-crimson"
+                style={{ width: '40px', height: '40px' }}
+              >
+                <Lock style={{ width: '20px', height: '20px' }} />
+              </div>
+              <span className="badge bg-nepal-blue text-white border border-crimson" style={{ fontSize: '9px' }}>
+                Guarded
+              </span>
             </div>
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-[#003893] text-white border border-[#DC143C] flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#DC143C]"></span> Guarded
-            </span>
-          </div>
-          <div>
-            <h3 className="font-serif font-bold text-white text-base">Laravel Sanctum</h3>
-            <p className="text-xs text-slate-300 mt-0.5">
-              Bearer Token: <code>{token ? `${token.substring(0, 12)}...` : 'Active'}</code>
-            </p>
+            <div>
+              <h4 className="font-serif fs-6 fw-bold text-white mb-1">Laravel Sanctum</h4>
+              <p className="text-white-50 small mb-0">
+                Bearer Token: <code>{token ? `${token.substring(0, 12)}...` : 'Active'}</code>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -117,94 +134,110 @@ export default function SystemSettingsPage() {
 
       {/* Live Public Stats Telemetry */}
       {stats && (
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] space-y-4 shadow-xl font-sans">
-          <div className="flex items-center justify-between">
-            <h3 className="font-serif text-lg font-bold text-white">Live Firm Public Telemetry</h3>
-            <span className="text-[11px] text-[#DC143C] font-bold">Synced from /api/v1/stats</span>
+        <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white">
+          <div className="d-flex align-items-center justify-content-between mb-3">
+            <h4 className="font-serif fs-6 fw-bold text-white mb-0">Live Firm Public Telemetry</h4>
+            <span className="text-crimson small fw-bold" style={{ fontSize: '11px' }}>Synced from /api/v1/stats</span>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-            <div className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50">
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Recoveries</span>
-              <span className="font-serif text-lg font-bold text-[#DC143C]">{stats.recovered_amount}</span>
+          <div className="row g-3 text-center">
+            <div className="col-6 col-sm-3">
+              <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
+                <span className="text-white-50 text-uppercase fw-bold d-block" style={{ fontSize: '10px' }}>Recoveries</span>
+                <span className="font-serif fs-5 fw-bold text-crimson">{stats.recovered_amount}</span>
+              </div>
             </div>
-            <div className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50">
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Success Rate</span>
-              <span className="font-serif text-lg font-bold text-white">{stats.success_rate}</span>
+            <div className="col-6 col-sm-3">
+              <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
+                <span className="text-white-50 text-uppercase fw-bold d-block" style={{ fontSize: '10px' }}>Success Rate</span>
+                <span className="font-serif fs-5 fw-bold text-white">{stats.success_rate}</span>
+              </div>
             </div>
-            <div className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50">
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Active Practices</span>
-              <span className="font-serif text-lg font-bold text-white">{stats.practice_areas}</span>
+            <div className="col-6 col-sm-3">
+              <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
+                <span className="text-white-50 text-uppercase fw-bold d-block" style={{ fontSize: '10px' }}>Active Practices</span>
+                <span className="font-serif fs-5 fw-bold text-white">{stats.practice_areas}</span>
+              </div>
             </div>
-            <div className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50">
-              <span className="text-slate-400 block text-[10px] uppercase font-bold">Landmark Verdicts</span>
-              <span className="font-serif text-lg font-bold text-white">{stats.landmark_verdicts}</span>
+            <div className="col-6 col-sm-3">
+              <div className="p-3 rounded-3 bg-nepal-dark border border-sakura">
+                <span className="text-white-50 text-uppercase fw-bold d-block" style={{ fontSize: '10px' }}>Landmark Verdicts</span>
+                <span className="font-serif fs-5 fw-bold text-white">{stats.landmark_verdicts}</span>
+              </div>
             </div>
           </div>
         </div>
       )}
 
       {/* Security & Rate Limiting Overview */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-[#00122E] border border-[#003893] space-y-6 shadow-xl font-sans">
-        <div className="flex items-center gap-2.5 text-white">
-          <ShieldCheck className="w-5 h-5 text-[#DC143C]" />
-          <h2 className="font-serif text-xl font-bold text-white">Security & API Policy Rules</h2>
+      <div className="card bg-nepal-surface border border-sakura p-4 p-md-5 rounded-4 shadow-lg text-white">
+        <div className="d-flex align-items-center gap-2 mb-4">
+          <ShieldCheck className="text-crimson" style={{ width: '22px', height: '22px' }} />
+          <h3 className="font-serif fs-5 fw-bold text-white mb-0">Security & API Policy Rules</h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-sans">
-          <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/50 space-y-1.5">
-            <span className="font-bold text-white block">CORS Origin Whitelist</span>
-            <p className="text-slate-300">
-              Requests from <code>http://localhost:3000</code>, <code>http://localhost:3001</code>, and authorized domains are permitted to transmit credentials.
-            </p>
+        <div className="row g-3">
+          <div className="col-12 col-md-6">
+            <div className="p-3 rounded-3 bg-nepal-dark border border-sakura h-100">
+              <span className="fw-bold text-white d-block small mb-1">CORS Origin Whitelist</span>
+              <p className="text-white-50 small mb-0">
+                Requests from <code>http://localhost:3000</code>, <code>http://localhost:3001</code>, and authorized domains are permitted to transmit credentials.
+              </p>
+            </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/50 space-y-1.5">
-            <span className="font-bold text-white block">Consultation Rate Limiting</span>
-            <p className="text-slate-300">
-              Inbound lead submissions on <code>/api/v1/consultations</code> are throttled to <strong>6 requests per minute per IP</strong> (<code>throttle:6,1</code>) to prevent automated spam.
-            </p>
+          <div className="col-12 col-md-6">
+            <div className="p-3 rounded-3 bg-nepal-dark border border-sakura h-100">
+              <span className="fw-bold text-white d-block small mb-1">Consultation Rate Limiting</span>
+              <p className="text-white-50 small mb-0">
+                Inbound lead submissions on <code>/api/v1/consultations</code> are throttled to <strong>6 requests per minute per IP</strong> (<code>throttle:6,1</code>) to prevent automated spam.
+              </p>
+            </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/50 space-y-1.5">
-            <span className="font-bold text-white block">Public Storage Symlink</span>
-            <p className="text-slate-300">
-              Headshot uploads and case attachments are saved securely to <code>storage/app/public/uploads</code> and served via <code>/storage/uploads/*</code>.
-            </p>
+          <div className="col-12 col-md-6">
+            <div className="p-3 rounded-3 bg-nepal-dark border border-sakura h-100">
+              <span className="fw-bold text-white d-block small mb-1">Public Storage Symlink</span>
+              <p className="text-white-50 small mb-0">
+                Headshot uploads and case attachments are saved securely to <code>storage/app/public/uploads</code> and served via <code>/storage/uploads/*</code>.
+              </p>
+            </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#000000] border border-[#003893]/50 space-y-1.5">
-            <span className="font-bold text-white block">Transactional DB Isolation</span>
-            <p className="text-slate-300">
-              Lead intake and attorney pivot synchronization are wrapped in transactional DB blocks to guarantee atomicity.
-            </p>
+          <div className="col-12 col-md-6">
+            <div className="p-3 rounded-3 bg-nepal-dark border border-sakura h-100">
+              <span className="fw-bold text-white d-block small mb-1">Transactional DB Isolation</span>
+              <p className="text-white-50 small mb-0">
+                Lead intake and attorney pivot synchronization are wrapped in transactional DB blocks to guarantee atomicity.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Firm Identity & Regulatory Disclaimers */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-[#00122E] border border-[#003893] space-y-4 shadow-xl font-sans">
-        <h2 className="font-serif text-xl font-bold text-white">Firm Identity & Contacts</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-200 font-sans">
-          <div className="space-y-1">
-            <span className="text-slate-400 uppercase font-bold text-[10px]">Headquarters:</span>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+      <div className="card bg-nepal-surface border border-sakura p-4 p-md-5 rounded-4 shadow-lg text-white">
+        <h3 className="font-serif fs-5 fw-bold text-white mb-3">Firm Identity & Contacts</h3>
+        <div className="row g-3 small text-white-50">
+          <div className="col-12 col-sm-4">
+            <span className="text-uppercase fw-bold text-white d-block mb-1" style={{ fontSize: '10px' }}>Headquarters:</span>
+            <div className="d-flex align-items-center gap-2">
+              <MapPin className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
               <span>375 Park Ave, 28th Floor, New York, NY</span>
             </div>
           </div>
 
-          <div className="space-y-1">
-            <span className="text-slate-400 uppercase font-bold text-[10px]">Emergency Hotline:</span>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+          <div className="col-12 col-sm-4">
+            <span className="text-uppercase fw-bold text-white d-block mb-1" style={{ fontSize: '10px' }}>Emergency Hotline:</span>
+            <div className="d-flex align-items-center gap-2">
+              <Phone className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
               <span>(212) 890-4400 (24/7 Response)</span>
             </div>
           </div>
 
-          <div className="space-y-1">
-            <span className="text-slate-400 uppercase font-bold text-[10px]">Intake Email:</span>
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+          <div className="col-12 col-sm-4">
+            <span className="text-uppercase fw-bold text-white d-block mb-1" style={{ fontSize: '10px' }}>Intake Email:</span>
+            <div className="d-flex align-items-center gap-2">
+              <Mail className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
               <span>inquiries@apexlegal.com</span>
             </div>
           </div>

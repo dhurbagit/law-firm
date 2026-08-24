@@ -91,10 +91,12 @@ export default function AdminDashboardPage() {
 
   if (loading) {
     return (
-      <div className="min-h-[60vh] flex items-center justify-center text-white font-sans">
-        <div className="text-center space-y-3">
-          <div className="w-10 h-10 border-2 border-[#DC143C] border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xs uppercase tracking-widest font-bold text-slate-300">
+      <div className="min-vh-50 d-flex align-items-center justify-content-center text-white py-5">
+        <div className="text-center">
+          <div className="spinner-border text-danger mb-3" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="small text-uppercase fw-bold text-white-50" style={{ letterSpacing: '0.1em' }}>
             Gathering Real-Time Firm Intelligence...
           </p>
         </div>
@@ -105,27 +107,25 @@ export default function AdminDashboardPage() {
   // If error or unauthenticated state
   if (errorMsg && !data) {
     return (
-      <div className="p-8 rounded-2xl bg-[#00122E] border border-[#DC143C] text-center space-y-4 max-w-lg mx-auto my-12 font-sans">
-        <AlertCircle className="w-10 h-10 text-[#DC143C] mx-auto" />
-        <div className="space-y-1">
-          <h2 className="font-serif text-xl font-bold text-white">Operations Dashboard Offline</h2>
-          <p className="text-xs text-slate-300">{errorMsg}</p>
-        </div>
-        <div className="flex items-center justify-center gap-3 pt-2">
+      <div className="card bg-nepal-surface border border-crimson p-4 p-md-5 text-center text-white mx-auto my-5 shadow-lg" style={{ maxWidth: '500px' }}>
+        <AlertCircle className="text-crimson mx-auto mb-3" style={{ width: '40px', height: '40px' }} />
+        <h3 className="font-serif fs-4 fw-bold text-white mb-2">Operations Dashboard Offline</h3>
+        <p className="text-white-50 small mb-4">{errorMsg}</p>
+        <div className="d-flex align-items-center justify-content-center gap-3">
           <button
             onClick={() => {
               setLoading(true);
               fetchAnalytics();
             }}
-            className="px-4 py-2 rounded-xl bg-[#001C4A] hover:bg-[#003893] text-xs font-bold text-white transition cursor-pointer"
+            className="btn btn-outline-light btn-sm fw-bold border-sakura text-white"
           >
             Retry Connection
           </button>
           <Link
             href="/admin/login"
-            className="px-4 py-2 rounded-xl bg-[#DC143C] hover:bg-[#B00E2F] text-xs font-bold text-white flex items-center gap-1.5 cursor-pointer shadow"
+            className="btn btn-danger btn-crimson btn-sm fw-bold text-white d-flex align-items-center gap-1 shadow"
           >
-            <LogIn className="w-3.5 h-3.5" />
+            <LogIn style={{ width: '14px', height: '14px' }} />
             <span>Sign In to Admin</span>
           </Link>
         </div>
@@ -145,227 +145,252 @@ export default function AdminDashboardPage() {
   const caseResultsTotal = data?.case_results_total ?? 0;
 
   return (
-    <div className="space-y-8 font-sans bg-[#000000] text-white">
+    <div className="d-flex flex-column gap-4 text-white">
       
       {/* Header with Title and Refresh */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#DC143C] block mb-1">
+          <span className="text-uppercase text-crimson fw-bold small d-block mb-1" style={{ letterSpacing: '0.1em' }}>
             Executive Command & Triage
           </span>
-          <h1 className="font-serif text-3xl font-extrabold text-white tracking-tight">
+          <h1 className="font-serif fs-2 fw-bold text-white mb-0">
             Firm Operations Dashboard
           </h1>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div>
           <button
             onClick={() => {
               setRefreshing(true);
               fetchAnalytics();
             }}
             disabled={refreshing}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#001C4A] hover:bg-[#003893] border border-[#003893] text-xs font-bold text-white transition cursor-pointer"
+            className="btn btn-outline-light btn-sm fw-bold border-sakura text-white d-flex align-items-center gap-2"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={refreshing ? 'animate-spin' : ''} style={{ width: '14px', height: '14px' }} />
             <span>{refreshing ? 'Refreshing...' : 'Live Refresh'}</span>
           </button>
         </div>
       </div>
 
       {alertMsg && (
-        <div className="p-3.5 rounded-xl bg-[#001C4A] border border-[#003893] text-xs text-white flex items-center gap-2 animate-in fade-in font-bold">
-          <CheckCircle2 className="w-4 h-4 text-[#DC143C] flex-shrink-0" />
+        <div className="alert alert-success bg-nepal-surface border border-sakura text-white p-3 rounded-3 d-flex align-items-center gap-2 shadow small mb-0">
+          <CheckCircle2 className="text-crimson flex-shrink-0" style={{ width: '16px', height: '16px' }} />
           <span>{alertMsg}</span>
         </div>
       )}
 
       {/* KPI Metric Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="row g-3">
         
         {/* Total Inquiries */}
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] relative overflow-hidden group shadow-lg">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-300">Total Inquiries</span>
-            <div className="w-8 h-8 rounded-lg bg-[#001C4A] border border-[#003893] flex items-center justify-center text-white">
-              <Inbox className="w-4 h-4 text-[#003893]" />
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-sm text-white h-100">
+            <div className="d-flex align-items-center justify-content-between mb-2">
+              <span className="text-uppercase fw-bold text-white-50 small" style={{ fontSize: '10px', letterSpacing: '0.05em' }}>Total Inquiries</span>
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-dark border border-sakura text-nepal-blue"
+                style={{ width: '32px', height: '32px' }}
+              >
+                <Inbox style={{ width: '16px', height: '16px' }} />
+              </div>
             </div>
+            <div className="font-serif fs-2 fw-bold text-white mb-1">
+              {leadsTotal}
+            </div>
+            <span className="text-white-50 small" style={{ fontSize: '11px' }}>Recorded across website & hotline</span>
           </div>
-          <div className="font-serif text-3xl font-bold text-white mb-1">
-            {leadsTotal}
-          </div>
-          <span className="text-[11px] text-slate-400">Recorded across website & hotline</span>
         </div>
 
         {/* Pending Triage */}
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#DC143C]/60 relative overflow-hidden group shadow-lg">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#DC143C]">Pending Triage</span>
-            <div className="w-8 h-8 rounded-lg bg-[#DC143C]/20 border border-[#DC143C] flex items-center justify-center text-[#DC143C]">
-              <Clock className="w-4 h-4" />
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card bg-nepal-surface border border-crimson p-4 rounded-4 shadow-sm text-white h-100">
+            <div className="d-flex align-items-center justify-content-between mb-2">
+              <span className="text-uppercase fw-bold text-crimson small" style={{ fontSize: '10px', letterSpacing: '0.05em' }}>Pending Triage</span>
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-dark border border-crimson text-crimson"
+                style={{ width: '32px', height: '32px' }}
+              >
+                <Clock style={{ width: '16px', height: '16px' }} />
+              </div>
             </div>
+            <div className="font-serif fs-2 fw-bold text-crimson mb-1">
+              {leadsPending}
+            </div>
+            <span className="text-white-50 small" style={{ fontSize: '11px' }}>Awaiting partner review</span>
           </div>
-          <div className="font-serif text-3xl font-bold text-[#DC143C] mb-1">
-            {leadsPending}
-          </div>
-          <span className="text-[11px] text-slate-300">Awaiting partner review</span>
         </div>
 
         {/* Scheduled Consultations */}
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] relative overflow-hidden group shadow-lg">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-white">Scheduled Consults</span>
-            <div className="w-8 h-8 rounded-lg bg-[#003893]/30 border border-[#003893] flex items-center justify-center text-white">
-              <Calendar className="w-4 h-4 text-[#DC143C]" />
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-sm text-white h-100">
+            <div className="d-flex align-items-center justify-content-between mb-2">
+              <span className="text-uppercase fw-bold text-white-50 small" style={{ fontSize: '10px', letterSpacing: '0.05em' }}>Scheduled Consults</span>
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-dark border border-sakura text-crimson"
+                style={{ width: '32px', height: '32px' }}
+              >
+                <Calendar style={{ width: '16px', height: '16px' }} />
+              </div>
             </div>
+            <div className="font-serif fs-2 fw-bold text-white mb-1">
+              {leadsScheduled}
+            </div>
+            <span className="text-white-50 small" style={{ fontSize: '11px' }}>Retainer meetings booked</span>
           </div>
-          <div className="font-serif text-3xl font-bold text-white mb-1">
-            {leadsScheduled}
-          </div>
-          <span className="text-[11px] text-slate-300">Retainer meetings booked</span>
         </div>
 
         {/* Conversion Rate */}
-        <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] relative overflow-hidden group shadow-lg">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-white">Intake Conversion</span>
-            <div className="w-8 h-8 rounded-lg bg-[#001C4A] border border-[#003893] flex items-center justify-center text-white">
-              <TrendingUp className="w-4 h-4 text-[#DC143C]" />
+        <div className="col-12 col-sm-6 col-lg-3">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-sm text-white h-100">
+            <div className="d-flex align-items-center justify-content-between mb-2">
+              <span className="text-uppercase fw-bold text-white-50 small" style={{ fontSize: '10px', letterSpacing: '0.05em' }}>Intake Conversion</span>
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-dark border border-sakura text-crimson"
+                style={{ width: '32px', height: '32px' }}
+              >
+                <TrendingUp style={{ width: '16px', height: '16px' }} />
+              </div>
             </div>
+            <div className="font-serif fs-2 fw-bold text-crimson mb-1">
+              {conversionRate}
+            </div>
+            <span className="text-white-50 small" style={{ fontSize: '11px' }}>Leads scheduled or retained</span>
           </div>
-          <div className="font-serif text-3xl font-bold text-[#DC143C] mb-1">
-            {conversionRate}
-          </div>
-          <span className="text-[11px] text-slate-400">Leads scheduled or retained</span>
         </div>
 
       </div>
 
       {/* Main Grid: Recent Intake Triage Stream + Practice Breakdown */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="row g-4">
         
         {/* Left: Recent Inquiries Triage Stream (8 cols) */}
-        <div className="lg:col-span-8 p-6 sm:p-7 rounded-2xl bg-[#00122E] border border-[#003893] space-y-6 shadow-xl font-sans">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="font-serif text-xl font-bold text-white">
-                Recent Case Inquiries & Triage Stream
-              </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Quickly triage and advance inquiries without leaving the dashboard.
-              </p>
-            </div>
-            <Link
-              href="/admin/leads"
-              className="text-xs text-[#DC143C] hover:text-white font-bold flex items-center gap-1"
-            >
-              <span>View Full CRM</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="space-y-3">
-            {recentActivity.length === 0 ? (
-              <div className="p-8 text-center text-slate-400 text-xs">
-                No recent inquiries recorded.
+        <div className="col-12 col-lg-8">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white">
+            <div className="d-flex align-items-center justify-content-between mb-4">
+              <div>
+                <h3 className="font-serif fs-5 fw-bold text-white mb-1">
+                  Recent Case Inquiries & Triage Stream
+                </h3>
+                <p className="text-white-50 small mb-0">
+                  Quickly triage and advance inquiries without leaving the dashboard.
+                </p>
               </div>
-            ) : (
-              recentActivity.slice(0, 6).map((lead) => (
-                <div
-                  key={lead.id}
-                  className="p-4 rounded-xl bg-[#000000] border border-[#003893]/50 hover:border-[#DC143C] transition flex flex-col sm:flex-row sm:items-center justify-between gap-4"
-                >
-                  <div className="space-y-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-white text-sm truncate">
-                        {lead.full_name}
-                      </span>
-                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
-                        lead.status === 'pending' ? 'bg-[#DC143C]/20 text-[#DC143C] border border-[#DC143C]' :
-                        lead.status === 'contacted' ? 'bg-[#003893]/30 text-white border border-[#003893]' :
-                        lead.status === 'scheduled' ? 'bg-[#003893] text-white border border-[#DC143C]' :
-                        'bg-slate-800 text-slate-300 border border-slate-700'
-                      }`}>
-                        {lead.status}
-                      </span>
-                    </div>
+              <Link
+                href="/admin/leads"
+                className="text-crimson text-decoration-none small fw-bold d-flex align-items-center gap-1 hover-white"
+              >
+                <span>View Full CRM</span>
+                <ArrowUpRight style={{ width: '14px', height: '14px' }} />
+              </Link>
+            </div>
 
-                    <div className="text-xs text-slate-400 flex items-center gap-3">
-                      <span>{lead.email}</span>
-                      <span>•</span>
-                      <span>{lead.phone}</span>
-                      {lead.practice_area && (
-                        <>
-                          <span>•</span>
-                          <span className="text-[#DC143C] font-bold truncate">{lead.practice_area.title}</span>
-                        </>
-                      )}
-                    </div>
-
-                    <p className="text-xs text-slate-300 line-clamp-1 italic pt-0.5 font-sans">
-                      &ldquo;{lead.case_details}&rdquo;
-                    </p>
-                  </div>
-
-                  {/* Quick Action Buttons */}
-                  <div className="flex items-center gap-1.5 flex-shrink-0 font-sans">
-                    {lead.status === 'pending' && (
-                      <button
-                        onClick={() => handleQuickStatus(lead.id, 'contacted')}
-                        disabled={updatingId === lead.id}
-                        className="px-2.5 py-1.5 rounded-lg bg-[#001C4A] hover:bg-[#003893] border border-[#003893] text-white text-[11px] font-bold transition cursor-pointer"
-                        title="Mark as Contacted"
-                      >
-                        Mark Contacted
-                      </button>
-                    )}
-
-                    {(lead.status === 'pending' || lead.status === 'contacted') && (
-                      <button
-                        onClick={() => handleQuickStatus(lead.id, 'scheduled')}
-                        disabled={updatingId === lead.id}
-                        className="px-2.5 py-1.5 rounded-lg bg-[#DC143C] hover:bg-[#B00E2F] border border-white/20 text-white text-[11px] font-bold transition cursor-pointer"
-                        title="Schedule Consultation"
-                      >
-                        Schedule
-                      </button>
-                    )}
-
-                    <Link
-                      href="/admin/leads"
-                      className="px-2.5 py-1.5 rounded-lg bg-[#001C4A] hover:bg-[#003893] border border-[#003893] text-slate-200 text-[11px] font-bold transition"
-                    >
-                      Details
-                    </Link>
-                  </div>
+            <div className="d-flex flex-column gap-3">
+              {recentActivity.length === 0 ? (
+                <div className="p-4 text-center text-white-50 small">
+                  No recent inquiries recorded.
                 </div>
-              ))
-            )}
+              ) : (
+                recentActivity.slice(0, 6).map((lead) => (
+                  <div
+                    key={lead.id}
+                    className="p-3 rounded-3 bg-nepal-dark border border-sakura d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3"
+                  >
+                    <div className="text-truncate">
+                      <div className="d-flex align-items-center gap-2 mb-1">
+                        <span className="fw-bold text-white small text-truncate">
+                          {lead.full_name}
+                        </span>
+                        <span className={`badge rounded-pill small fw-bold text-uppercase ${
+                          lead.status === 'pending' ? 'bg-crimson text-white' :
+                          lead.status === 'contacted' ? 'bg-nepal-blue text-white' :
+                          lead.status === 'scheduled' ? 'bg-success text-white' :
+                          'bg-secondary text-white'
+                        }`} style={{ fontSize: '9px' }}>
+                          {lead.status}
+                        </span>
+                      </div>
+
+                      <div className="small text-white-50 d-flex flex-wrap align-items-center gap-2" style={{ fontSize: '11px' }}>
+                        <span>{lead.email}</span>
+                        <span>•</span>
+                        <span>{lead.phone}</span>
+                        {lead.practice_area && (
+                          <>
+                            <span>•</span>
+                            <span className="text-crimson fw-bold text-truncate">{lead.practice_area.title}</span>
+                          </>
+                        )}
+                      </div>
+
+                      <p className="small text-white-50 mb-0 mt-1 fst-italic text-truncate" style={{ fontSize: '11px' }}>
+                        &ldquo;{lead.case_details}&rdquo;
+                      </p>
+                    </div>
+
+                    {/* Quick Action Buttons */}
+                    <div className="d-flex align-items-center gap-2 flex-shrink-0">
+                      {lead.status === 'pending' && (
+                        <button
+                          onClick={() => handleQuickStatus(lead.id, 'contacted')}
+                          disabled={updatingId === lead.id}
+                          className="btn btn-outline-light btn-sm fw-bold border-sakura text-white"
+                          style={{ fontSize: '11px' }}
+                          title="Mark as Contacted"
+                        >
+                          Mark Contacted
+                        </button>
+                      )}
+
+                      {(lead.status === 'pending' || lead.status === 'contacted') && (
+                        <button
+                          onClick={() => handleQuickStatus(lead.id, 'scheduled')}
+                          disabled={updatingId === lead.id}
+                          className="btn btn-danger btn-crimson btn-sm fw-bold text-white shadow"
+                          style={{ fontSize: '11px' }}
+                          title="Schedule Consultation"
+                        >
+                          Schedule
+                        </button>
+                      )}
+
+                      <Link
+                        href="/admin/leads"
+                        className="btn btn-outline-light btn-sm fw-bold border-sakura text-white-50"
+                        style={{ fontSize: '11px' }}
+                      >
+                        Details
+                      </Link>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </div>
 
         {/* Right: Practice Breakdown & Firm Status (4 cols) */}
-        <div className="lg:col-span-4 space-y-6 font-sans">
+        <div className="col-12 col-lg-4 d-flex flex-column gap-4">
           
           {/* Practice Area Distribution */}
-          <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] space-y-4 shadow-xl">
-            <h3 className="font-serif text-lg font-bold text-white">
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white">
+            <h4 className="font-serif fs-6 fw-bold text-white mb-3">
               Inquiry Distribution by Discipline
-            </h3>
+            </h4>
             
-            <div className="space-y-3">
+            <div className="d-flex flex-column gap-3">
               {practiceDistribution.length === 0 ? (
-                <p className="text-xs text-slate-400">No practice area metrics recorded yet.</p>
+                <p className="text-white-50 small mb-0">No practice area metrics recorded yet.</p>
               ) : (
                 practiceDistribution.map((item) => (
-                  <div key={item.id} className="space-y-1">
-                    <div className="flex items-center justify-between text-xs font-sans">
-                      <span className="text-slate-300 font-medium truncate max-w-[200px]">{item.title}</span>
-                      <span className="text-[#DC143C] font-bold">{item.leads_count} inquiries</span>
+                  <div key={item.id} className="d-flex flex-column gap-1">
+                    <div className="d-flex align-items-center justify-content-between small">
+                      <span className="text-white-50 text-truncate" style={{ maxWidth: '180px' }}>{item.title}</span>
+                      <strong className="text-crimson">{item.leads_count} leads</strong>
                     </div>
-                    <div className="w-full h-1.5 rounded-full bg-[#000000] overflow-hidden">
+                    <div className="progress" style={{ height: '6px', backgroundColor: '#00153B' }}>
                       <div 
-                        className="h-full bg-gradient-to-r from-[#DC143C] to-[#003893] rounded-full"
+                        className="progress-bar bg-crimson"
                         style={{ width: `${Math.min(100, (item.leads_count / Math.max(1, leadsTotal)) * 100)}%` }}
                       ></div>
                     </div>
@@ -376,27 +401,35 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Firm Assets Summary Card */}
-          <div className="p-6 rounded-2xl bg-[#00122E] border border-[#003893] space-y-3 font-sans">
-            <span className="text-xs uppercase font-bold text-[#DC143C] block">CMS Asset Catalog</span>
-            <div className="grid grid-cols-2 gap-3 pt-1">
-              <Link href="/admin/attorneys" className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50 hover:border-[#DC143C] transition">
-                <span className="text-[10px] uppercase font-bold text-slate-400 block">Attorneys</span>
-                <span className="font-serif text-xl font-bold text-white">{attorneysTotal}</span>
-              </Link>
-              <Link href="/admin/practice-areas" className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50 hover:border-[#DC143C] transition">
-                <span className="text-[10px] uppercase font-bold text-slate-400 block">Practices</span>
-                <span className="font-serif text-xl font-bold text-white">{practicesTotal}</span>
-              </Link>
-              <Link href="/admin/case-results" className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50 hover:border-[#DC143C] transition">
-                <span className="text-[10px] uppercase font-bold text-slate-400 block">Verdicts</span>
-                <span className="font-serif text-xl font-bold text-white">{caseResultsTotal}</span>
-              </Link>
-              <Link href="/admin/settings" className="p-3 rounded-xl bg-[#000000] border border-[#003893]/50 hover:border-[#DC143C] transition">
-                <span className="text-[10px] uppercase font-bold text-slate-400 block">Status</span>
-                <span className="text-xs font-bold text-white flex items-center gap-1 mt-1">
-                  <span className="w-2 h-2 rounded-full bg-[#DC143C]"></span> Healthy
-                </span>
-              </Link>
+          <div className="card bg-nepal-surface border border-sakura p-4 rounded-4 shadow-lg text-white">
+            <span className="text-uppercase text-crimson fw-bold small d-block mb-2" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
+              CMS Asset Catalog
+            </span>
+            <div className="row g-2">
+              <div className="col-6">
+                <Link href="/admin/attorneys" className="card bg-nepal-dark border border-sakura p-3 rounded-3 text-decoration-none text-white h-100 hover-border-crimson">
+                  <span className="text-uppercase text-white-50 fw-bold d-block" style={{ fontSize: '10px' }}>Attorneys</span>
+                  <span className="font-serif fs-4 fw-bold text-white">{attorneysTotal}</span>
+                </Link>
+              </div>
+              <div className="col-6">
+                <Link href="/admin/practice-areas" className="card bg-nepal-dark border border-sakura p-3 rounded-3 text-decoration-none text-white h-100 hover-border-crimson">
+                  <span className="text-uppercase text-white-50 fw-bold d-block" style={{ fontSize: '10px' }}>Practices</span>
+                  <span className="font-serif fs-4 fw-bold text-white">{practicesTotal}</span>
+                </Link>
+              </div>
+              <div className="col-6">
+                <Link href="/admin/case-results" className="card bg-nepal-dark border border-sakura p-3 rounded-3 text-decoration-none text-white h-100 hover-border-crimson">
+                  <span className="text-uppercase text-white-50 fw-bold d-block" style={{ fontSize: '10px' }}>Verdicts</span>
+                  <span className="font-serif fs-4 fw-bold text-white">{caseResultsTotal}</span>
+                </Link>
+              </div>
+              <div className="col-6">
+                <Link href="/admin/settings" className="card bg-nepal-dark border border-sakura p-3 rounded-3 text-decoration-none text-white h-100 hover-border-crimson">
+                  <span className="text-uppercase text-white-50 fw-bold d-block" style={{ fontSize: '10px' }}>Status</span>
+                  <span className="badge bg-success text-white mt-1 d-inline-block">Healthy</span>
+                </Link>
+              </div>
             </div>
           </div>
 

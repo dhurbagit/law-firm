@@ -17,36 +17,38 @@ export default async function AttorneysPage() {
   const attorneys = await getAttorneys();
 
   return (
-    <div className="min-h-screen py-16 font-sans bg-nepal-dark text-white">
+    <div className="min-vh-100 py-5 bg-nepal-dark text-white">
       
       {/* Top Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 font-sans">
-        <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-surface border border-sakura-border text-white text-xs font-bold uppercase tracking-wider">
-            <Award className="w-3.5 h-3.5 text-crimson" />
+      <div className="container-xl mb-5">
+        <div style={{ maxWidth: '700px' }}>
+          <div className="badge bg-nepal-surface border border-sakura text-white px-3 py-2 rounded-pill small fw-bold text-uppercase d-inline-flex align-items-center gap-1 mb-3">
+            <Award className="text-crimson" style={{ width: '14px', height: '14px' }} />
             <span>Trial Counsel & Partners</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          <h1 className="font-serif display-4 fw-bold text-white mb-3">
             Distinguished Advocates. <br />
             <span className="text-crimson">Relentless Courtroom Leadership.</span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+          <p className="text-white-50 fs-5 leading-relaxed mb-0">
             Our attorneys have commanded high-profile trials across federal district courts, the Federal Circuit, the ITC, and state appellate benches.
           </p>
         </div>
       </div>
 
       {/* Grid of Attorneys */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 font-sans">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container-xl mb-5">
+        <div className="row g-4">
           {attorneys.map((attorney) => (
-            <AttorneyCard key={attorney.id} attorney={attorney} />
+            <div key={attorney.id} className="col-12 col-sm-6 col-lg-3">
+              <AttorneyCard attorney={attorney} />
+            </div>
           ))}
         </div>
       </div>
 
       {/* Direct Booking / Consultation Section */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-xl" style={{ maxWidth: '900px' }}>
         <ConsultationForm 
           title="Schedule a Private Retainer Discussion"
           subtitle="Directly consult with our practice group leadership regarding your legal matter."

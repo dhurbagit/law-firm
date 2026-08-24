@@ -46,7 +46,10 @@ export function ThemeToggle({ className = '', showLabel = false }: ThemeTogglePr
 
   if (!mounted) {
     return (
-      <div className={`w-9 h-9 rounded-xl bg-[#001C4A] border border-[#003893]/50 animate-pulse ${className}`} />
+      <div 
+        className={`rounded-3 bg-nepal-surface border border-sakura ${className}`} 
+        style={{ width: '36px', height: '36px' }}
+      />
     );
   }
 
@@ -56,24 +59,22 @@ export function ThemeToggle({ className = '', showLabel = false }: ThemeTogglePr
     <button
       type="button"
       onClick={toggleTheme}
-      className={`relative inline-flex items-center gap-2 p-2 rounded-xl border transition-all duration-300 cursor-pointer ${
-        isDark
-          ? 'bg-[#001C4A] hover:bg-[#002766] border-[#003893] text-white hover:border-[#DC143C] shadow-md shadow-[#003893]/30'
-          : 'bg-[#FFFFFF] hover:bg-[#E6EEFA] border-[#003893]/40 text-[#003893] hover:border-[#DC143C] shadow-sm'
+      className={`btn btn-sm d-inline-flex align-items-center justify-content-center gap-2 p-2 rounded-3 border-sakura shadow-sm ${
+        isDark ? 'btn-outline-light text-white' : 'btn-light text-primary'
       } ${className}`}
       title={`Switch to ${isDark ? 'Light' : 'Dark'} mode`}
       aria-label={`Toggle current ${theme} theme`}
     >
-      <div className="relative w-5 h-5 flex items-center justify-center">
+      <div className="d-flex align-items-center justify-content-center" style={{ width: '18px', height: '18px' }}>
         {isDark ? (
-          <Sun className="w-4 h-4 text-[#DC143C] transform rotate-0 transition-transform duration-300" />
+          <Sun className="text-crimson" style={{ width: '16px', height: '16px' }} />
         ) : (
-          <Moon className="w-4 h-4 text-[#003893] transform rotate-0 transition-transform duration-300" />
+          <Moon className="text-primary" style={{ width: '16px', height: '16px' }} />
         )}
       </div>
 
       {showLabel && (
-        <span className="text-xs font-bold uppercase tracking-wider font-sans">
+        <span className="small fw-bold text-uppercase" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
           {isDark ? 'Light Mode' : 'Dark Mode'}
         </span>
       )}

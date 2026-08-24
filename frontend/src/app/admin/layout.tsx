@@ -56,15 +56,18 @@ export default function AdminLayout({
 
   if (!authorized && pathname !== '/admin/login') {
     return (
-      <div className="min-h-screen bg-nepal-dark flex items-center justify-center font-sans">
-        <div className="p-8 rounded-2xl bg-nepal-surface border border-sakura-border text-center space-y-4 max-w-sm">
-          <div className="w-12 h-12 rounded-xl bg-nepal-blue border border-crimson flex items-center justify-center text-white mx-auto shadow-lg">
-            <Scale className="w-6 h-6 animate-pulse" />
+      <div className="min-vh-100 bg-nepal-dark d-flex align-items-center justify-content-center">
+        <div className="p-4 rounded-4 bg-nepal-surface border border-sakura text-center shadow-lg" style={{ maxWidth: '360px' }}>
+          <div 
+            className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-blue border border-crimson text-white mx-auto mb-3 shadow"
+            style={{ width: '48px', height: '48px' }}
+          >
+            <Scale style={{ width: '24px', height: '24px' }} className="animate-pulse" />
           </div>
-          <h2 className="font-serif text-lg font-bold text-white">
+          <h4 className="font-serif fw-bold text-white mb-2">
             Verifying Counsel Credentials...
-          </h2>
-          <p className="text-xs text-slate-300">
+          </h4>
+          <p className="text-white-50 small mb-0">
             Establishing secure handshake with Laravel Sanctum API.
           </p>
         </div>
@@ -113,96 +116,104 @@ export default function AdminLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-nepal-dark text-white flex flex-col lg:flex-row font-sans">
+    <div className="min-vh-100 bg-nepal-dark text-white d-flex flex-column flex-lg-row">
       
       {/* Mobile Top Header */}
-      <div className="lg:hidden bg-nepal-dark border-b border-sakura-border px-4 py-3 flex items-center justify-between sticky top-0 z-40 font-sans">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-nepal-surface border border-sakura-border flex items-center justify-center text-crimson">
-            <Scale className="w-4 h-4" />
+      <div className="d-lg-none bg-nepal-dark border-bottom border-sakura p-3 d-flex align-items-center justify-content-between sticky-top z-3">
+        <div className="d-flex align-items-center gap-2">
+          <div 
+            className="d-flex align-items-center justify-content-center rounded-2 bg-nepal-surface border border-sakura text-crimson"
+            style={{ width: '32px', height: '32px' }}
+          >
+            <Scale style={{ width: '16px', height: '16px' }} />
           </div>
-          <span className="font-serif font-bold text-white text-base tracking-wide">
-            APEX <span className="text-crimson font-light">CMS</span>
+          <span className="font-serif fw-bold text-white fs-6">
+            APEX <span className="text-crimson fw-light">CMS</span>
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="d-flex align-items-center gap-2">
           <ThemeToggle />
           <Link
             href="/"
             target="_blank"
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-nepal-surface border border-sakura-border text-xs font-bold text-white hover:text-crimson"
+            className="btn btn-sm btn-outline-light d-flex align-items-center gap-1 border-sakura text-white fw-bold"
+            style={{ fontSize: '11px' }}
           >
-            <ExternalLink className="w-3.5 h-3.5 text-crimson" />
+            <ExternalLink className="text-crimson" style={{ width: '12px', height: '12px' }} />
             <span>Public Site</span>
           </Link>
 
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-lg bg-nepal-surface text-white hover:bg-nepal-blue cursor-pointer"
+            className="btn btn-outline-light p-1 border-sakura d-flex align-items-center justify-content-center"
             aria-label="Toggle admin navigation"
           >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {sidebarOpen ? <X style={{ width: '20px', height: '20px' }} /> : <Menu style={{ width: '20px', height: '20px' }} />}
           </button>
         </div>
       </div>
 
       {/* Admin Sidebar */}
-      <aside className={`
-        fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-nepal-surface border-r border-sakura-border flex flex-col justify-between p-6 transition-transform duration-300 shadow-2xl font-sans
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-      `}>
-        <div className="space-y-6">
+      <aside 
+        className={`bg-nepal-surface border-end border-sakura d-flex flex-column justify-content-between p-4 shadow-lg ${
+          sidebarOpen ? 'd-flex position-fixed top-0 start-0 z-3 w-75 h-100' : 'd-none d-lg-flex'
+        }`}
+        style={{ width: '280px', minHeight: '100vh', flexShrink: 0 }}
+      >
+        <div className="d-flex flex-column gap-4">
           
           {/* Firm Logo & Admin Badge */}
           <div>
-            <Link href="/admin" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-nepal-blue border border-crimson flex items-center justify-center shadow-lg group-hover:bg-crimson transition">
-                <Scale className="w-5 h-5 text-white" />
+            <Link href="/admin" className="d-flex align-items-center gap-2 text-decoration-none mb-3">
+              <div 
+                className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-blue border border-crimson text-white shadow"
+                style={{ width: '40px', height: '40px' }}
+              >
+                <Scale style={{ width: '20px', height: '20px' }} />
               </div>
               <div>
-                <span className="block font-serif text-lg font-bold tracking-wide text-white">
-                  APEX <span className="text-crimson font-light">LEGAL</span>
+                <span className="d-block font-serif fs-5 fw-bold text-white lh-1">
+                  APEX <span className="text-crimson fw-light">LEGAL</span>
                 </span>
-                <span className="block text-[10px] tracking-[0.2em] uppercase text-slate-300 font-bold">
+                <span className="d-block text-uppercase fw-bold text-white-50" style={{ fontSize: '9px', letterSpacing: '0.2em' }}>
                   CMS Command Center
                 </span>
               </div>
             </Link>
 
-            <div className="mt-4 p-2.5 rounded-lg bg-nepal-dark border border-sakura-border/40 flex items-center justify-between text-xs">
-              <div className="flex items-center gap-2 text-white">
-                <div className="w-2 h-2 rounded-full bg-crimson animate-pulse"></div>
-                <span className="font-bold text-white">Principal Admin</span>
+            <div className="p-2 rounded-3 bg-nepal-dark border border-sakura d-flex align-items-center justify-content-between small">
+              <div className="d-flex align-items-center gap-2 text-white">
+                <span className="rounded-circle bg-crimson" style={{ width: '8px', height: '8px' }}></span>
+                <strong className="text-white" style={{ fontSize: '11px' }}>Principal Admin</strong>
               </div>
-              <span className="text-[10px] text-white uppercase font-bold px-1.5 py-0.5 rounded bg-nepal-blue">
+              <span className="badge bg-nepal-blue text-white" style={{ fontSize: '9px' }}>
                 Sanctum
               </span>
             </div>
 
             {/* Direct Public Homepage Link Button & Theme Toggle */}
-            <div className="mt-3 space-y-2 font-sans">
+            <div className="d-flex flex-column gap-2 mt-3">
               <Link
                 href="/"
                 target="_blank"
-                className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-white bg-nepal-dark hover:bg-nepal-blue border border-sakura-border hover:border-crimson shadow transition group"
+                className="btn btn-sm btn-outline-light w-100 d-flex align-items-center justify-content-between p-2 rounded-3 border-sakura text-white fw-bold"
+                style={{ fontSize: '11px' }}
               >
-                <div className="flex items-center gap-2">
-                  <ExternalLink className="w-3.5 h-3.5 text-crimson" />
+                <div className="d-flex align-items-center gap-1">
+                  <ExternalLink className="text-crimson" style={{ width: '12px', height: '12px' }} />
                   <span>View Public Firm Site</span>
                 </div>
-                <span className="text-[10px] bg-crimson px-1.5 py-0.5 rounded text-white font-bold uppercase tracking-wider">
-                  Live
-                </span>
+                <span className="badge bg-crimson text-white">Live</span>
               </Link>
 
-              <ThemeToggle showLabel={true} className="w-full justify-between px-3 py-2" />
+              <ThemeToggle showLabel={true} className="w-100 justify-content-between p-2" />
             </div>
           </div>
 
           {/* Navigation Links */}
-          <nav className="space-y-1.5 font-sans">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block px-3 mb-2">
+          <nav className="nav flex-column gap-1">
+            <span className="text-uppercase fw-bold text-white-50 small mb-2 px-2" style={{ fontSize: '10px', letterSpacing: '0.1em' }}>
               Operations & Management
             </span>
             {navItems.map((item) => {
@@ -216,23 +227,22 @@ export default function AdminLayout({
                   key={item.href}
                   href={item.href}
                   onClick={() => setSidebarOpen(false)}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition group ${
+                  className={`nav-link d-flex align-items-center justify-content-between px-3 py-2 rounded-3 text-white fw-bold small text-decoration-none transition ${
                     isActive
-                      ? 'bg-nepal-blue text-white border border-crimson shadow-md'
-                      : 'text-white hover:text-white hover:bg-nepal-dark'
+                      ? 'bg-nepal-blue text-white border border-crimson shadow-sm'
+                      : 'hover-bg-nepal'
                   }`}
+                  style={{ fontSize: '12px' }}
                 >
-                  <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-crimson' : 'text-white group-hover:text-white'}`} />
-                    <span className="text-white font-bold">{item.label}</span>
+                  <div className="d-flex align-items-center gap-2">
+                    <Icon className={isActive ? 'text-crimson' : 'text-white'} style={{ width: '16px', height: '16px' }} />
+                    <span className="text-white">{item.label}</span>
                   </div>
                   {item.badge && (
-                    <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-crimson text-white">
-                      {item.badge}
-                    </span>
+                    <span className="badge bg-crimson text-white">{item.badge}</span>
                   )}
                   {isActive && !item.badge && (
-                    <ChevronRight className="w-3.5 h-3.5 text-crimson" />
+                    <ChevronRight className="text-crimson" style={{ width: '14px', height: '14px' }} />
                   )}
                 </Link>
               );
@@ -242,24 +252,12 @@ export default function AdminLayout({
         </div>
 
         {/* Sidebar Footer */}
-        <div className="space-y-3 pt-6 border-t border-sakura-border/40 font-sans">
-          <Link
-            href="/"
-            target="_blank"
-            className="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs text-slate-300 hover:text-white hover:bg-nepal-dark transition border border-transparent"
-          >
-            <div className="flex items-center gap-2.5">
-              <ExternalLink className="w-3.5 h-3.5 text-crimson" />
-              <span>View Public Firm Site</span>
-            </div>
-            <span className="text-[10px] text-slate-400">Live</span>
-          </Link>
-
+        <div className="pt-4 border-top border-sakura">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold text-white bg-crimson hover:bg-crimson-hover transition cursor-pointer"
+            className="btn btn-danger btn-crimson w-100 py-2 rounded-3 text-white fw-bold small d-flex align-items-center justify-content-center gap-2 shadow"
           >
-            <LogOut className="w-3.5 h-3.5" />
+            <LogOut style={{ width: '14px', height: '14px' }} />
             <span>Sign Out of Portal</span>
           </button>
         </div>
@@ -267,7 +265,7 @@ export default function AdminLayout({
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 min-w-0 p-4 sm:p-8 lg:p-10 overflow-y-auto font-sans bg-nepal-dark">
+      <main className="flex-grow-1 p-4 p-md-5 overflow-auto bg-nepal-dark">
         {children}
       </main>
 

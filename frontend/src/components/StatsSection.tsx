@@ -35,28 +35,32 @@ export function StatsSection({ stats }: StatsSectionProps) {
   ];
 
   return (
-    <section className="relative z-10 py-12 bg-nepal-dark border-y border-sakura-border font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="py-5 bg-nepal-dark border-top border-bottom border-sakura">
+      <div className="container-xl">
+        <div className="row g-4">
           {statItems.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div 
-                key={index}
-                className="p-6 rounded-2xl bg-nepal-surface border border-sakura-border relative overflow-hidden group hover:border-crimson transition-all duration-300 shadow-xl"
-              >
-                <div className="w-10 h-10 rounded-lg bg-nepal-dark border border-sakura-border flex items-center justify-center text-white mb-4 group-hover:bg-crimson group-hover:border-nepal-blue transition-all">
-                  <Icon className="w-5 h-5" />
+              <div key={index} className="col-12 col-sm-6 col-lg-3">
+                <div className="sakura-glass-card h-100 p-4 d-flex flex-column justify-content-between">
+                  <div>
+                    <div 
+                      className="d-flex align-items-center justify-content-center rounded-3 bg-nepal-dark border border-sakura text-white mb-3"
+                      style={{ width: '42px', height: '42px' }}
+                    >
+                      <Icon style={{ width: '20px', height: '20px' }} />
+                    </div>
+                    <div className="font-serif fs-2 fw-bold text-crimson mb-1">
+                      {item.value}
+                    </div>
+                    <div className="text-uppercase fw-bold text-white small mb-2" style={{ letterSpacing: '0.05em' }}>
+                      {item.label}
+                    </div>
+                  </div>
+                  <p className="text-white-50 small mb-0 lh-base">
+                    {item.description}
+                  </p>
                 </div>
-                <div className="font-serif text-3xl sm:text-4xl font-extrabold text-crimson tracking-tight mb-1">
-                  {item.value}
-                </div>
-                <div className="text-sm font-bold text-white uppercase tracking-wider mb-2">
-                  {item.label}
-                </div>
-                <p className="text-xs text-slate-300 leading-relaxed font-sans">
-                  {item.description}
-                </p>
               </div>
             );
           })}

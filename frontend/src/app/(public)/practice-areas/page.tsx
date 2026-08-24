@@ -17,36 +17,38 @@ export default async function PracticeAreasPage() {
   const practiceAreas = await getPracticeAreas();
 
   return (
-    <div className="min-h-screen py-16 font-sans bg-nepal-dark text-white">
+    <div className="min-vh-100 py-5 bg-nepal-dark text-white">
       
       {/* Top Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-nepal-surface border border-sakura-border text-white text-xs font-bold uppercase tracking-wider">
-            <Scale className="w-3.5 h-3.5 text-crimson" />
+      <div className="container-xl mb-5">
+        <div style={{ maxWidth: '700px' }}>
+          <div className="badge bg-nepal-surface border border-sakura text-white px-3 py-2 rounded-pill small fw-bold text-uppercase d-inline-flex align-items-center gap-1 mb-3">
+            <Scale className="text-crimson" style={{ width: '14px', height: '14px' }} />
             <span>Practice Disciplines</span>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          <h1 className="font-serif display-4 fw-bold text-white mb-3">
             Comprehensive Trial & <br />
             <span className="text-crimson">Corporate Practice Groups</span>
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+          <p className="text-white-50 fs-5 leading-relaxed mb-0">
             Our firm delivers Tier-1 national depth across complex corporate transactions, intellectual property litigation, and high-exposure catastrophic defense.
           </p>
         </div>
       </div>
 
       {/* Grid of Practice Areas */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="container-xl mb-5">
+        <div className="row g-4">
           {practiceAreas.map((area) => (
-            <PracticeAreaCard key={area.id} practiceArea={area} />
+            <div key={area.id} className="col-12 col-md-6 col-lg-4">
+              <PracticeAreaCard practiceArea={area} />
+            </div>
           ))}
         </div>
       </div>
 
       {/* Embedded Consultation Section */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container-xl" style={{ maxWidth: '900px' }}>
         <ConsultationForm 
           title="Consult with a Practice Group Leader"
           subtitle="Select your relevant legal discipline to connect with our senior trial partners."
