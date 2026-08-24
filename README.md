@@ -18,6 +18,7 @@ The system is architected as a **headless web application**:
 - **Backend API & Core Engine (`/backend`)**: High-performance **Laravel 11 REST API** backed by MySQL, utilizing Laravel Sanctum for secure Bearer Token authentication, Eloquent ORM relations, Form Request validation rules, and API Resource transformations.
 - **Frontend & Public Client (`/frontend`)**: **Next.js 15 App Router + React 19 + TypeScript + Tailwind CSS**, featuring Server-Side Rendering (SSR), Static Site Generation (SSG), Structured Data (JSON-LD SEO Schema), Route Groups, and an adaptive Dark/Light theme system.
 - **Custom Operations & CMS Dashboard (`/frontend/src/app/admin`)**: A bespoke, proprietary operations center built without third-party monoliths (no Nova/Filament), delivering live firm telemetry, full consultation lead triage CRM, partner directory management, practice discipline administration, and verdict tracking.
+- **Dedicated Public Contact Portal (`/frontend/src/app/(public)/contact`)**: A dedicated, fully featured communication hub featuring an encrypted client intake form, 24/7 emergency dispatch info, interactive multi-city Google Map switcher (New York, Washington D.C., San Francisco), transit directions, and verified legal/social directory profiles.
 - **Strict Brand Design System & Typography**:
   - **Headings**: Editorial Serif (`Playfair Display`).
   - **Body, UI, & Forms**: Modern Clean Sans-Serif (`Roboto`).
@@ -44,12 +45,13 @@ The system is architected as a **headless web application**:
                       │  http://localhost:3001/   │             │ http://localhost:3001/admin│
                       │  • Route Group: (public)  │             │ • Route Group: admin/     │
                       │  • Firm Navbar & Hotline  │             │ • Dedicated Ops Shell     │
-                      │  • Legal Case Intake      │             │ • Leads CRM & Pipeline    │
-                      │  • Practice Areas / Slugs │             │ • Attorney Management     │
-                      │  • Attorney Credentials   │             │ • Practice & Case CMS     │
-                      │  • Landmark Verdicts      │             │ • Sanctum Bearer Token    │
-                      │  • 60-30-10 Color System  │             │ • Live KPI Telemetry      │
-                      │  • Playfair/Roboto Fonts  │             │ • Dark / Light Switch     │
+                      │  • Dedicated Contact Hub  │             │ • Leads CRM & Pipeline    │
+                      │  • Interactive Google Map │             │ • Attorney Management     │
+                      │  • Social Media Profiles  │             │ • Practice & Case CMS     │
+                      │  • Practice Areas / Slugs │             │ • Sanctum Bearer Token    │
+                      │  • Attorney Credentials   │             │ • Live KPI Telemetry      │
+                      │  • Landmark Verdicts      │             │ • Dark / Light Switch     │
+                      │  • 60-30-10 Color System  │             │                           │
                       └─────────────┬─────────────┘             └─────────────┬─────────────┘
                                     │                                         │
                                     │  JSON REST Requests (CORS / Bearer)     │
@@ -113,7 +115,7 @@ law-firm/
 │   │   │   │   ├── practice-areas/        # Directory & Slug Detail Pages
 │   │   │   │   ├── attorneys/             # Partner Directory & Bio Slug Pages
 │   │   │   │   ├── case-results/          # Landmark Verdicts Archive
-│   │   │   │   └── contact/               # Contact & Intake Form
+│   │   │   │   └── contact/               # Dedicated Contact Hub (Form + Info + Map + Social)
 │   │   │   ├── admin/                     # Admin Operations Center Route Group
 │   │   │   │   ├── layout.tsx             # Admin Shell (Sidebar + Topbar + Sanctum Guard)
 │   │   │   │   ├── page.tsx               # Analytics & Operations Dashboard
@@ -171,14 +173,6 @@ colors: {
   },
 }
 ```
-
-| Role | Semantic Token | Hex / Value | Purpose |
-|---|---|---|---|
-| **60% Canvas** | `nepal.dark` / `canvas.light` | `#001F54` / `#F8FAFC` | Main viewport & section backgrounds |
-| **30% Structure** | `sakura.border` / `nepal.surface` | `rgba(255, 183, 197, 0.25)` / `#0A2540` | Subtle borders, pill tags, and cards |
-| **10% Accent** | `crimson.DEFAULT` | `#DC143C` (Hover `#B80D30`) | Primary CTAs & urgent conversion buttons |
-| **Headings Font** | Playfair Display | `var(--font-serif)` | Editorial authority on `h1`-`h6` |
-| **Body & UI Font** | Roboto | `var(--font-sans)` | Ultra-clean readability across all UI elements |
 
 ---
 
