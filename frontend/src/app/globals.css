@@ -213,11 +213,13 @@ html.light .nepal-gradient-text {
   -webkit-text-fill-color: transparent;
 }
 
-/* 30% Structure Cards with subtle Sakura Borders */
+/* 30% Structure Cards with subtle Sakura Borders & Glassmorphism */
 .sakura-glass-card {
-  background: #0A2540;
-  border: 1px solid rgba(255, 183, 197, 0.2);
-  box-shadow: 0 10px 30px -15px rgba(0, 31, 84, 0.8);
+  background: rgba(10, 37, 64, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 183, 197, 0.25);
+  box-shadow: 0 10px 30px -15px rgba(0, 31, 84, 0.7);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -228,7 +230,9 @@ html.light .nepal-gradient-text {
 }
 
 html.light .sakura-glass-card {
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid #E2E8F0;
   box-shadow: 0 4px 20px -2px rgba(0, 31, 84, 0.05);
 }
