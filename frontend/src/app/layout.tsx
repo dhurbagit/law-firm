@@ -92,7 +92,7 @@ export default function RootLayout({
         />
       </head>
       <body 
-        className="min-h-screen flex flex-col bg-[#000000] text-white antialiased selection:bg-[#DC143C] selection:text-white"
+        className="min-vh-100 d-flex flex-column bg-nepal-dark text-white"
         suppressHydrationWarning
       >
         <BootstrapClient />

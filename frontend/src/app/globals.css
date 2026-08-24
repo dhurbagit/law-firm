@@ -119,7 +119,7 @@ aside {
   background-color: #0A2540 !important;
 }
 
-aside nav a:not(.bg-\[\#003893\]) {
+aside nav a {
   color: #FFFFFF !important;
 }
 
@@ -128,8 +128,7 @@ aside nav a:hover {
   background-color: #001F54 !important;
 }
 
-aside nav a.active,
-aside nav a[class*="border-[#DC143C]"] {
+aside nav a.active {
   color: #FFFFFF !important;
   background-color: #003893 !important;
   border-color: #DC143C !important;
@@ -144,13 +143,12 @@ aside nav a[class*="border-[#DC143C]"] {
 .courtroom-hero h3,
 .courtroom-hero p,
 .courtroom-hero strong,
-.courtroom-hero a:not(.btn-crimson):not([class*="bg-crimson"]),
-.courtroom-hero span:not(.text-crimson):not(.text-\[\#DC143C\]):not([class*="text-crimson"]) {
+.courtroom-hero a:not(.btn-crimson):not(.bg-crimson),
+.courtroom-hero span:not(.text-crimson) {
   color: #FFFFFF !important;
 }
 
-.courtroom-hero .text-crimson,
-.courtroom-hero [class*="text-crimson"] {
+.courtroom-hero .text-crimson {
   color: #DC143C !important;
 }
 
@@ -241,14 +239,13 @@ html.light .hero-pattern {
 /* ==========================================================================
    EXPLICIT WHITE TEXT & ICON CONTRAST CONTRACT
    ========================================================================== */
-.text-white,
-[class*="text-white"] {
+/* NOTE: Only .text-white itself is forced. text-white-50 uses Bootstrap's opacity-50 */
+.text-white {
   color: #FFFFFF !important;
 }
 
 svg.text-white,
-.text-white svg,
-[class*="text-white"] svg {
+.text-white > svg {
   color: #FFFFFF !important;
   stroke: currentColor;
 }
@@ -257,14 +254,10 @@ svg.text-white,
    WCAG 2.1 AA OPPOSITE-CONTRAST SYSTEM & RATIO CONTRACTS
    ========================================================================== */
 
-/* 1. Dark Backgrounds (#001F54, #0A2540, #003893) -> Pure White (#FFFFFF) & Light Slate (#E2E8F0) */
+/* 1. Dark Backgrounds (Nepal theme colors) -> Pure White */
 .bg-nepal-dark,
 .bg-nepal-surface,
-.bg-nepal-blue,
-.bg-\[\#001F54\],
-.bg-\[\#0A2540\],
-.bg-\[\#003893\],
-.bg-\[\#00153B\] {
+.bg-nepal-blue {
   color: #FFFFFF;
 }
 
@@ -274,47 +267,32 @@ svg.text-white,
   color: #FFFFFF;
 }
 
-/* 2. 10% High-Impact Crimson Red (#DC143C) -> STRICTLY Pure White (#FFFFFF) */
+/* 2. 10% High-Impact Crimson Red -> STRICTLY Pure White */
 .btn-crimson,
-.bg-crimson,
-.bg-\[\#DC143C\],
-button[class*="bg-[#DC143C]"],
-a[class*="bg-[#DC143C]"],
-span[class*="bg-[#DC143C]"] {
+.bg-crimson {
   background-color: #DC143C !important;
   color: #FFFFFF !important;
 }
 
 .btn-crimson:hover,
-.bg-crimson:hover,
-.bg-\[\#DC143C\]:hover,
-button[class*="bg-[#DC143C]"]:hover,
-a[class*="bg-[#DC143C]"]:hover {
+.bg-crimson:hover {
   background-color: #B80D30 !important;
   color: #FFFFFF !important;
 }
 
 .btn-crimson *,
-.bg-crimson *,
-.bg-\[\#DC143C\] *,
-button[class*="bg-[#DC143C]"] *,
-a[class*="bg-[#DC143C]"] *,
-span[class*="bg-[#DC143C]"] * {
+.bg-crimson * {
   color: #FFFFFF !important;
 }
 
-/* 3. Cherry Blossom Tint (#FFF0F3 / #FFB7C5) -> STRICTLY Dark Blue (#001F54) */
+/* 3. Cherry Blossom Tint -> Dark Blue */
 .bg-sakura,
-.bg-sakura-light,
-.bg-\[\#FFF0F3\],
-.bg-\[\#FFB7C5\] {
+.bg-sakura-light {
   color: #001F54 !important;
 }
 
 .bg-sakura *,
-.bg-sakura-light *,
-.bg-\[\#FFF0F3\] *,
-.bg-\[\#FFB7C5\] * {
+.bg-sakura-light * {
   color: #001F54 !important;
 }
 
@@ -352,18 +330,15 @@ html.light section:not(.courtroom-hero) p:not(.bg-crimson *) {
   color: #334155 !important;
 }
 
-html.light main .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.btn-crimson *):not(.courtroom-hero *):not(.courtroom-hero):not(header *):not(aside *),
-html.light section:not(.courtroom-hero) .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.btn-crimson *):not(.courtroom-hero *) {
+html.light main .text-white:not(.bg-crimson *):not(.bg-nepal-blue *):not(.btn-crimson *):not(.courtroom-hero *):not(.courtroom-hero):not(header *):not(aside *),
+html.light section:not(.courtroom-hero) .text-white:not(.bg-crimson *):not(.btn-crimson *):not(.courtroom-hero *) {
   color: #001F54 !important;
 }
 
-html.light main .text-slate-200:not(.courtroom-hero *):not(.bg-crimson *),
-html.light main .text-slate-300:not(.courtroom-hero *):not(.bg-crimson *),
-html.light main .text-slate-400:not(.courtroom-hero *):not(.bg-crimson *),
-html.light section:not(.courtroom-hero) .text-slate-200:not(.bg-crimson *),
-html.light section:not(.courtroom-hero) .text-slate-300:not(.bg-crimson *),
-html.light section:not(.courtroom-hero) .text-slate-400:not(.bg-crimson *) {
+html.light main .text-white-50:not(.courtroom-hero *):not(.bg-crimson *),
+html.light section:not(.courtroom-hero) .text-white-50:not(.bg-crimson *) {
   color: #475569 !important;
+  opacity: 1 !important;
 }
 
 /* Form inputs */

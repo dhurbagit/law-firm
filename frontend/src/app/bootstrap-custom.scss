@@ -286,3 +286,122 @@ html.light {
     border-color: $crimson;
   }
 }
+
+// ==========================================================================
+// 7. CUSTOM HOVER & INTERACTION UTILITIES
+//    (Replaces all hover:* Tailwind classes used across components)
+// ==========================================================================
+
+// Hover → Crimson text
+.hover-crimson {
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $crimson !important;
+  }
+}
+
+// Hover → White text (used on crimson-colored elements)
+.hover-white {
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #FFFFFF !important;
+  }
+}
+
+// Hover → Crimson border (card/badge hover highlight)
+.hover-border-crimson {
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: $crimson !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(220, 20, 60, 0.15);
+  }
+}
+
+// Hover → Crimson background (small icon button)
+.hover-crimson-bg {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background-color: $crimson !important;
+    border-color: $crimson !important;
+    color: #FFFFFF !important;
+  }
+}
+
+// Hover → Crimson pill (sub-discipline badge hover)
+.hover-crimson-pill {
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: $crimson !important;
+    color: #FFFFFF !important;
+  }
+}
+
+// ==========================================================================
+// 8. LINE CLAMP UTILITIES (CSS native, replaces Tailwind line-clamp-*)
+// ==========================================================================
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.line-clamp-4 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+// ==========================================================================
+// 9. SPIN ANIMATION UTILITY (replaces Tailwind animate-spin)
+// ==========================================================================
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+// ==========================================================================
+// 10. LINE HEIGHT UTILITY (replaces Tailwind leading-snug)
+// ==========================================================================
+.lh-snug {
+  line-height: 1.375 !important;
+}
+
+// ==========================================================================
+// 11. TEXT SELECTION HIGHLIGHT CONTRACT
+// ==========================================================================
+::selection {
+  background-color: $crimson;
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: $crimson;
+  color: #FFFFFF;
+}
+
