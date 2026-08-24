@@ -257,13 +257,33 @@ html.light .hero-pattern {
 }
 
 /* ==========================================================================
-   BUTTON CONTRACT: 10% High-Impact Crimson Red with Crisp White Text
+   WCAG 2.1 AA OPPOSITE-CONTRAST SYSTEM & RATIO CONTRACTS
    ========================================================================== */
+
+/* 1. Dark Backgrounds (#001F54, #0A2540, #003893) -> Pure White (#FFFFFF) & Light Slate (#E2E8F0) */
+.bg-nepal-dark,
+.bg-nepal-surface,
+.bg-nepal-blue,
+.bg-\[\#001F54\],
+.bg-\[\#0A2540\],
+.bg-\[\#003893\],
+.bg-\[\#00153B\] {
+  color: #FFFFFF;
+}
+
+.bg-nepal-dark h1, .bg-nepal-dark h2, .bg-nepal-dark h3, .bg-nepal-dark h4, .bg-nepal-dark h5, .bg-nepal-dark h6,
+.bg-nepal-surface h1, .bg-nepal-surface h2, .bg-nepal-surface h3, .bg-nepal-surface h4, .bg-nepal-surface h5, .bg-nepal-surface h6,
+.bg-nepal-blue h1, .bg-nepal-blue h2, .bg-nepal-blue h3, .bg-nepal-blue h4, .bg-nepal-blue h5, .bg-nepal-blue h6 {
+  color: #FFFFFF;
+}
+
+/* 2. 10% High-Impact Crimson Red (#DC143C) -> STRICTLY Pure White (#FFFFFF) */
 .btn-crimson,
 .bg-crimson,
 .bg-\[\#DC143C\],
 button[class*="bg-[#DC143C]"],
-a[class*="bg-[#DC143C]"] {
+a[class*="bg-[#DC143C]"],
+span[class*="bg-[#DC143C]"] {
   background-color: #DC143C !important;
   color: #FFFFFF !important;
 }
@@ -281,13 +301,27 @@ a[class*="bg-[#DC143C]"]:hover {
 .bg-crimson *,
 .bg-\[\#DC143C\] *,
 button[class*="bg-[#DC143C]"] *,
-a[class*="bg-[#DC143C]"] * {
+a[class*="bg-[#DC143C]"] *,
+span[class*="bg-[#DC143C]"] * {
   color: #FFFFFF !important;
 }
 
-/* ==========================================================================
-   LIGHT MODE CONTENT OVERRIDES (EXCLUDING HEADER, ASIDE & COURTROOM HERO)
-   ========================================================================== */
+/* 3. Cherry Blossom Tint (#FFF0F3 / #FFB7C5) -> STRICTLY Dark Blue (#001F54) */
+.bg-sakura,
+.bg-sakura-light,
+.bg-\[\#FFF0F3\],
+.bg-\[\#FFB7C5\] {
+  color: #001F54 !important;
+}
+
+.bg-sakura *,
+.bg-sakura-light *,
+.bg-\[\#FFF0F3\] *,
+.bg-\[\#FFB7C5\] * {
+  color: #001F54 !important;
+}
+
+/* 4. Light Mode Content Overrides (WCAG 2.1 AA Opposite Contrast) */
 html.light main .bg-nepal-dark:not(.courtroom-hero *):not(.courtroom-hero),
 html.light section.bg-nepal-dark:not(.courtroom-hero *):not(.courtroom-hero),
 html.light div.bg-nepal-dark:not(header *):not(aside *):not(.courtroom-hero *):not(.courtroom-hero) {
@@ -301,27 +335,38 @@ html.light div.bg-nepal-surface:not(header *):not(aside *):not(.courtroom-hero *
   border-color: #E2E8F0 !important;
 }
 
-html.light main h1:not(.courtroom-hero *), html.light main h2:not(.courtroom-hero *), html.light main h3:not(.courtroom-hero *), html.light main h4, html.light main h5, html.light main h6,
-html.light section:not(.courtroom-hero) h1, html.light section:not(.courtroom-hero) h2, html.light section:not(.courtroom-hero) h3, html.light section:not(.courtroom-hero) h4, html.light section:not(.courtroom-hero) h5, html.light section:not(.courtroom-hero) h6 {
-  color: #000000 !important;
+html.light main h1:not(.courtroom-hero *):not(.bg-crimson *), 
+html.light main h2:not(.courtroom-hero *):not(.bg-crimson *), 
+html.light main h3:not(.courtroom-hero *):not(.bg-crimson *), 
+html.light main h4:not(.courtroom-hero *):not(.bg-crimson *), 
+html.light main h5:not(.courtroom-hero *):not(.bg-crimson *), 
+html.light main h6:not(.courtroom-hero *):not(.bg-crimson *),
+html.light section:not(.courtroom-hero) h1:not(.bg-crimson *), 
+html.light section:not(.courtroom-hero) h2:not(.bg-crimson *), 
+html.light section:not(.courtroom-hero) h3:not(.bg-crimson *), 
+html.light section:not(.courtroom-hero) h4:not(.bg-crimson *), 
+html.light section:not(.courtroom-hero) h5:not(.bg-crimson *), 
+html.light section:not(.courtroom-hero) h6:not(.bg-crimson *) {
+  color: #001F54 !important;
 }
 
-html.light main p:not(.courtroom-hero *), html.light section:not(.courtroom-hero) p {
-  color: #1E293B !important;
-}
-
-html.light main .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.courtroom-hero *):not(.courtroom-hero),
-html.light section:not(.courtroom-hero) .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.courtroom-hero *) {
-  color: #000000 !important;
-}
-
-html.light main .text-slate-200:not(.courtroom-hero *),
-html.light main .text-slate-300:not(.courtroom-hero *),
-html.light main .text-slate-400:not(.courtroom-hero *),
-html.light section:not(.courtroom-hero) .text-slate-200,
-html.light section:not(.courtroom-hero) .text-slate-300,
-html.light section:not(.courtroom-hero) .text-slate-400 {
+html.light main p:not(.courtroom-hero *):not(.bg-crimson *), 
+html.light section:not(.courtroom-hero) p:not(.bg-crimson *) {
   color: #334155 !important;
+}
+
+html.light main .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.btn-crimson *):not(.courtroom-hero *):not(.courtroom-hero):not(header *):not(aside *),
+html.light section:not(.courtroom-hero) .text-white:not(.bg-\[\#DC143C\] *):not(.bg-crimson *):not(.bg-\[\#003893\] *):not(.btn-crimson *):not(.courtroom-hero *) {
+  color: #001F54 !important;
+}
+
+html.light main .text-slate-200:not(.courtroom-hero *):not(.bg-crimson *),
+html.light main .text-slate-300:not(.courtroom-hero *):not(.bg-crimson *),
+html.light main .text-slate-400:not(.courtroom-hero *):not(.bg-crimson *),
+html.light section:not(.courtroom-hero) .text-slate-200:not(.bg-crimson *),
+html.light section:not(.courtroom-hero) .text-slate-300:not(.bg-crimson *),
+html.light section:not(.courtroom-hero) .text-slate-400:not(.bg-crimson *) {
+  color: #475569 !important;
 }
 
 /* Form inputs */
@@ -338,8 +383,8 @@ input:focus, select:focus, textarea:focus {
 
 html.light input, html.light select, html.light textarea {
   background-color: #FFFFFF !important;
-  color: #000000 !important;
-  border-color: #E2E8F0 !important;
+  color: #001F54 !important;
+  border-color: #CBD5E1 !important;
 }
 
 html.light input:focus, html.light select:focus, html.light textarea:focus {

@@ -246,3 +246,20 @@ npm run dev -- -p 3001
 - `GET / POST / PUT / DELETE /api/v1/admin/practice-areas` — Complete practice discipline lifecycle
 - `GET / POST / PUT / DELETE /api/v1/admin/case-results` — Complete verdict record lifecycle
 - `POST /api/v1/admin/upload` — Multipart file storage for headshots & attachments
+
+---
+
+## 🎨 8. WCAG 2.1 AA Opposite-Contrast System & Design Matrix
+
+| Background Color / Canvas | Hex Value | Allowed Text (Foreground) Color | Secondary / Muted Text | Accent / Highlight | Contrast Ratio |
+|---|---|---|---|---|---|
+| **Primary Nepal Blue** | `#003893` | `#FFFFFF` (Pure White) | `#E2E8F0` (Light Slate) | `#FFB7C5` (Cherry Blossom) | > 7.0:1 (AAA) |
+| **Midnight Dark Canvas** | `#001F54` / `#0A2540` | `#FFFFFF` (Pure White) | `#94A3B8` (Muted Slate) | `#FFB7C5` (Cherry Blossom) | > 12.0:1 (AAA) |
+| **Crimson Red (CTAs/Pills)**| `#DC143C` | `#FFFFFF` (Pure White) | `#FFFFFF` (Bold/White) | `#001F54` (Dark Blue) | > 4.5:1 (AA) |
+| **Light Canvas / Cards** | `#F8FAFC` / `#FFFFFF` | `#001F54` (Nepal Dark) | `#475569` (Charcoal) | `#DC143C` (Crimson) | > 10.0:1 (AAA) |
+| **Cherry Blossom Tint** | `#FFF0F3` (Light) | `#001F54` (Dark Nepal Blue) | `#334155` (Slate) | `#DC143C` (Crimson) | > 8.5:1 (AAA) |
+
+- **Dark Mode Architecture**: Pure white `#FFFFFF` headings, `#E2E8F0` body text, and crimson action buttons with white text.
+- **Light Mode Overrides**: Automatic conversion of white card text to `#001F54` and `#334155` while strictly preserving crimson CTA white text and courtroom hero authority.
+- **Form Fields & Inputs**: High-contrast dark midnight inputs with `#FFFFFF` text in dark mode, and pure white inputs with `#001F54` text in light mode.
+
