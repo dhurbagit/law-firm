@@ -1,0 +1,242 @@
+// ==========================================================================
+// APEX LEGAL COUNSEL LLP - BOOTSTRAP 5.3 CUSTOM THEME
+// 60-30-10 Legal Color System & Modern Glassmorphism Architecture
+// ==========================================================================
+
+// 1. Theme Color Variables
+$nepal-blue: #003893;
+$nepal-dark: #001F54;
+$nepal-surface: #0A2540;
+$nepal-navy-deep: #00153B;
+
+$crimson: #DC143C;
+$crimson-hover: #B80D30;
+$crimson-subtle: #FFF1F2;
+
+$sakura-light: #FFF0F3;
+$sakura: #FFB7C5;
+$sakura-border: rgba(255, 183, 197, 0.25);
+
+$canvas-light: #F8FAFC;
+$canvas-card: #FFFFFF;
+$canvas-border: #E2E8F0;
+
+// 2. Bootstrap 5.3 Overrides
+$primary: $nepal-blue;
+$secondary: #64748B;
+$dark: $nepal-dark;
+$danger: $crimson;
+$info: $sakura;
+$light: $canvas-light;
+$body-bg: $nepal-dark;
+$body-color: #FFFFFF;
+
+$font-family-sans-serif: var(--font-sans, "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+$font-family-serif: var(--font-serif, "Playfair Display", Georgia, serif);
+
+$border-radius: 0.75rem;
+$border-radius-lg: 1rem;
+$border-radius-xl: 1.5rem;
+$border-radius-2xl: 2rem;
+
+// 3. Merge Custom Theme Colors into Bootstrap
+$custom-colors: (
+  "nepal-blue": $nepal-blue,
+  "nepal-dark": $nepal-dark,
+  "nepal-surface": $nepal-surface,
+  "nepal-deep": $nepal-navy-deep,
+  "crimson": $crimson,
+  "crimson-hover": $crimson-hover,
+  "sakura": $sakura,
+  "sakura-light": $sakura-light,
+  "canvas-light": $canvas-light
+);
+
+// 4. Import Bootstrap Core SCSS
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// 5. Import Bootstrap Components
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
+
+// ==========================================================================
+// 6. CUSTOM LUXURY GLASSMORPHISM & ANIMATION UTILITIES
+// ==========================================================================
+
+// Global Typography Enforcement
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: $font-family-serif !important;
+}
+
+body, p, span, a, button, input, select, textarea, label, table, th, td {
+  font-family: $font-family-sans-serif;
+}
+
+// Sakura Glass Card
+.sakura-glass-card {
+  background: rgba(10, 37, 64, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 183, 197, 0.25);
+  box-shadow: 0 10px 30px -15px rgba(0, 31, 84, 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1rem;
+}
+
+.sakura-glass-card:hover {
+  border-color: $crimson;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(220, 20, 60, 0.25);
+}
+
+// Crimson Buttons
+.btn-crimson,
+.btn-danger {
+  background-color: $crimson !important;
+  border-color: $crimson !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-crimson:hover,
+.btn-danger:hover {
+  background-color: $crimson-hover !important;
+  border-color: $crimson-hover !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(220, 20, 60, 0.35);
+}
+
+.btn-crimson *,
+.btn-danger * {
+  color: #FFFFFF !important;
+}
+
+// Pure White Text Utility
+.text-white,
+[class*="text-white"] {
+  color: #FFFFFF !important;
+}
+
+svg.text-white,
+.text-white svg {
+  color: #FFFFFF !important;
+  stroke: currentColor;
+}
+
+// Navigation Bar
+header.navbar-apex,
+header {
+  background-color: $nepal-dark !important;
+  border-bottom: 1px solid rgba(255, 183, 197, 0.25);
+}
+
+.menu-nav-link {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.menu-nav-link:hover {
+  color: $crimson !important;
+}
+
+.menu-nav-link.active,
+.menu-nav-active {
+  color: $crimson !important;
+  border-bottom: 2px solid $crimson !important;
+}
+
+// GPU-Accelerated Courtroom Background Animation
+@keyframes heroKenBurns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.06) translate3d(-12px, -6px, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
+.hero-ken-burns {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: heroKenBurns 24s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+// Light Mode Adaptations
+html.light {
+  body {
+    background-color: $canvas-light;
+    color: #000000;
+  }
+
+  .sakura-glass-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: $canvas-border;
+    box-shadow: 0 4px 20px -2px rgba(0, 31, 84, 0.05);
+  }
+
+  .sakura-glass-card:hover {
+    border-color: $crimson;
+    box-shadow: 0 16px 32px -6px rgba(220, 20, 60, 0.12);
+  }
+
+  main h1:not(.courtroom-hero *), 
+  main h2:not(.courtroom-hero *), 
+  main h3:not(.courtroom-hero *), 
+  main h4:not(.courtroom-hero *), 
+  main h5:not(.courtroom-hero *), 
+  main h6:not(.courtroom-hero *) {
+    color: $nepal-dark !important;
+  }
+
+  main p:not(.courtroom-hero *), 
+  section:not(.courtroom-hero) p {
+    color: #334155 !important;
+  }
+}

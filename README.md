@@ -1,9 +1,10 @@
 # ⚖️ Apex Legal Counsel LLP — Decoupled Headless Law Firm & CMS Platform
 
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.5.23-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Bootstrap 5.3](https://img.shields.io/badge/Bootstrap-5.3.3-purple?style=flat-square&logo=bootstrap)](https://getbootstrap.com/)
+[![Sass](https://img.shields.io/badge/Sass-SCSS_Custom_Theme-CC6699?style=flat-square&logo=sass)](https://sass-lang.com/)
 [![Laravel 11](https://img.shields.io/badge/Laravel-11.x-red?style=flat-square&logo=laravel)](https://laravel.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-Animated_Hero-blueviolet?style=flat-square&logo=framer)](https://www.framer.com/motion/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Semantic_Tokens-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?style=flat-square&logo=mysql)](https://www.mysql.com/)
 [![Sanctum Auth](https://img.shields.io/badge/Laravel-Sanctum_Auth-purple?style=flat-square)](https://laravel.com/docs/11.x/sanctum)
@@ -17,7 +18,7 @@
 
 The system is architected as a **headless web application**:
 - **Backend API & Core Engine (`/backend`)**: High-performance **Laravel 11 REST API** backed by MySQL, utilizing Laravel Sanctum for secure Bearer Token authentication, Eloquent ORM relations, Form Request validation rules, and API Resource transformations.
-- **Frontend & Public Client (`/frontend`)**: **Next.js 15 App Router + React 19 + TypeScript + Tailwind CSS + Framer Motion**, featuring Server-Side Rendering (SSR), Static Site Generation (SSG), Structured Data (JSON-LD SEO Schema), Route Groups, and an adaptive Dark/Light theme system.
+- **Frontend & Public Client (`/frontend`)**: **Next.js 15 App Router + React 19 + TypeScript + Bootstrap 5.3 + Sass + Framer Motion**, featuring Server-Side Rendering (SSR), Static Site Generation (SSG), Structured Data (JSON-LD SEO Schema), Route Groups, and an adaptive Dark/Light theme system.
 - **Interactive Animated Courtroom Hero with Striking Gavel ("Order, Order")**: High-performance Framer Motion courtroom centerpiece featuring subtle crossfading supreme courtroom backgrounds, an animated judge's gavel striking on a handcrafted walnut/brass sound block in a rhythmic "Order! Order!" sequence, glowing shockwave impact rings, and optional Web Audio API synthesized acoustic sound effects.
 - **Custom Operations & CMS Dashboard (`/frontend/src/app/admin`)**: A bespoke, proprietary operations center built without third-party monoliths (no Nova/Filament), delivering live firm telemetry, full consultation lead triage CRM, partner directory management, practice discipline administration, and verdict tracking.
 - **Dedicated Public Contact Portal (`/frontend/src/app/(public)/contact`)**: A dedicated communication hub with encrypted client intake, 24/7 emergency dispatch, interactive multi-city Google Map switcher (New York, Washington D.C., San Francisco), and verified legal/social directory profiles.

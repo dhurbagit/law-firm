@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Roboto } from "next/font/google";
+import "./bootstrap-custom.scss";
 import "./globals.css";
+import { BootstrapClient } from "@/components/BootstrapClient";
 
 const playfair = Playfair_Display({
   variable: "--font-serif",
@@ -93,6 +95,7 @@ export default function RootLayout({
         className="min-h-screen flex flex-col bg-[#000000] text-white antialiased selection:bg-[#DC143C] selection:text-white"
         suppressHydrationWarning
       >
+        <BootstrapClient />
         {children}
       </body>
     </html>
