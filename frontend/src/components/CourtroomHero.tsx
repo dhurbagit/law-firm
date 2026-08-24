@@ -78,29 +78,18 @@ export function CourtroomHero() {
       className="courtroom-hero relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#001F54] text-white border-b border-sakura-border font-sans"
     >
       
-      {/* 1. FULL BACKGROUND IMAGE WITH CINEMATIC KEN-BURNS ANIMATION */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.05, 1],
-            x: [0, -8, 0],
-          }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            ease: 'easeInOut',
-          }}
-          className="relative w-full h-full"
-        >
+      {/* 1. FULL BACKGROUND IMAGE WITH ULTRA-SMOOTH GPU-ACCELERATED KEN-BURNS ANIMATION */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="relative w-full h-full hero-ken-burns">
           <Image
             src="/images/courtroom_hero.jpg"
             alt="Apex Legal Courtroom Bench and Judicial Chambers"
             fill
             priority
-            className="object-cover object-center filter saturate-[1.1] contrast-[1.15]"
+            sizes="100vw"
+            className="object-cover object-center filter saturate-[1.1] contrast-[1.12]"
           />
-        </motion.div>
+        </div>
 
         {/* Cinematic Multi-Layered Overlays (Lightened for Full Courtroom Visibility) */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#001F54]/55 via-[#001F54]/35 to-[#001F54]/20" />
