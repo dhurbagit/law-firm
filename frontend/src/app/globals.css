@@ -85,29 +85,50 @@
 }
 
 /* ==========================================================================
-   NAVIGATION VISIBILITY & CONTRAST CONTRACT (OPPOSITE COLOR OF BACKGROUND)
+   NAVIGATION VISIBILITY & ACTIVE COLOR CONTRACT
+   (Menu Font: Pure White | Active & Hover: Nepal Flag Crimson Red #DC143C)
    ========================================================================== */
 header {
   background-color: #001F54 !important;
 }
 
-header nav a,
-header nav button,
-header a,
-header span:not(.text-crimson):not(.text-\[\#DC143C\]):not(.bg-crimson *),
-header p:not(.text-crimson) {
+.menu-nav-link {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.menu-nav-link:hover {
+  color: #DC143C !important;
+}
+
+.menu-nav-link.active,
+.menu-nav-link[data-active="true"],
+.menu-nav-active {
+  color: #DC143C !important;
+  border-bottom: 2px solid #DC143C !important;
+  font-weight: 700 !important;
+}
+
+.menu-nav-active * {
+  color: #DC143C !important;
+}
+
+header nav a:not(.menu-nav-active):not(.active),
+header nav button:not(.menu-nav-active):not(.active) {
   color: #FFFFFF !important;
 }
 
 header nav a:hover,
-header nav button:hover,
-header a:hover {
+header nav button:hover {
   color: #DC143C !important;
 }
 
-header nav a[class*="text-crimson"],
-header nav button[class*="text-crimson"],
-header [class*="text-crimson"] {
+header nav a.menu-nav-active,
+header nav button.menu-nav-active,
+header nav a.active,
+header nav button.active,
+header nav a[data-active="true"] {
   color: #DC143C !important;
 }
 
@@ -116,17 +137,20 @@ aside {
   background-color: #0A2540 !important;
 }
 
-aside nav a,
-aside nav button,
-aside a,
-aside span:not(.text-crimson):not(.text-\[\#DC143C\]):not(.bg-crimson *) {
+aside nav a:not(.bg-\[\#003893\]) {
   color: #FFFFFF !important;
 }
 
-aside nav a:hover,
-aside a:hover {
-  color: #FFFFFF !important;
+aside nav a:hover {
+  color: #DC143C !important;
   background-color: #001F54 !important;
+}
+
+aside nav a.active,
+aside nav a[class*="border-[#DC143C]"] {
+  color: #FFFFFF !important;
+  background-color: #003893 !important;
+  border-color: #DC143C !important;
 }
 
 /* ==========================================================================

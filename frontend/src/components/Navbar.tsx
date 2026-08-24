@@ -161,11 +161,11 @@ export function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Nav Links (Crystal Clear Pure White Text) */}
+          {/* Desktop Nav Links (Font color: White | Active color: Nepal Flag Red #DC143C) */}
           <nav className="hidden lg:flex items-center gap-7 text-sm font-bold">
             <Link 
               href="/" 
-              className={`transition hover:text-crimson pb-0.5 ${pathname === '/' ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
+              className={`menu-nav-link ${pathname === '/' ? 'menu-nav-active' : ''}`}
             >
               Home
             </Link>
@@ -179,8 +179,8 @@ export function Navbar() {
             >
               <button 
                 type="button"
-                className={`flex items-center gap-1.5 transition hover:text-crimson py-1 cursor-pointer font-bold ${
-                  pathname.startsWith('/practice-areas') ? 'text-crimson border-b-2 border-crimson' : 'text-white'
+                className={`menu-nav-link flex items-center gap-1.5 py-1 cursor-pointer ${
+                  pathname.startsWith('/practice-areas') ? 'menu-nav-active' : ''
                 }`}
                 onClick={() => setDropdownOpen((prev) => !prev)}
                 aria-expanded={dropdownOpen}
@@ -217,17 +217,17 @@ export function Navbar() {
                             className={`flex items-start gap-3 p-2.5 rounded-xl transition group ${
                               isCurrent
                                 ? 'bg-nepal-blue text-white border border-crimson'
-                                : 'text-white hover:text-white hover:bg-[#001F54]'
+                                : 'text-white hover:text-crimson hover:bg-[#001F54]'
                             }`}
                           >
                             <div className="w-8 h-8 rounded-lg bg-[#001F54] border border-sakura-border/60 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:border-crimson group-hover:bg-crimson">
                               <Icon className="w-4 h-4 text-white" />
                             </div>
                             <div className="min-w-0">
-                              <span className="block text-xs font-bold text-white group-hover:text-white transition">
+                              <span className="block text-xs font-bold text-white group-hover:text-crimson transition">
                                 {item.title}
                               </span>
-                              <span className="block text-[11px] text-slate-200 group-hover:text-white line-clamp-1">
+                              <span className="block text-[11px] text-slate-200 group-hover:text-slate-100 line-clamp-1">
                                 {item.desc}
                               </span>
                             </div>
@@ -253,21 +253,21 @@ export function Navbar() {
 
             <Link 
               href="/attorneys" 
-              className={`transition hover:text-crimson pb-0.5 ${pathname.startsWith('/attorneys') ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
+              className={`menu-nav-link ${pathname.startsWith('/attorneys') ? 'menu-nav-active' : ''}`}
             >
               Attorneys
             </Link>
 
             <Link 
               href="/case-results" 
-              className={`transition hover:text-crimson pb-0.5 ${pathname === '/case-results' ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
+              className={`menu-nav-link ${pathname === '/case-results' ? 'menu-nav-active' : ''}`}
             >
               Landmark Verdicts
             </Link>
 
             <Link 
               href="/contact" 
-              className={`transition hover:text-crimson pb-0.5 ${pathname === '/contact' ? 'text-crimson border-b-2 border-crimson' : 'text-white'}`}
+              className={`menu-nav-link ${pathname === '/contact' ? 'menu-nav-active' : ''}`}
             >
               Contact
             </Link>
@@ -305,7 +305,9 @@ export function Navbar() {
             <Link 
               href="/" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
+              className={`px-3 py-2 rounded-lg transition ${
+                pathname === '/' ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
+              }`}
             >
               Home
             </Link>
@@ -316,7 +318,7 @@ export function Navbar() {
                 <Link 
                   href="/practice-areas" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="hover:text-crimson flex-1 font-bold text-white"
+                  className={`flex-1 font-bold ${pathname.startsWith('/practice-areas') ? 'text-crimson' : 'text-white hover:text-crimson'}`}
                 >
                   Practice Areas Directory
                 </Link>
@@ -337,7 +339,9 @@ export function Navbar() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block px-3 py-1.5 text-xs text-white hover:text-crimson font-medium"
+                      className={`block px-3 py-1.5 text-xs font-semibold ${
+                        pathname === item.href ? 'text-crimson' : 'text-white hover:text-crimson'
+                      }`}
                     >
                       {item.title}
                     </Link>
@@ -349,7 +353,9 @@ export function Navbar() {
             <Link 
               href="/attorneys" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
+              className={`px-3 py-2 rounded-lg transition ${
+                pathname.startsWith('/attorneys') ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
+              }`}
             >
               Attorneys
             </Link>
@@ -357,7 +363,9 @@ export function Navbar() {
             <Link 
               href="/case-results" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
+              className={`px-3 py-2 rounded-lg transition ${
+                pathname === '/case-results' ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
+              }`}
             >
               Landmark Verdicts
             </Link>
@@ -365,7 +373,9 @@ export function Navbar() {
             <Link 
               href="/contact" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg text-white hover:bg-[#0A2540] hover:text-crimson"
+              className={`px-3 py-2 rounded-lg transition ${
+                pathname === '/contact' ? 'text-crimson bg-[#0A2540]' : 'text-white hover:text-crimson hover:bg-[#0A2540]'
+              }`}
             >
               Contact Us
             </Link>
