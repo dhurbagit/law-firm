@@ -99,13 +99,13 @@ export function CourtroomHero() {
           />
         </motion.div>
 
-        {/* Cinematic Multi-Layered Overlays (Navy, Nepal Flag Tones & Vignette for Perfect Text Contrast) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#001F54]/95 via-[#001F54]/85 to-[#001F54]/75" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#001F54] via-transparent to-[#001F54]/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#00153B_80%)] opacity-70" />
+        {/* Cinematic Multi-Layered Overlays (Reduced by 65% for Vibrant Courtroom Visibility) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#001F54]/55 via-[#001F54]/35 to-[#001F54]/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#001F54]/60 via-transparent to-[#001F54]/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#00153B_80%)] opacity-25" />
 
-        {/* Ambient Courtroom Light Beams */}
-        <div className="absolute top-0 left-1/4 w-96 h-full bg-gradient-to-b from-white/5 to-transparent blur-3xl transform -skew-x-12 pointer-events-none" />
+        {/* Ambient Courtroom Warm Light Beam */}
+        <div className="absolute top-0 left-1/4 w-96 h-full bg-gradient-to-b from-amber-100/10 to-transparent blur-3xl transform -skew-x-12 pointer-events-none" />
       </div>
 
       {/* 2. FOREGROUND CONTENT GRID */}
@@ -132,10 +132,10 @@ export function CourtroomHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12]"
+              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)]"
             >
               Commanding The Courtroom. <br />
-              <span className="text-crimson">Decisive Landmark Results.</span>
+              <span className="text-crimson drop-shadow-[0_2px_10px_rgba(220,20,60,0.4)]">Decisive Landmark Results.</span>
             </motion.h1>
 
             {/* Sub-headline */}
@@ -143,7 +143,7 @@ export function CourtroomHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl font-normal"
+              className="text-base sm:text-lg text-slate-100 leading-relaxed max-w-2xl font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
             >
               When high-stakes corporate disputes arise or catastrophic injury demands justice, Apex Legal Counsel commands the courtroom and negotiating table with unwavering precision.
             </motion.p>
