@@ -40,29 +40,29 @@ export default async function HomePage() {
       <StatsSection stats={stats} />
 
       {/* 3. FEATURED PRACTICE AREAS */}
-      <section className="py-20 bg-nepal-dark">
+      <section className="py-24 bg-[#001F54] border-b border-sakura-border relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-            <div className="max-w-2xl">
-              <span className="text-xs font-bold uppercase tracking-widest text-crimson block mb-2 font-sans">
-                Legal Capabilities
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0A2540] border border-[#003893]/60 text-xs font-bold text-crimson uppercase tracking-widest">
+                <span>Legal Capabilities & Trial Bench</span>
+              </div>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
                 Specialized Practice Disciplines
               </h2>
-              <p className="text-slate-300 text-sm mt-3 font-sans">
-                Our partners lead dedicated practice groups tailored to high-exposure litigation, regulatory compliance, and complex corporate transactions.
+              <p className="text-slate-200 text-base leading-relaxed font-normal">
+                Our senior partners lead dedicated legal practice groups tailored to high-exposure commercial litigation, federal regulatory compliance, and multi-million dollar corporate transactions.
               </p>
             </div>
 
             <Link
               href="/practice-areas"
-              className="inline-flex items-center gap-2 text-sm font-bold text-crimson hover:text-white transition font-sans"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#0A2540] hover:bg-crimson border border-[#003893]/60 hover:border-crimson text-sm font-bold text-white transition shadow-lg flex-shrink-0"
             >
               <span>View All 8 Practice Areas</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-crimson group-hover:text-white" />
             </Link>
           </div>
 
