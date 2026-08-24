@@ -1,25 +1,8 @@
-@import "tailwindcss";
+/* ==========================================================================
+   APEX LEGAL COUNSEL LLP - GLOBAL STYLES & ROOT TOKENS (BOOTSTRAP 5.3)
+   ========================================================================== */
 
-@theme {
-  --color-nepal-blue: #003893;
-  --color-nepal-dark: #001F54;
-  --color-nepal-surface: #0A2540;
-
-  --color-crimson: #DC143C;
-  --color-crimson-hover: #B80D30;
-  --color-crimson-subtle: #FFF1F2;
-
-  --color-sakura-light: #FFF0F3;
-  --color-sakura: #FFB7C5;
-  --color-sakura-border: rgba(255, 183, 197, 0.25);
-
-  --color-canvas-light: #F8FAFC;
-  --color-canvas-card: #FFFFFF;
-  --color-canvas-border: #E2E8F0;
-}
-
-@layer base {
-  :root, html.dark {
+:root, html.dark {
     /* 60% Dominant Canvas (Navy & Midnight) */
     --bg-primary: #001F54;
     --bg-secondary: #00153B;
@@ -82,7 +65,6 @@
   p, span, a, button, input, select, textarea, label, div, table, th, td {
     font-family: var(--font-sans, Roboto, -apple-system, BlinkMacSystemFont, sans-serif);
   }
-}
 
 /* ==========================================================================
    NAVIGATION VISIBILITY & ACTIVE COLOR CONTRACT
